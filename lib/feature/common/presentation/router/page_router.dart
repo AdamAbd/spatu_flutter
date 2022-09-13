@@ -3,7 +3,6 @@ import 'dart:io';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:spatu_flutter/feature/feature.dart';
-import 'package:spatu_flutter/main.dart';
 
 class PageRouter {
   Route<dynamic>? getRoute(
@@ -11,14 +10,12 @@ class PageRouter {
   ) {
     switch (settings.name) {
 
-      //* Home
-      case PagePath.home:
+      //* Auth
+      case PagePath.login:
         {
           return _buildRouter(
             settings: settings,
-            builder: (args) => const MyHomePage(
-              title: 'Flutter Demo Home Page',
-            ),
+            builder: (args) => const LoginPage(),
           );
         }
       default:

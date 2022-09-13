@@ -1,4 +1,4 @@
 class PagePath {
-  //* Home
-  static const home = '/';
+  //* Auth
+  static const login = '/';
 }
