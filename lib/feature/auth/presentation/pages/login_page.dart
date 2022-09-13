@@ -18,7 +18,7 @@ class _LoginPageState extends State<LoginPage> {
         child: Column(
           children: [
             const Gap(height: 50, width: double.infinity),
-            Image.asset('assets/icons/logo.png', height: 50, width: 50),
+            Image.asset(AppIcon.logo, height: 50),
             const Gap(height: AppGap.medium),
             Text(
               'Welcome Back!',
@@ -37,14 +37,22 @@ class _LoginPageState extends State<LoginPage> {
             ),
             const Gap(height: 50),
             Container(
-              margin: EdgeInsets.symmetric(horizontal: 24),
+              margin: const EdgeInsets.symmetric(horizontal: AppGap.extraLarge),
               height: 48,
-              width: double.infinity,
-              color: Blue.secondary,
-              child: Center(
-                child: Text(
-                  'Sign In with Google',
-                  style: AppTextStyle.light.copyWith(color: AppColors.white),
+              child: ButtonIcon(
+                onTap: () {},
+                backgroundColor: Blue.secondary,
+                child: Row(
+                  mainAxisAlignment: MainAxisAlignment.center,
+                  children: [
+                    Image.asset(AppIcon.google, width: AppIconSize.large),
+                    const Gap(width: AppGap.normal),
+                    Text(
+                      'Sign In with Google',
+                      style:
+                          AppTextStyle.light.copyWith(color: AppColors.white),
+                    ),
+                  ],
                 ),
               ),
             ),
@@ -77,7 +85,6 @@ class _LoginPageState extends State<LoginPage> {
               ],
             ),
             const Gap(height: AppGap.large),
-            
           ],
         ),
       ),
