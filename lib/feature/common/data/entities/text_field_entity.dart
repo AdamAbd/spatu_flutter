@@ -32,7 +32,7 @@ class TextFieldEntity {
     this.focusNode,
     this.validator,
   }) {
-    ValidationBuilder.setLocale('id');
+    // ValidationBuilder.setLocale('id');
   }
 
   //* Auth
@@ -44,7 +44,7 @@ class TextFieldEntity {
       keyboardType: TextInputType.emailAddress,
       focusNode: FocusNode(),
       validator: (value) {
-        return ValidationBuilder().email().build().call(value)?.toUpperCase();
+        return ValidationBuilder().email().build().call(value);
       },
     ),
     TextFieldEntity(
@@ -55,11 +55,7 @@ class TextFieldEntity {
       textInputAction: TextInputAction.done,
       focusNode: FocusNode(),
       validator: (value) {
-        return ValidationBuilder()
-            .minLength(8)
-            .build()
-            .call(value)
-            ?.toUpperCase();
+        return ValidationBuilder().minLength(8).build().call(value);
       },
     ),
   ];
