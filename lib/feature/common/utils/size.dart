@@ -25,7 +25,7 @@ class AppGap {
   static const double big = 30;
 
   /// gap-size: 56.0;
-  static const double dialog = 96;
+  static const double dialog = 56;
 
   /// gap-size: 72.0;
   static const double extraBig = 72;
