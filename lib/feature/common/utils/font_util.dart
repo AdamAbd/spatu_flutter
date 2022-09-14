@@ -64,3 +64,20 @@ class AppTextStyle {
     color: Blue.primary,
   );
 }
+
+// ignore: avoid_classes_with_only_static_members
+class ButtonTextStyle {
+  /// FontWeight.w300
+  static final TextStyle light = GoogleFonts.poppins(
+    fontSize: AppFontSize.normal,
+    fontWeight: AppFontWeight.light,
+    color: AppColors.white,
+  );
+
+  /// FontWeight.w500
+  static final TextStyle medium = GoogleFonts.poppins(
+    fontSize: AppFontSize.normal,
+    fontWeight: AppFontWeight.medium,
+    color: Blue.tertiary,
+  );
+}

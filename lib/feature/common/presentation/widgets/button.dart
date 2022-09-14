@@ -122,8 +122,8 @@ class ButtonPrimary extends StatelessWidget {
     required Function() onPressed,
     bool isButtonDisabled = false,
     FontWeight fontWeight = AppFontWeight.bold,
-    Color buttonColor = Blue.secondary,
-    Color labelColor = AppColors.white,
+    Color buttonColor = Yellow.primary,
+    Color labelColor = Blue.tertiary,
     Color borderColor = Colors.transparent,
     double borderWidth = 1,
     double borderRadius = AppBorderRadius.small,
@@ -191,14 +191,16 @@ class ButtonPrimary extends StatelessWidget {
             ),
           ),
           child: Text(
-            _label.toUpperCase(),
-            style: TextStyle(
+            _label,
+            style: ButtonTextStyle.medium.copyWith(
               fontSize: _responsive.getResponsiveFontSize(
                 _fontSize,
               ),
               color: _labelColor,
-              fontWeight: _fontWeight,
             ),
+            // style: TextStyle(
+            //   fontWeight: _fontWeight,
+            // ),
             overflow: TextOverflow.ellipsis,
           ),
         ),
@@ -225,13 +227,12 @@ class ButtonPrimary extends StatelessWidget {
           pressedOpacity: 0.8,
           borderRadius: BorderRadius.circular(_borderRadius),
           child: Text(
-            _label.toUpperCase(),
-            style: TextStyle(
+            _label,
+            style: ButtonTextStyle.medium.copyWith(
+              color: _labelColor,
               fontSize: _responsive.getResponsiveFontSize(
                 _fontSize,
               ),
-              color: _labelColor,
-              fontWeight: _fontWeight,
             ),
             overflow: TextOverflow.ellipsis,
           ),

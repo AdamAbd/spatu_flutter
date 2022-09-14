@@ -58,56 +58,40 @@ class SpatuTheme {
         type: BottomNavigationBarType.fixed,
       ),
       dividerTheme: _theme.dividerTheme.copyWith(
-        color: Grey.primary.withOpacity(0.3),
+        color: Blue.primary,
       ),
       inputDecorationTheme: _theme.inputDecorationTheme.copyWith(
         filled: true,
         fillColor: Grey.secondary,
         isDense: true,
-        hintStyle: AppTextStyle.regular.copyWith(
-          fontSize: AppFontSize.small,
-          color: Grey.primary,
+        hintStyle: AppTextStyle.light.copyWith(
+          fontSize: AppFontSize.normal,
+          color: TextFieldColors.text,
         ),
         contentPadding: const EdgeInsets.symmetric(
-          vertical: AppGap.normal,
-          horizontal: AppGap.normal,
+          vertical: AppGap.extraLarge - 2,
         ),
-        disabledBorder: const OutlineInputBorder(
-          borderRadius: BorderRadius.all(
-            Radius.circular(AppBorderRadius.small),
-          ),
+        disabledBorder: const UnderlineInputBorder(
           borderSide: BorderSide(
             color: TextFieldColors.enabledBorder,
           ),
         ),
-        enabledBorder: const OutlineInputBorder(
-          borderRadius: BorderRadius.all(
-            Radius.circular(AppBorderRadius.small),
-          ),
+        enabledBorder: const UnderlineInputBorder(
           borderSide: BorderSide(
             color: TextFieldColors.enabledBorder,
           ),
         ),
-        focusedBorder: const OutlineInputBorder(
-          borderRadius: BorderRadius.all(
-            Radius.circular(AppBorderRadius.small),
-          ),
+        focusedBorder: const UnderlineInputBorder(
           borderSide: BorderSide(
-            color: TextFieldColors.focusedBorder,
+            color: TextFieldColors.enabledBorder,
           ),
         ),
-        focusedErrorBorder: const OutlineInputBorder(
-          borderRadius: BorderRadius.all(
-            Radius.circular(AppBorderRadius.small),
-          ),
+        focusedErrorBorder: const UnderlineInputBorder(
           borderSide: BorderSide(
             color: TextFieldColors.errorBorder,
           ),
         ),
-        errorBorder: const OutlineInputBorder(
-          borderRadius: BorderRadius.all(
-            Radius.circular(AppBorderRadius.small),
-          ),
+        errorBorder: const UnderlineInputBorder(
           borderSide: BorderSide(
             color: TextFieldColors.errorBorder,
           ),
@@ -120,7 +104,7 @@ class SpatuTheme {
           ? Colors.transparent
           : Blue.secondary.withOpacity(0.1),
       textTheme: _theme.textTheme.copyWith().apply(
-            fontFamily: GoogleFonts.roboto().fontFamily,
+            fontFamily: GoogleFonts.inter().fontFamily,
           ),
     );
   }

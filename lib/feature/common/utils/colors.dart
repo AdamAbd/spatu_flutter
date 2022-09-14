@@ -40,6 +40,7 @@ class AppColors {
   static const Color black = Colors.black;
   static const Color background = Color(0xFFF4F4F4);
   static const Color red = Color(0xFFD8160E);
+  static const Color transparant = Colors.transparent;
   static const Color grey = Color(0xFF8C95A2);
   static const Color grey2 = Color(0xFF454545);
   static const Color grey3 = Color(0xFFC6C6C6);
@@ -54,7 +55,7 @@ class Black {
 class Blue {
   static const primary = Color(0xFF808D9E);
   static const secondary = Color(0xFF262832);
-  static const tertiary = Color(0xFF00AEEF);
+  static const tertiary = Color(0xFF1D1E25);
   static const quaternary = Color(0xFFEBEEFF);
 }
 
@@ -87,14 +88,14 @@ class StateColors {
 }
 
 class TextFieldColors {
-  static const Color backgroundEnable = AppColors.white;
+  static const Color backgroundEnable = AppColors.transparant;
   static const Color backgroundDisable = Grey.secondary;
-  static const Color text = Black.primary;
+  static const Color text = Blue.primary;
   static const Color hint = Grey.primary;
   static const Color iconInactive = Grey.primary;
   static const Color iconActive = Blue.primary;
   static const Color label = Black.primary;
   static const Color errorBorder = StateColors.error;
-  static const Color enabledBorder = Grey.primary;
+  static const Color enabledBorder = Blue.primary;
   static const Color focusedBorder = Blue.secondary;
 }

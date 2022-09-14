@@ -1,6 +1,10 @@
 class AppIcon {
   static const logo = './assets/icons/logo.png';
   static const google = './assets/icons/google.png';
+  static const email = './assets/icons/email.png';
+  static const password = './assets/icons/password.png';
+  static const show = './assets/icons/show.png';
+  static const hide = './assets/icons/hide.png';
   static const illClockInClockOut = './assets/icons/ic_work.svg';
   static const illClockInClockOutEarlyOnTime =
       './assets/icons/ic_work_early_ontime.svg';
