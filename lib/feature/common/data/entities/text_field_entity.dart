@@ -39,7 +39,7 @@ class TextFieldEntity {
   static final List<TextFieldEntity> login = [
     TextFieldEntity(
       textController: TextEditingController(text: ''),
-      hint: "Type your Email",
+      hint: "Type your email",
       label: "Email",
       keyboardType: TextInputType.emailAddress,
       focusNode: FocusNode(),
@@ -50,7 +50,44 @@ class TextFieldEntity {
     TextFieldEntity(
       textController: TextEditingController(text: ''),
       hint: "Type your password",
-      label: "Kata Sandi",
+      label: "Password",
+      isPassword: true,
+      textInputAction: TextInputAction.done,
+      focusNode: FocusNode(),
+      validator: (value) {
+        return ValidationBuilder().minLength(8).build().call(value);
+      },
+    ),
+  ];
+
+  static final List<TextFieldEntity> register = [
+    TextFieldEntity(
+      textController: TextEditingController(text: ''),
+      hint: "Type your username",
+      label: "Username",
+      focusNode: FocusNode(),
+      validator: (value) {
+        return ValidationBuilder()
+            .minLength(2)
+            .maxLength(16)
+            .build()
+            .call(value);
+      },
+    ),
+    TextFieldEntity(
+      textController: TextEditingController(text: ''),
+      hint: "Type your email",
+      label: "Email",
+      keyboardType: TextInputType.emailAddress,
+      focusNode: FocusNode(),
+      validator: (value) {
+        return ValidationBuilder().email().build().call(value);
+      },
+    ),
+    TextFieldEntity(
+      textController: TextEditingController(text: ''),
+      hint: "Type your password",
+      label: "Password",
       isPassword: true,
       textInputAction: TextInputAction.done,
       focusNode: FocusNode(),

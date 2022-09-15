@@ -5,6 +5,7 @@ class AppIcon {
   static const password = './assets/icons/password.png';
   static const show = './assets/icons/show.png';
   static const hide = './assets/icons/hide.png';
+  static const profile = './assets/icons/profile.png';
   static const illClockInClockOut = './assets/icons/ic_work.svg';
   static const illClockInClockOutEarlyOnTime =
       './assets/icons/ic_work_early_ontime.svg';
