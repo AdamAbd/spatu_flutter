@@ -1,14 +1,14 @@
 import 'package:flutter/material.dart';
 import 'package:spatu_flutter/feature/common/common.dart';
 
-class LoginPage extends StatefulWidget {
-  const LoginPage({Key? key}) : super(key: key);
+class RegisterPage extends StatefulWidget {
+  const RegisterPage({Key? key}) : super(key: key);
 
   @override
-  State<LoginPage> createState() => _LoginPageState();
+  State<RegisterPage> createState() => RegisterPageState();
 }
 
-class _LoginPageState extends State<LoginPage> {
+class RegisterPageState extends State<RegisterPage> {
   final List<TextFieldEntity> _textFieldList = TextFieldEntity.login;
   final GlobalKey _formKey = GlobalKey<FormState>();
 
@@ -53,7 +53,7 @@ class _LoginPageState extends State<LoginPage> {
                   Image.asset(AppIcon.logo, height: 50),
                   const Gap(height: AppGap.medium),
                   Text(
-                    'Welcome Back!',
+                    'Hello Fish 👋',
                     style: AppTextStyle.medium.copyWith(
                       color: AppColors.white,
                       fontSize: _responsive
@@ -167,7 +167,7 @@ class _LoginPageState extends State<LoginPage> {
                       Hyperlink(
                         'Sign Up',
                         onTap: () {
-                          Navigator.pushNamed(context, PagePath.register);
+                          print('halo');
                         },
                       ),
                     ],

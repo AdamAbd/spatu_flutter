@@ -18,6 +18,13 @@ class PageRouter {
             builder: (args) => const LoginPage(),
           );
         }
+      case PagePath.register:
+        {
+          return _buildRouter(
+            settings: settings,
+            builder: (args) => const RegisterPage(),
+          );
+        }
       default:
         return null;
     }
