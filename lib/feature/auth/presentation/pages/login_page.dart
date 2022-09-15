@@ -66,7 +66,7 @@ class _LoginPageState extends State<LoginPage> {
               child: Hyperlink(
                 'Forgot Password?',
                 onTap: () {
-                  print('halo');
+                  FocusUtils(context).unfocus();
                 },
               ),
             ),
@@ -76,7 +76,9 @@ class _LoginPageState extends State<LoginPage> {
               width: double.infinity,
               child: ButtonPrimary(
                 'Sign In',
-                onPressed: () {},
+                onPressed: () {
+                  FocusUtils(context).unfocus();
+                },
               ),
             ),
             const Gap(height: AppGap.extraLarge),

@@ -54,7 +54,9 @@ class BaseAuthPage extends StatelessWidget {
                   SizedBox(
                     height: AppButtonSize.large,
                     child: ButtonIcon(
-                      onTap: () {},
+                      onTap: () {
+                        FocusUtils(context).unfocus();
+                      },
                       backgroundColor: Blue.secondary,
                       child: Row(
                         mainAxisAlignment: MainAxisAlignment.center,

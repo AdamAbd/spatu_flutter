@@ -74,7 +74,9 @@ class RegisterPageState extends State<RegisterPage> {
               width: double.infinity,
               child: ButtonPrimary(
                 'Sign In',
-                onPressed: () {},
+                onPressed: () {
+                  FocusUtils(context).unfocus();
+                },
               ),
             ),
             const Gap(height: AppGap.extraLarge),
