@@ -90,12 +90,12 @@ class StateColors {
 class TextFieldColors {
   static const Color backgroundEnable = AppColors.transparant;
   static const Color backgroundDisable = Grey.secondary;
-  static const Color text = Blue.primary;
-  static const Color hint = Grey.primary;
+  static const Color text = AppColors.white;
+  static const Color hint = Blue.primary;
   static const Color iconInactive = Grey.primary;
   static const Color iconActive = Blue.primary;
   static const Color label = Black.primary;
   static const Color errorBorder = StateColors.error;
   static const Color enabledBorder = Blue.primary;
-  static const Color focusedBorder = Blue.secondary;
+  static const Color focusedBorder = Yellow.primary;
 }

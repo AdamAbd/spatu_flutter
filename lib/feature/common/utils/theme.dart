@@ -15,9 +15,12 @@ class SpatuTheme {
       errorColor: Red.primary,
       disabledColor: Grey.primary,
       textSelectionTheme: _theme.textSelectionTheme.copyWith(
-        cursorColor: Blue.primary,
-        selectionHandleColor: Blue.primary,
-        selectionColor: Blue.quaternary,
+        //* warna garis kedip kedip
+        cursorColor: Yellow.primary,
+        //* bunderan yang muncul waktu ngehold
+        selectionHandleColor: Yellow.primary,
+        //* warna highlight pas seleksi teks
+        selectionColor: Yellow.primary.withOpacity(0.5),
       ),
       colorScheme: _theme.colorScheme.copyWith(
         primary: Blue.primary,
@@ -66,7 +69,7 @@ class SpatuTheme {
         isDense: true,
         hintStyle: AppTextStyle.light.copyWith(
           fontSize: AppFontSize.normal,
-          color: TextFieldColors.text,
+          color: TextFieldColors.hint,
         ),
         contentPadding: const EdgeInsets.symmetric(
           vertical: AppGap.extraLarge - 2,
@@ -83,7 +86,7 @@ class SpatuTheme {
         ),
         focusedBorder: const UnderlineInputBorder(
           borderSide: BorderSide(
-            color: TextFieldColors.enabledBorder,
+            color: TextFieldColors.focusedBorder,
           ),
         ),
         focusedErrorBorder: const UnderlineInputBorder(

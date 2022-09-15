@@ -77,6 +77,12 @@ class _CustomTextFormFieldState extends State<CustomTextFormField> {
       ),
       decoration: InputDecoration(
         hintText: widget._textFieldEntity.hint,
+        hintStyle: AppTextStyle.light.copyWith(
+          fontSize: _responsive.getResponsiveSize(
+            AppFontSize.normal,
+          ),
+          color: TextFieldColors.hint,
+        ),
         errorText: _error?.toUpperCase(),
         helperText: _error?.toUpperCase(),
         helperStyle: AppTextStyle.regular.copyWith(
