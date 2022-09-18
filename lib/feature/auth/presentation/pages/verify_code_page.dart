@@ -32,14 +32,16 @@ class _VerifyCodePageState extends State<VerifyCodePage> {
     super.dispose();
   }
 
-  void _handleOTP() {
+  void _handleOTP() async {
     final List<String> _pin = [];
     for (final i in _textFieldList) {
       _pin.add(i.textController.text);
     }
-    Future.delayed(const Duration(seconds: 1)).then((_) {
+    await Future.delayed(const Duration(seconds: 1)).then((_) {
       print(_pin.join());
     });
+
+    Navigator.pushNamed(context, PagePath.accountVerified);
   }
 
   @override
