@@ -38,7 +38,7 @@ class AppColors {
   static const Color yellow = Color(0xFFF8C212);
   static const Color white = Colors.white;
   static const Color black = Colors.black;
-  static const Color background = Color(0xFFF4F4F4);
+  static const Color background = Black.primary;
   static const Color red = Color(0xFFD8160E);
   static const Color transparant = Colors.transparent;
   static const Color grey = Color(0xFF8C95A2);
@@ -50,6 +50,7 @@ class AppColors {
 
 class Black {
   static const primary = Color(0xFF161616);
+  static const secondary = Color(0xFF1B1B1B);
 }
 
 class Blue {

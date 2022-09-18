@@ -78,6 +78,8 @@ class _LoginPageState extends State<LoginPage> {
                 'Sign In',
                 onPressed: () {
                   FocusUtils(context).unfocus();
+
+                  Navigator.pushNamed(context, PagePath.verifyCode);
                 },
               ),
             ),

@@ -379,37 +379,37 @@ class _CustomOTPTextFormFieldState extends State<CustomOTPTextFormField> {
           null,
       textAlign: TextAlign.center,
       onChanged: widget._onChanged,
-      style: AppTextStyle.semiBold.copyWith(
-        fontSize: _responsive.getResponsiveSize(
-          AppFontSize.extraLarge,
-        ),
-        color: TextFieldColors.text,
-      ),
+      style: TextFieldTextStyle.bold,
+      inputFormatters: <TextInputFormatter>[
+        FilteringTextInputFormatter.digitsOnly
+      ],
       decoration: InputDecoration(
         hintText: widget._textFieldEntity.hint.toUpperCase(),
-        fillColor: widget._textFieldEntity.isEnabled
-            ? TextFieldColors.backgroundEnable
-            : TextFieldColors.backgroundDisable,
-        enabledBorder: UnderlineInputBorder(
+        fillColor: Black.secondary,
+        // fillColor: widget._textFieldEntity.isEnabled
+        //     ? TextFieldColors.backgroundEnable
+        //     : TextFieldColors.backgroundDisable,
+        enabledBorder: OutlineInputBorder(
           borderSide: BorderSide(
-            color: widget._textFieldEntity.textController.text.isEmpty
-                ? TextFieldColors.enabledBorder
-                : TextFieldColors.focusedBorder,
+            color: AppColors.transparant,
+            // color: widget._textFieldEntity.textController.text.isEmpty
+            //     ? TextFieldColors.enabledBorder
+            //     : TextFieldColors.focusedBorder,
             width: widget._textFieldEntity.textController.text.isEmpty ? 1 : 3,
           ),
         ),
-        focusedBorder: const UnderlineInputBorder(
+        focusedBorder: const OutlineInputBorder(
           borderSide: BorderSide(
             color: TextFieldColors.focusedBorder,
             width: 3,
           ),
         ),
-        focusedErrorBorder: const UnderlineInputBorder(
+        focusedErrorBorder: const OutlineInputBorder(
           borderSide: BorderSide(
             color: TextFieldColors.errorBorder,
           ),
         ),
-        errorBorder: const UnderlineInputBorder(
+        errorBorder: const OutlineInputBorder(
           borderSide: BorderSide(
             color: TextFieldColors.errorBorder,
           ),

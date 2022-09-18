@@ -10,7 +10,7 @@ class SpatuTheme {
     final _theme = Theme.of(context);
     return _theme.copyWith(
       primaryColor: Blue.secondary,
-      scaffoldBackgroundColor: Black.primary,
+      scaffoldBackgroundColor: AppColors.background,
       shadowColor: Grey.secondary,
       errorColor: Red.primary,
       disabledColor: Grey.primary,
@@ -33,10 +33,11 @@ class SpatuTheme {
         backgroundColor: Yellow.primary,
       ),
       appBarTheme: _theme.appBarTheme.copyWith(
-        backgroundColor: AppColors.white,
+        backgroundColor: AppColors.background,
         titleSpacing: 0,
-        systemOverlayStyle: SystemUiOverlayStyle.dark,
+        systemOverlayStyle: SystemUiOverlayStyle.light,
         centerTitle: true,
+        elevation: 0,
       ),
       visualDensity: VisualDensity.adaptivePlatformDensity,
       cardTheme: _theme.cardTheme.copyWith(
@@ -59,6 +60,9 @@ class SpatuTheme {
       ),
       bottomNavigationBarTheme: _theme.bottomNavigationBarTheme.copyWith(
         type: BottomNavigationBarType.fixed,
+      ),
+      bottomSheetTheme: BottomSheetThemeData(
+        backgroundColor: Colors.black.withOpacity(0),
       ),
       dividerTheme: _theme.dividerTheme.copyWith(
         color: Blue.primary,

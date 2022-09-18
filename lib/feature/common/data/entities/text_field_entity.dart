@@ -97,6 +97,42 @@ class TextFieldEntity {
     ),
   ];
 
+  static final List<TextFieldEntity> verify = [
+    TextFieldEntity(
+      textController: TextEditingController(text: ''),
+      hint: "",
+      isAutofocus: true,
+      keyboardType: TextInputType.number,
+      focusNode: FocusNode(),
+    ),
+    TextFieldEntity(
+      textController: TextEditingController(text: ''),
+      hint: "",
+      focusNode: FocusNode(),
+    ),
+    TextFieldEntity(
+      textController: TextEditingController(text: ''),
+      hint: "",
+      focusNode: FocusNode(),
+    ),
+    TextFieldEntity(
+      textController: TextEditingController(text: ''),
+      hint: "",
+      focusNode: FocusNode(),
+    ),
+    TextFieldEntity(
+      textController: TextEditingController(text: ''),
+      hint: "",
+      focusNode: FocusNode(),
+    ),
+    TextFieldEntity(
+      textController: TextEditingController(text: ''),
+      hint: "",
+      textInputAction: TextInputAction.done,
+      focusNode: FocusNode(),
+    ),
+  ];
+
   static final TextFieldEntity authForgotPassword = TextFieldEntity(
     textController: TextEditingController(text: ''),
     hint: "Masukkan Email",
@@ -140,39 +176,6 @@ class TextFieldEntity {
             .call(value)
             ?.toUpperCase();
       },
-    ),
-  ];
-
-  static final List<TextFieldEntity> authVerficiation = [
-    TextFieldEntity(
-      textController: TextEditingController(text: ''),
-      hint: "",
-      isAutofocus: true,
-      keyboardType:
-          const TextInputType.numberWithOptions(decimal: false, signed: false),
-      focusNode: FocusNode(),
-    ),
-    TextFieldEntity(
-      textController: TextEditingController(text: ''),
-      hint: "",
-      keyboardType:
-          const TextInputType.numberWithOptions(decimal: false, signed: false),
-      focusNode: FocusNode(),
-    ),
-    TextFieldEntity(
-      textController: TextEditingController(text: ''),
-      hint: "",
-      keyboardType:
-          const TextInputType.numberWithOptions(decimal: false, signed: false),
-      focusNode: FocusNode(),
-    ),
-    TextFieldEntity(
-      textController: TextEditingController(text: ''),
-      hint: "",
-      keyboardType:
-          const TextInputType.numberWithOptions(decimal: false, signed: false),
-      textInputAction: TextInputAction.done,
-      focusNode: FocusNode(),
     ),
   ];
 

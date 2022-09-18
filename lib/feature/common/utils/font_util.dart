@@ -81,3 +81,13 @@ class ButtonTextStyle {
     color: Blue.tertiary,
   );
 }
+
+// ignore: avoid_classes_with_only_static_members
+class TextFieldTextStyle {
+  /// FontWeight.w700
+  static final TextStyle bold = GoogleFonts.urbanist(
+    fontSize: AppFontSize.extraLarge,
+    fontWeight: AppFontWeight.bold,
+    color: AppColors.white,
+  );
+}

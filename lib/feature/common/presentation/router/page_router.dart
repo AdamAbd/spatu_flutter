@@ -25,6 +25,13 @@ class PageRouter {
             builder: (args) => const RegisterPage(),
           );
         }
+      case PagePath.verifyCode:
+        {
+          return _buildRouter(
+            settings: settings,
+            builder: (args) => const VerifyCodePage(),
+          );
+        }
       default:
         return null;
     }
