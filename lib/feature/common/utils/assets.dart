@@ -13,7 +13,7 @@ class AppIcon {
 }
 
 class AppIllustration {
-  static const illLogo = "./assets/illustrations/ill_logo.png";
+  static const check = "./assets/illustrations/check.png";
   static const ill404 = './assets/illustrations/ill_logo.png';
   static const dummyNetwork =
       'https://images.unsplash.com/photo-1438761681033-6461ffad8d80?ixlib=rb-1.2.1&ixid=MnwxMjA3fDB8MHxzZWFyY2h8Mnx8cGVyc29ufGVufDB8fDB8fA%3D%3D&auto=format&fit=crop&w=800&q=60';

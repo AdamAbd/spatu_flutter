@@ -30,7 +30,7 @@ class AppGap {
   /// gap-size: 72.0;
   static const double extraBig = 72;
 
-  /// gap-size: 92.0
+  /// gap-size: 148.0
   static const double giant = 148;
 }
 
