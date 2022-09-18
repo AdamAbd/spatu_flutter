@@ -2,6 +2,7 @@ import 'dart:io';
 
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
+import 'package:spatu_flutter/feature/auth/presentation/pages/account_verified_page.dart';
 import 'package:spatu_flutter/feature/feature.dart';
 
 class PageRouter {
@@ -30,6 +31,13 @@ class PageRouter {
           return _buildRouter(
             settings: settings,
             builder: (args) => const VerifyCodePage(),
+          );
+        }
+      case PagePath.accountVerified:
+        {
+          return _buildRouter(
+            settings: settings,
+            builder: (args) => const AccountVerifiedPage(),
           );
         }
       default:

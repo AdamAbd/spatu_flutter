@@ -3,4 +3,5 @@ class PagePath {
   static const login = '/';
   static const register = '/register';
   static const verifyCode = '/verify';
+  static const accountVerified = '/verified';
 }
