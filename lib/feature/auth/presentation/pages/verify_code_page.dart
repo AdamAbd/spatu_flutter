@@ -48,6 +48,9 @@ class _VerifyCodePageState extends State<VerifyCodePage> {
     final _responsive = ResponsiveUtils(context);
 
     return BaseAuthInputPage(
+      title: 'Verify Code',
+      description: 'Please enter the code we just sent to your email ',
+      moreDescription: 'adam2802002@gmail.com',
       button: ButtonPrimary(
         'Continue',
         onPressed: () => _handleOTP(),

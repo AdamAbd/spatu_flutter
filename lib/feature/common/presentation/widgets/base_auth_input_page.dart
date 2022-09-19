@@ -5,11 +5,20 @@ class BaseAuthInputPage extends StatelessWidget {
   const BaseAuthInputPage({
     super.key,
     required ButtonPrimary button,
+    required String title,
+    required String description,
+    String? moreDescription,
     required List<Widget> texfieldList,
   })  : _button = button,
+        _title = title,
+        _description = description,
+        _moreDescription = moreDescription,
         _texfieldList = texfieldList;
 
   final ButtonPrimary _button;
+  final String _title;
+  final String _description;
+  final String? _moreDescription;
   final List<Widget> _texfieldList;
 
   @override
@@ -31,7 +40,7 @@ class BaseAuthInputPage extends StatelessWidget {
             Padding(
               padding: const EdgeInsets.only(left: AppGap.extraLarge),
               child: Text(
-                'Verify Code',
+                _title,
                 style: AppTextStyle.medium.copyWith(
                   fontSize: AppFontSize.extraLarge,
                 ),
@@ -44,10 +53,10 @@ class BaseAuthInputPage extends StatelessWidget {
               ),
               child: Text.rich(
                 TextSpan(
-                  text: 'Please enter the code we just sent to your email ',
+                  text: _description,
                   children: [
                     TextSpan(
-                      text: 'adam2802002@gmail.com',
+                      text: _moreDescription ?? '',
                       style: AppTextStyle.medium.copyWith(
                         fontSize: AppFontSize.medium,
                       ),
