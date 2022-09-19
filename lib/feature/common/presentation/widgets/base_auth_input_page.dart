@@ -7,19 +7,19 @@ class BaseAuthInputPage extends StatelessWidget {
     required ButtonPrimary button,
     required String title,
     required String description,
+    required List<Widget> body,
     String? moreDescription,
-    required List<Widget> texfieldList,
   })  : _button = button,
         _title = title,
         _description = description,
-        _moreDescription = moreDescription,
-        _texfieldList = texfieldList;
+        _body = body,
+        _moreDescription = moreDescription;
 
   final ButtonPrimary _button;
   final String _title;
   final String _description;
+  final List<Widget> _body;
   final String? _moreDescription;
-  final List<Widget> _texfieldList;
 
   @override
   Widget build(BuildContext context) {
@@ -71,27 +71,8 @@ class BaseAuthInputPage extends StatelessWidget {
             const Gap(height: AppGap.big + 6),
             Padding(
               padding: const EdgeInsets.symmetric(horizontal: AppGap.medium),
-              child: Row(
-                children: _texfieldList,
-              ),
-            ),
-            const Gap(height: AppGap.extraLarge),
-            Center(
-              child: Text.rich(
-                TextSpan(
-                  text: 'Resend code in ',
-                  children: [
-                    TextSpan(
-                      text: '00:22',
-                      style: AppTextStyle.medium.copyWith(
-                        fontSize: AppFontSize.medium,
-                      ),
-                    ),
-                  ],
-                ),
-                style: AppTextStyle.regular.copyWith(
-                  fontSize: AppFontSize.medium,
-                ),
+              child: Column(
+                children: _body,
               ),
             ),
           ],

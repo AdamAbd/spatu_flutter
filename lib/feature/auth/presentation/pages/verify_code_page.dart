@@ -55,28 +55,51 @@ class _VerifyCodePageState extends State<VerifyCodePage> {
         'Continue',
         onPressed: () => _handleOTP(),
       ),
-      texfieldList: List.generate(
-        _textFieldList.length,
-        (index) => Expanded(
-          child: Padding(
-            padding: const EdgeInsets.symmetric(
-              horizontal: AppGap.extraSmall,
-            ),
-            child: CustomOTPTextFormField(
-              textFieldEntity: _textFieldList[index],
-              onChanged: (value) {
-                if (value.isNotEmpty) {
-                  if (index != _textFieldList.length - 1) {
-                    FocusManager.instance.primaryFocus!.nextFocus();
-                  }
-                } else if (index != 0) {
-                  FocusManager.instance.primaryFocus!.previousFocus();
-                }
-              },
+      body: [
+        Row(
+          children: List.generate(
+            _textFieldList.length,
+            (index) => Expanded(
+              child: Padding(
+                padding: const EdgeInsets.symmetric(
+                  horizontal: AppGap.extraSmall,
+                ),
+                child: CustomOTPTextFormField(
+                  textFieldEntity: _textFieldList[index],
+                  onChanged: (value) {
+                    if (value.isNotEmpty) {
+                      if (index != _textFieldList.length - 1) {
+                        FocusManager.instance.primaryFocus!.nextFocus();
+                      }
+                    } else if (index != 0) {
+                      FocusManager.instance.primaryFocus!.previousFocus();
+                    }
+                  },
+                ),
+              ),
             ),
           ),
         ),
-      ),
+        const Gap(height: AppGap.extraLarge),
+        Center(
+          child: Text.rich(
+            TextSpan(
+              text: 'Resend code in ',
+              children: [
+                TextSpan(
+                  text: '00:22',
+                  style: AppTextStyle.medium.copyWith(
+                    fontSize: AppFontSize.medium,
+                  ),
+                ),
+              ],
+            ),
+            style: AppTextStyle.regular.copyWith(
+              fontSize: AppFontSize.medium,
+            ),
+          ),
+        ),
+      ],
     );
   }
 }
