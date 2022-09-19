@@ -20,7 +20,5 @@ class AppIllustration {
 }
 
 class AppLottie {
-  static const map = "./assets/illustrations/ill_lottie_map.json";
-  static const privacyPolicy =
-      './assets/illustrations/ill_lottie_privacy_policy.json';
+  static const checkmark = "./assets/lottie/checkmark.json";
 }

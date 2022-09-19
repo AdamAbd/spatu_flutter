@@ -1,8 +1,52 @@
+import 'dart:async';
+
 import 'package:flutter/material.dart';
+import 'package:lottie/lottie.dart';
+
 import 'package:spatu_flutter/feature/feature.dart';
 
-class AccountVerifiedPage extends StatelessWidget {
+class AccountVerifiedPage extends StatefulWidget {
   const AccountVerifiedPage({Key? key}) : super(key: key);
+
+  @override
+  State<AccountVerifiedPage> createState() => _AccountVerifiedPageState();
+}
+
+class _AccountVerifiedPageState extends State<AccountVerifiedPage> {
+  late Timer _timer;
+  int _start = 10;
+
+  void startTimer() {
+    const oneSec = Duration(seconds: 1);
+    _timer = Timer.periodic(
+      oneSec,
+      (Timer timer) {
+        if (_start == 0) {
+          setState(() {
+            timer.cancel();
+            // Navigator.pop(context);
+          });
+        } else {
+          setState(() {
+            _start--;
+          });
+        }
+      },
+    );
+  }
+
+  @override
+  void initState() {
+    // TODO: implement initState
+    super.initState();
+    startTimer();
+  }
+
+  @override
+  void dispose() {
+    _timer.cancel();
+    super.dispose();
+  }
 
   @override
   Widget build(BuildContext context) {
@@ -18,7 +62,7 @@ class AccountVerifiedPage extends StatelessWidget {
               height: AppButtonSize.large,
               width: double.infinity,
               child: ButtonPrimary(
-                'Created PIN',
+                '${_start}s Navigate to Create PIN Page',
                 onPressed: () {},
               ),
             ),
@@ -41,9 +85,15 @@ class AccountVerifiedPage extends StatelessWidget {
         child: Column(
           mainAxisAlignment: MainAxisAlignment.center,
           children: [
-            Image.asset(
-              AppIllustration.check,
-              width: _responsive.getResponsiveIconSize(AppIconSize.dialog + 28),
+            SizedBox(
+              width: AppIconSize.dialog + 46,
+              child: Lottie.asset(
+                'assets/lottie/checkmark.json',
+                height: AppIconSize.dialog + 28,
+                fit: BoxFit.fitWidth,
+                repeat: false,
+                animate: true,
+              ),
             ),
             const Gap(height: AppGap.dialog - 2),
             Text(
