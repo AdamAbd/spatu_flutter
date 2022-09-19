@@ -39,6 +39,7 @@ dependencies:
   go_router: ^4.4.1
   google_fonts: ^3.0.1
   hydrated_bloc: ^8.1.0
+  intl: ^0.17.0
   lint: ^1.10.0
   lottie: ^1.4.3
   path_provider: ^2.0.11

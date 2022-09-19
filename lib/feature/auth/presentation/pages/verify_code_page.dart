@@ -1,5 +1,8 @@
+import 'dart:async';
+
 import 'package:flutter/material.dart';
 import 'package:spatu_flutter/feature/common/common.dart';
+import 'package:spatu_flutter/feature/common/utils/date_helper.dart';
 
 class VerifyCodePage extends StatefulWidget {
   const VerifyCodePage({Key? key}) : super(key: key);
@@ -10,10 +13,31 @@ class VerifyCodePage extends StatefulWidget {
 
 class _VerifyCodePageState extends State<VerifyCodePage> {
   final List<TextFieldEntity> _textFieldList = TextFieldEntity.verify;
+  late Timer _timer;
+  int _start = 60;
+
+  void startTimer() {
+    const oneSec = Duration(seconds: 1);
+    _timer = Timer.periodic(
+      oneSec,
+      (Timer timer) {
+        if (_start == 0) {
+          setState(() {
+            timer.cancel();
+          });
+        } else {
+          setState(() {
+            _start--;
+          });
+        }
+      },
+    );
+  }
 
   @override
   void initState() {
     super.initState();
+    startTimer();
 
     for (final i in _textFieldList) {
       i.textController = TextEditingController();
@@ -24,6 +48,8 @@ class _VerifyCodePageState extends State<VerifyCodePage> {
 
   @override
   void dispose() {
+    _timer.cancel();
+
     for (final i in _textFieldList) {
       i.textController.clear();
       i.textController.dispose();
@@ -87,7 +113,7 @@ class _VerifyCodePageState extends State<VerifyCodePage> {
               text: 'Resend code in ',
               children: [
                 TextSpan(
-                  text: '00:22',
+                  text: DateHelper().minuteToSecond(_start),
                   style: AppTextStyle.medium.copyWith(
                     fontSize: AppFontSize.medium,
                   ),
