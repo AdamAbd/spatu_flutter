@@ -23,6 +23,8 @@ class BaseAuthInputPage extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
+    final _responsive = ResponsiveUtils(context);
+
     return GestureDetector(
       onTap: () => FocusUtils(context).unfocus(),
       child: Scaffold(
@@ -42,7 +44,9 @@ class BaseAuthInputPage extends StatelessWidget {
               child: Text(
                 _title,
                 style: AppTextStyle.medium.copyWith(
-                  fontSize: AppFontSize.extraLarge,
+                  fontSize: _responsive.getResponsiveFontSize(
+                    AppFontSize.extraLarge,
+                  ),
                 ),
               ),
             ),
@@ -58,13 +62,16 @@ class BaseAuthInputPage extends StatelessWidget {
                     TextSpan(
                       text: _moreDescription ?? '',
                       style: AppTextStyle.medium.copyWith(
-                        fontSize: AppFontSize.medium,
+                        fontSize: _responsive
+                            .getResponsiveFontSize(AppFontSize.medium),
                       ),
                     ),
                   ],
                 ),
                 style: AppTextStyle.regular.copyWith(
-                  fontSize: AppFontSize.medium,
+                  fontSize: _responsive.getResponsiveFontSize(
+                    AppFontSize.medium,
+                  ),
                 ),
               ),
             ),

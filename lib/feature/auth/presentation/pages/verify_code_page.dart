@@ -115,13 +115,15 @@ class _VerifyCodePageState extends State<VerifyCodePage> {
                 TextSpan(
                   text: DateHelper().minuteToSecond(_start),
                   style: AppTextStyle.medium.copyWith(
-                    fontSize: AppFontSize.medium,
+                    fontSize: _responsive.getResponsiveFontSize(
+                      AppFontSize.medium,
+                    ),
                   ),
                 ),
               ],
             ),
             style: AppTextStyle.regular.copyWith(
-              fontSize: AppFontSize.medium,
+              fontSize: _responsive.getResponsiveFontSize(AppFontSize.medium),
             ),
           ),
         ),
