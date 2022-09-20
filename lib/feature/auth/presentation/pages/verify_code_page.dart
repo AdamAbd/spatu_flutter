@@ -3,6 +3,7 @@ import 'dart:async';
 import 'package:flutter/material.dart';
 import 'package:spatu_flutter/feature/common/common.dart';
 import 'package:spatu_flutter/feature/common/utils/date_helper.dart';
+import 'package:spatu_flutter/locator.dart';
 
 class VerifyCodePage extends StatefulWidget {
   const VerifyCodePage({Key? key}) : super(key: key);
@@ -37,6 +38,8 @@ class _VerifyCodePageState extends State<VerifyCodePage> {
   @override
   void initState() {
     super.initState();
+    sl<PageStackCubit>().saveStack(page: 'verify');
+
     startTimer();
 
     for (final i in _textFieldList) {
