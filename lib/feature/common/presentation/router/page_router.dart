@@ -47,6 +47,13 @@ class PageRouter {
             builder: (args) => const AccountVerifiedPage(),
           );
         }
+      case PagePath.createPin:
+        {
+          return _buildRouter(
+            settings: settings,
+            builder: (args) => const CreatePinPage(),
+          );
+        }
       default:
         return null;
     }

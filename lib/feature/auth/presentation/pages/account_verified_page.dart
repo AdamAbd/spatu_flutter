@@ -63,7 +63,10 @@ class _AccountVerifiedPageState extends State<AccountVerifiedPage> {
               width: double.infinity,
               child: ButtonPrimary(
                 '${_start}s Navigate to Create PIN Page',
-                onPressed: () {},
+                onPressed: () => Navigator.pushNamed(
+                  context,
+                  PagePath.createPin,
+                ),
               ),
             ),
             const Gap(height: AppGap.medium),
