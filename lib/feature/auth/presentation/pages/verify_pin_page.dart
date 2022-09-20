@@ -47,7 +47,7 @@ class _VerifyPinPageState extends State<VerifyPinPage> {
         'Create PIN Number',
         onPressed: () => _handlePIN(),
       ),
-      title: 'Create your PIN',
+      title: 'Confirm your PIN',
       description: 'Last Step. Create your PIN number for security',
       body: [
         Row(
