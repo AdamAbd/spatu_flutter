@@ -76,6 +76,8 @@ class RegisterPageState extends State<RegisterPage> {
                 'Sign In',
                 onPressed: () {
                   FocusUtils(context).unfocus();
+
+                  Navigator.pushNamed(context, PagePath.verifyCode);
                 },
               ),
             ),

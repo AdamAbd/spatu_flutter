@@ -61,15 +61,17 @@ class _VerifyCodePageState extends State<VerifyCodePage> {
     super.dispose();
   }
 
-  void _handleOTP() async {
+  void _handleOTP() {
     final List<String> _pin = [];
     for (final i in _textFieldList) {
       _pin.add(i.textController.text);
     }
-    await Future.delayed(const Duration(seconds: 1)).then((_) {
-      print(_pin.join());
-      Navigator.pushNamed(context, PagePath.accountVerified);
-    });
+    print(_pin.join());
+    Navigator.pushNamedAndRemoveUntil(
+      context,
+      PagePath.accountVerified,
+      (Route<dynamic> route) => false,
+    );
   }
 
   @override

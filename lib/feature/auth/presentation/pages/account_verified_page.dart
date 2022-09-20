@@ -24,7 +24,7 @@ class _AccountVerifiedPageState extends State<AccountVerifiedPage> {
         if (_start == 0) {
           setState(() {
             timer.cancel();
-            // Navigator.pop(context);
+            Navigator.pushNamed(context, PagePath.createPin);
           });
         } else {
           setState(() {
@@ -37,7 +37,6 @@ class _AccountVerifiedPageState extends State<AccountVerifiedPage> {
 
   @override
   void initState() {
-    // TODO: implement initState
     super.initState();
     startTimer();
   }
@@ -62,7 +61,7 @@ class _AccountVerifiedPageState extends State<AccountVerifiedPage> {
               height: AppButtonSize.large,
               width: double.infinity,
               child: ButtonPrimary(
-                '${_start}s Navigate to Create PIN Page',
+                '${_start != 0 ? '${_start}s ' : ''}Navigate to Create PIN Page',
                 onPressed: () => Navigator.pushNamed(
                   context,
                   PagePath.createPin,
