@@ -19,12 +19,10 @@ class BaseAuthPage extends StatelessWidget {
   Widget build(BuildContext context) {
     final _responsive = ResponsiveUtils(context);
 
-    return Scaffold(
-      body: GestureDetector(
-        onTap: () {
-          FocusUtils(context).unfocus();
-        },
-        child: SafeArea(
+    return GestureDetector(
+      onTap: () => FocusUtils(context).unfocus(),
+      child: Scaffold(
+        body: SafeArea(
           child: SingleChildScrollView(
             child: Padding(
               padding:
