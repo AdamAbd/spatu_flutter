@@ -1,9 +1,6 @@
-import 'dart:io';
-
-import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
-import 'package:spatu_flutter/feature/auth/presentation/pages/account_verified_page.dart';
 import 'package:spatu_flutter/feature/feature.dart';
+import 'package:spatu_flutter/locator.dart';
 
 class PageRouter {
   Route<dynamic>? getRoute(
@@ -11,14 +8,24 @@ class PageRouter {
   ) {
     switch (settings.name) {
 
-      //* Auth
-      case PagePath.login:
+      //* Home
+      case PagePath.home:
         {
           return _buildRouter(
             settings: settings,
-            builder: (args) => const LoginPage(),
+            builder: (args) {
+              final String page = sl<PageStackCubit>().state.page;
+
+              if (page == 'verify') {
+                return const VerifyCodePage();
+              } else {
+                return const LoginPage();
+              }
+            },
           );
         }
+
+      //* Auth
       case PagePath.register:
         {
           return _buildRouter(
@@ -49,16 +56,9 @@ class PageRouter {
     required RouteSettings settings,
     required Widget Function(Object? arguments) builder,
   }) {
-    if (Platform.isIOS) {
-      return CupertinoPageRoute(
-        settings: settings,
-        builder: (_) => builder(settings.arguments),
-      );
-    } else {
-      return MaterialPageRoute(
-        settings: settings,
-        builder: (_) => builder(settings.arguments),
-      );
-    }
+    return MaterialPageRoute(
+      settings: settings,
+      builder: (_) => builder(settings.arguments),
+    );
   }
 }
