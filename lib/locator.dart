@@ -14,8 +14,8 @@ Future<void> init() async {
   /// Page Stack
   sl.registerLazySingleton(() => PageStackCubit());
 
-  // /// User
-  // sl.registerLazySingleton(() => UserCubit());
+  /// User
+  sl.registerLazySingleton(() => UserCubit());
 
   // ///Auth
   // sl.registerLazySingleton(() => AuthRepository(sl()));

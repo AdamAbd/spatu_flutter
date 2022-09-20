@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:spatu_flutter/feature/feature.dart';
+import 'package:spatu_flutter/locator.dart';
 
 class CreatePinPage extends StatefulWidget {
   const CreatePinPage({super.key});
@@ -10,6 +11,17 @@ class CreatePinPage extends StatefulWidget {
 
 class _CreatePinPageState extends State<CreatePinPage> {
   final List<TextFieldEntity> _textFieldList = TextFieldEntity.createPin;
+
+  void _handlePIN() {
+    final List<String> _pin = [];
+    for (final i in _textFieldList) {
+      _pin.add(i.textController.text);
+    }
+
+    sl<UserCubit>().saveUserPin(pin: _pin.join());
+    Navigator.pushNamed(context, PagePath.accountVerified);
+    // print(sl<UserCubit>().state.pin);
+  }
 
   @override
   void initState() {
@@ -37,7 +49,7 @@ class _CreatePinPageState extends State<CreatePinPage> {
     return BaseAuthInputPage(
       button: ButtonPrimary(
         'Create PIN Number',
-        onPressed: () {},
+        onPressed: () => _handlePIN(),
       ),
       title: 'Create your PIN',
       description: 'Last Step. Create your PIN number for security',

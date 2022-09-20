@@ -2,8 +2,9 @@ import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:hydrated_bloc/hydrated_bloc.dart';
 import 'package:path_provider/path_provider.dart';
+
 import 'package:spatu_flutter/feature/feature.dart';
-import 'locator.dart' as locator;
+import 'package:spatu_flutter/locator.dart' as locator;
 
 void main() async {
   WidgetsFlutterBinding.ensureInitialized();
@@ -25,8 +26,15 @@ class MyApp extends StatelessWidget {
   Widget build(BuildContext context) {
     final PageRouter _router = PageRouter();
 
-    return BlocProvider.value(
-      value: locator.sl<PageStackCubit>(),
+    return MultiBlocProvider(
+      providers: [
+        BlocProvider.value(
+          value: locator.sl<PageStackCubit>(),
+        ),
+        BlocProvider.value(
+          value: locator.sl<UserCubit>(),
+        ),
+      ],
       child: MaterialApp(
         title: 'Flutter Demo',
         theme: SpatuTheme().of(context),
