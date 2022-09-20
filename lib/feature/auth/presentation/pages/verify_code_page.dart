@@ -96,6 +96,8 @@ class _VerifyCodePageState extends State<VerifyCodePage> {
                     if (value.isNotEmpty) {
                       if (index != _textFieldList.length - 1) {
                         FocusManager.instance.primaryFocus!.nextFocus();
+                      } else {
+                        FocusUtils(context).unfocus();
                       }
                     } else if (index != 0) {
                       FocusManager.instance.primaryFocus!.previousFocus();
@@ -107,26 +109,40 @@ class _VerifyCodePageState extends State<VerifyCodePage> {
           ),
         ),
         const Gap(height: AppGap.extraLarge),
-        Center(
-          child: Text.rich(
-            TextSpan(
-              text: 'Resend code in ',
-              children: [
-                TextSpan(
-                  text: DateHelper().minuteToSecond(_start),
-                  style: AppTextStyle.medium.copyWith(
-                    fontSize: _responsive.getResponsiveFontSize(
-                      AppFontSize.medium,
+        if (_start == 0)
+          SizedBox(
+            height: AppButtonSize.small,
+            child: ButtonPrimary(
+              'Resend Code',
+              onPressed: () {
+                setState(() {
+                  _start = 60;
+                  startTimer();
+                });
+              },
+            ),
+          )
+        else
+          Center(
+            child: Text.rich(
+              TextSpan(
+                text: 'Resend code in ',
+                children: [
+                  TextSpan(
+                    text: DateHelper().minuteToSecond(_start),
+                    style: AppTextStyle.medium.copyWith(
+                      fontSize: _responsive.getResponsiveFontSize(
+                        AppFontSize.medium,
+                      ),
                     ),
                   ),
-                ),
-              ],
-            ),
-            style: AppTextStyle.regular.copyWith(
-              fontSize: _responsive.getResponsiveFontSize(AppFontSize.medium),
+                ],
+              ),
+              style: AppTextStyle.regular.copyWith(
+                fontSize: _responsive.getResponsiveFontSize(AppFontSize.medium),
+              ),
             ),
           ),
-        ),
       ],
     );
   }
