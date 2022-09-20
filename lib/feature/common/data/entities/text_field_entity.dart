@@ -138,268 +138,43 @@ class TextFieldEntity {
     ),
   ];
 
-  static final TextFieldEntity authForgotPassword = TextFieldEntity(
-    textController: TextEditingController(text: ''),
-    hint: "Masukkan Email",
-    label: "Email",
-    isAutofocus: true,
-    keyboardType: TextInputType.emailAddress,
-    textInputAction: TextInputAction.done,
-    focusNode: FocusNode(),
-    validator: (value) {
-      return ValidationBuilder().email().build().call(value)?.toUpperCase();
-    },
-  );
-
-  static final List<TextFieldEntity> authResetPassword = [
+  static final List<TextFieldEntity> createPin = [
     TextFieldEntity(
       textController: TextEditingController(text: ''),
-      hint: "Masukkan Kata Sandi Baru",
-      label: "Kata Sandi Baru",
-      isPassword: true,
+      hint: "",
       isAutofocus: true,
-      focusNode: FocusNode(),
-      validator: (value) {
-        return ValidationBuilder()
-            .minLength(8)
-            .build()
-            .call(value)
-            ?.toUpperCase();
-      },
-    ),
-    TextFieldEntity(
-      textController: TextEditingController(text: ''),
-      hint: "Masukkan Kembali Kata Sandi Baru",
-      label: "Konfirmasi Kata Sandi Baru",
-      isPassword: true,
-      textInputAction: TextInputAction.done,
-      focusNode: FocusNode(),
-      validator: (value) {
-        return ValidationBuilder()
-            .minLength(8)
-            .build()
-            .call(value)
-            ?.toUpperCase();
-      },
-    ),
-  ];
-
-  static final TextFieldEntity search = TextFieldEntity(
-    textController: TextEditingController(text: ''),
-    hint: "Cari di sini ...",
-    isAutofocus: true,
-    focusNode: FocusNode(),
-    textInputAction: TextInputAction.done,
-  );
-
-  static final TextFieldEntity searchCall = TextFieldEntity(
-    textController: TextEditingController(text: ''),
-    hint: "Cari di sini ...",
-    isAutofocus: true,
-    focusNode: FocusNode(),
-    textInputAction: TextInputAction.done,
-  );
-
-  static final TextFieldEntity searchApproval = TextFieldEntity(
-    textController: TextEditingController(text: ''),
-    hint: "Cari di sini ...",
-    isAutofocus: true,
-    focusNode: FocusNode(),
-    textInputAction: TextInputAction.done,
-  );
-
-  static final List<TextFieldEntity> filterDate = [
-    TextFieldEntity(
-      textController: TextEditingController(text: ''),
-      hint: "Masukkan Tanggal",
-      label: "Tanggal Mulai",
-      isEnabled: false,
-      focusNode: FocusNode(),
-    ),
-    TextFieldEntity(
-      textController: TextEditingController(text: ''),
-      hint: "Masukkan Tanggal",
-      label: "Tanggal Selesai",
-      isEnabled: false,
-      focusNode: FocusNode(),
-    )
-  ];
-
-  static final List<TextFieldEntity> addExpenses = [
-    TextFieldEntity(
-      textController: TextEditingController(text: ''),
-      hint: "Masukkan Tanggal",
-      label: "Tanggal",
-      isEnabled: false,
-      focusNode: FocusNode(),
-    ),
-    TextFieldEntity(
-      textController: TextEditingController(text: ''),
-      hint: "Masukkan Nama Pengguna",
-      label: "Nama Pengguna",
-      isEnabled: false,
-      focusNode: FocusNode(),
-    ),
-    TextFieldEntity(
-      textController: TextEditingController(text: ''),
-      hint: "Masukkan Aktivitas",
-      label: "Aktivitas",
-      focusNode: FocusNode(),
-      validator: (value) {
-        return ValidationBuilder()
-            .required()
-            .build()
-            .call(value)
-            ?.toUpperCase();
-      },
-    ),
-    TextFieldEntity(
-      textController: TextEditingController(text: ''),
-      hint: "Masukkan Biaya",
-      label: "Biaya",
-      keyboardType:
-          TextInputType.numberWithOptions(signed: false, decimal: false),
-      focusNode: FocusNode(),
-      validator: (value) {
-        return ValidationBuilder()
-            .required()
-            .build()
-            .call(value)
-            ?.toUpperCase();
-      },
-    ),
-    TextFieldEntity(
-      textController: TextEditingController(text: ''),
-      hint: "Masukkan Detail",
-      label: "Detail",
-      focusNode: FocusNode(),
-      validator: (value) {
-        return ValidationBuilder()
-            .required()
-            .build()
-            .call(value)
-            ?.toUpperCase();
-      },
-    ),
-    TextFieldEntity(
-      textController: TextEditingController(text: ''),
-      hint: "Masukkan Lokasi",
-      label: "Lokasi",
-      textInputAction: TextInputAction.done,
-      focusNode: FocusNode(),
-      validator: (value) {
-        return ValidationBuilder()
-            .required()
-            .build()
-            .call(value)
-            ?.toUpperCase();
-      },
-    ),
-  ];
-
-  static final TextFieldEntity note = TextFieldEntity(
-    textController: TextEditingController(text: ''),
-    hint: "Masukkan Catatan",
-    label: "Catatan (Opsional)",
-    textInputAction: TextInputAction.done,
-  );
-
-  static final TextFieldEntity noteRequired = TextFieldEntity(
-    textController: TextEditingController(text: ''),
-    hint: "Masukkan Catatan",
-    label: "Catatan ",
-    textInputAction: TextInputAction.done,
-    validator: (value) {
-      return ValidationBuilder().required().build().call(value)?.toUpperCase();
-    },
-  );
-
-  static final TextFieldEntity cancelReason = TextFieldEntity(
-    textController: TextEditingController(text: ''),
-    hint: "Masukkan Alasan Pembatalan",
-    label: "Alasan Pembatalan",
-    textInputAction: TextInputAction.done,
-  );
-
-  static final List<TextFieldEntity> editProfile = [
-    TextFieldEntity(
-      textController: TextEditingController(text: ''),
-      hint: "",
-      label: "Nama",
-      focusNode: FocusNode(),
-    ),
-    TextFieldEntity(
-      textController: TextEditingController(text: ''),
-      hint: "",
-      label: "Email",
-      isEnabled: false,
-      keyboardType: TextInputType.emailAddress,
-      focusNode: FocusNode(),
-    ),
-    TextFieldEntity(
-      textController: TextEditingController(text: ''),
-      hint: "",
-      label: "Nomor Handphone",
-      focusNode: FocusNode(),
       keyboardType: TextInputType.number,
-      validator: (value) {
-        return ValidationBuilder()
-            .required()
-            .build()
-            .call(value)
-            ?.toUpperCase();
-      },
+      focusNode: FocusNode(),
     ),
     TextFieldEntity(
       textController: TextEditingController(text: ''),
-      hint: "Masukkan Kata Sandi",
-      label: "Kata Sandi",
-      isPassword: true,
+      hint: "",
+      keyboardType: TextInputType.number,
+      focusNode: FocusNode(),
+    ),
+    TextFieldEntity(
+      textController: TextEditingController(text: ''),
+      hint: "",
+      keyboardType: TextInputType.number,
+      focusNode: FocusNode(),
+    ),
+    TextFieldEntity(
+      textController: TextEditingController(text: ''),
+      hint: "",
+      keyboardType: TextInputType.number,
+      focusNode: FocusNode(),
+    ),
+    TextFieldEntity(
+      textController: TextEditingController(text: ''),
+      hint: "",
+      keyboardType: TextInputType.number,
+      focusNode: FocusNode(),
+    ),
+    TextFieldEntity(
+      textController: TextEditingController(text: ''),
+      hint: "",
       textInputAction: TextInputAction.done,
-      focusNode: FocusNode(),
-    ),
-  ];
-
-  static final List<TextFieldEntity> addCall = [
-    TextFieldEntity(
-      textController: TextEditingController(text: ''),
-      hint: "Pilih Nama Pengguna",
-      label: "Nama Pengguna",
-      isEnabled: false,
-      focusNode: FocusNode(),
-    ),
-    TextFieldEntity(
-      textController: TextEditingController(text: ''),
-      hint: "Pilih Tanggal",
-      label: "Tanggal",
-      isEnabled: false,
-      focusNode: FocusNode(),
-    ),
-    TextFieldEntity(
-      textController: TextEditingController(text: ''),
-      hint: "00:00",
-      label: "Waktu",
-      isEnabled: false,
-      focusNode: FocusNode(),
-    ),
-    TextFieldEntity(
-      textController: TextEditingController(text: ''),
-      hint: "00:00",
-      isEnabled: false,
-      focusNode: FocusNode(),
-    ),
-    TextFieldEntity(
-      textController: TextEditingController(text: ''),
-      hint: "Pilih Gerai",
-      label: "Gerai",
-      isEnabled: false,
-      focusNode: FocusNode(),
-    ),
-    TextFieldEntity(
-      textController: TextEditingController(text: ''),
-      hint: "Pilih Pelanggan",
-      label: "Pelanggan",
-      isEnabled: false,
+      keyboardType: TextInputType.number,
       focusNode: FocusNode(),
     ),
   ];
