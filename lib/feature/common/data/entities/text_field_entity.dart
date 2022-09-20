@@ -178,4 +178,45 @@ class TextFieldEntity {
       focusNode: FocusNode(),
     ),
   ];
+
+  static final List<TextFieldEntity> verifyPin = [
+    TextFieldEntity(
+      textController: TextEditingController(text: ''),
+      hint: "",
+      isAutofocus: true,
+      keyboardType: TextInputType.number,
+      focusNode: FocusNode(),
+    ),
+    TextFieldEntity(
+      textController: TextEditingController(text: ''),
+      hint: "",
+      keyboardType: TextInputType.number,
+      focusNode: FocusNode(),
+    ),
+    TextFieldEntity(
+      textController: TextEditingController(text: ''),
+      hint: "",
+      keyboardType: TextInputType.number,
+      focusNode: FocusNode(),
+    ),
+    TextFieldEntity(
+      textController: TextEditingController(text: ''),
+      hint: "",
+      keyboardType: TextInputType.number,
+      focusNode: FocusNode(),
+    ),
+    TextFieldEntity(
+      textController: TextEditingController(text: ''),
+      hint: "",
+      keyboardType: TextInputType.number,
+      focusNode: FocusNode(),
+    ),
+    TextFieldEntity(
+      textController: TextEditingController(text: ''),
+      hint: "",
+      textInputAction: TextInputAction.done,
+      keyboardType: TextInputType.number,
+      focusNode: FocusNode(),
+    ),
+  ];
 }

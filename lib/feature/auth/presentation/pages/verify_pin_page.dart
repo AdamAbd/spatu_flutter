@@ -2,15 +2,15 @@ import 'package:flutter/material.dart';
 import 'package:spatu_flutter/feature/feature.dart';
 import 'package:spatu_flutter/locator.dart';
 
-class CreatePinPage extends StatefulWidget {
-  const CreatePinPage({super.key});
+class VerifyPinPage extends StatefulWidget {
+  const VerifyPinPage({super.key});
 
   @override
-  State<CreatePinPage> createState() => _CreatePinPageState();
+  State<VerifyPinPage> createState() => _VerifyPinPageState();
 }
 
-class _CreatePinPageState extends State<CreatePinPage> {
-  final List<TextFieldEntity> _textFieldList = TextFieldEntity.createPin;
+class _VerifyPinPageState extends State<VerifyPinPage> {
+  final List<TextFieldEntity> _textFieldList = TextFieldEntity.verifyPin;
 
   void _handlePIN() {
     final List<String> _pin = [];
@@ -18,9 +18,7 @@ class _CreatePinPageState extends State<CreatePinPage> {
       _pin.add(i.textController.text);
     }
 
-    sl<UserCubit>().saveUserPin(pin: _pin.join());
-    Navigator.pushNamed(context, PagePath.verifyPin);
-    // print(sl<UserCubit>().state.pin);
+    print(_pin.join() == sl<UserCubit>().state.pin);
   }
 
   @override
@@ -44,8 +42,6 @@ class _CreatePinPageState extends State<CreatePinPage> {
 
   @override
   Widget build(BuildContext context) {
-    final _responsive = ResponsiveUtils(context);
-
     return BaseAuthInputPage(
       button: ButtonPrimary(
         'Create PIN Number',
