@@ -7,18 +7,18 @@ class BaseAuthInputPage extends StatelessWidget {
     required ButtonPrimary button,
     required String title,
     required String description,
-    required List<Widget> body,
+    required List<Widget> children,
     String? moreDescription,
   })  : _button = button,
         _title = title,
         _description = description,
-        _body = body,
+        _children = children,
         _moreDescription = moreDescription;
 
   final ButtonPrimary _button;
   final String _title;
   final String _description;
-  final List<Widget> _body;
+  final List<Widget> _children;
   final String? _moreDescription;
 
   @override
@@ -79,7 +79,7 @@ class BaseAuthInputPage extends StatelessWidget {
             Padding(
               padding: const EdgeInsets.symmetric(horizontal: AppGap.medium),
               child: Column(
-                children: _body,
+                children: _children,
               ),
             ),
           ],

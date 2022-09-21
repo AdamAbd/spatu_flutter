@@ -11,14 +11,22 @@ class VerifyPinPage extends StatefulWidget {
 
 class _VerifyPinPageState extends State<VerifyPinPage> {
   final List<TextFieldEntity> _textFieldList = TextFieldEntity.verifyPin;
+  final _formKey = GlobalKey<FormState>();
 
   void _handlePIN() {
-    final List<String> _pin = [];
-    for (final i in _textFieldList) {
-      _pin.add(i.textController.text);
-    }
+    FocusUtils(context).unfocus();
 
-    print(_pin.join() == sl<UserCubit>().state.pin);
+    if (_formKey.currentState?.validate() == true) {
+      final List<String> _pin = [];
+      for (final i in _textFieldList) {
+        _pin.add(i.textController.text);
+      }
+
+      print(_pin.join() == sl<UserCubit>().state.pin);
+
+      //TODO: Remove below code and use it on confirm button
+      sl<PageStackCubit>().saveStack(page: 'login');
+    }
   }
 
   @override
@@ -42,41 +50,44 @@ class _VerifyPinPageState extends State<VerifyPinPage> {
 
   @override
   Widget build(BuildContext context) {
-    return BaseAuthInputPage(
-      button: ButtonPrimary(
-        'Create PIN Number',
-        onPressed: () => _handlePIN(),
-      ),
-      title: 'Confirm your PIN',
-      description: 'Last Step. Create your PIN number for security',
-      body: [
-        Row(
-          children: List.generate(
-            _textFieldList.length,
-            (index) => Expanded(
-              child: Padding(
-                padding: const EdgeInsets.symmetric(
-                  horizontal: AppGap.extraSmall,
-                ),
-                child: CustomOTPTextFormField(
-                  textFieldEntity: _textFieldList[index],
-                  onChanged: (value) {
-                    if (value.isNotEmpty) {
-                      if (index != _textFieldList.length - 1) {
-                        FocusManager.instance.primaryFocus!.nextFocus();
-                      } else {
-                        FocusUtils(context).unfocus();
+    return Form(
+      key: _formKey,
+      child: BaseAuthInputPage(
+        button: ButtonPrimary(
+          'Create PIN Number',
+          onPressed: () => _handlePIN(),
+        ),
+        title: 'Confirm your PIN',
+        description: 'Last Step. Create your PIN number for security',
+        children: [
+          Row(
+            children: List.generate(
+              _textFieldList.length,
+              (index) => Expanded(
+                child: Padding(
+                  padding: const EdgeInsets.symmetric(
+                    horizontal: AppGap.extraSmall,
+                  ),
+                  child: CustomOTPTextFormField(
+                    textFieldEntity: _textFieldList[index],
+                    onChanged: (value) {
+                      if (value.isNotEmpty) {
+                        if (index != _textFieldList.length - 1) {
+                          FocusManager.instance.primaryFocus!.nextFocus();
+                        } else {
+                          FocusUtils(context).unfocus();
+                        }
+                      } else if (index != 0) {
+                        FocusManager.instance.primaryFocus!.previousFocus();
                       }
-                    } else if (index != 0) {
-                      FocusManager.instance.primaryFocus!.previousFocus();
-                    }
-                  },
+                    },
+                  ),
                 ),
               ),
             ),
           ),
-        ),
-      ],
+        ],
+      ),
     );
   }
 }

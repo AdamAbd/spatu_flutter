@@ -104,30 +104,35 @@ class TextFieldEntity {
       isAutofocus: true,
       keyboardType: TextInputType.number,
       focusNode: FocusNode(),
+      validator: (value) => ValidationBuilder().required().build().call(value),
     ),
     TextFieldEntity(
       textController: TextEditingController(text: ''),
       hint: "",
       keyboardType: TextInputType.number,
       focusNode: FocusNode(),
+      validator: (value) => ValidationBuilder().required().build().call(value),
     ),
     TextFieldEntity(
       textController: TextEditingController(text: ''),
       hint: "",
       keyboardType: TextInputType.number,
       focusNode: FocusNode(),
+      validator: (value) => ValidationBuilder().required().build().call(value),
     ),
     TextFieldEntity(
       textController: TextEditingController(text: ''),
       hint: "",
       keyboardType: TextInputType.number,
       focusNode: FocusNode(),
+      validator: (value) => ValidationBuilder().required().build().call(value),
     ),
     TextFieldEntity(
       textController: TextEditingController(text: ''),
       hint: "",
       keyboardType: TextInputType.number,
       focusNode: FocusNode(),
+      validator: (value) => ValidationBuilder().required().build().call(value),
     ),
     TextFieldEntity(
       textController: TextEditingController(text: ''),
@@ -135,6 +140,7 @@ class TextFieldEntity {
       textInputAction: TextInputAction.done,
       keyboardType: TextInputType.number,
       focusNode: FocusNode(),
+      validator: (value) => ValidationBuilder().required().build().call(value),
     ),
   ];
 
@@ -145,30 +151,35 @@ class TextFieldEntity {
       isAutofocus: true,
       keyboardType: TextInputType.number,
       focusNode: FocusNode(),
+      validator: (value) => ValidationBuilder().required().build().call(value),
     ),
     TextFieldEntity(
       textController: TextEditingController(text: ''),
       hint: "",
       keyboardType: TextInputType.number,
       focusNode: FocusNode(),
+      validator: (value) => ValidationBuilder().required().build().call(value),
     ),
     TextFieldEntity(
       textController: TextEditingController(text: ''),
       hint: "",
       keyboardType: TextInputType.number,
       focusNode: FocusNode(),
+      validator: (value) => ValidationBuilder().required().build().call(value),
     ),
     TextFieldEntity(
       textController: TextEditingController(text: ''),
       hint: "",
       keyboardType: TextInputType.number,
       focusNode: FocusNode(),
+      validator: (value) => ValidationBuilder().required().build().call(value),
     ),
     TextFieldEntity(
       textController: TextEditingController(text: ''),
       hint: "",
       keyboardType: TextInputType.number,
       focusNode: FocusNode(),
+      validator: (value) => ValidationBuilder().required().build().call(value),
     ),
     TextFieldEntity(
       textController: TextEditingController(text: ''),
@@ -176,6 +187,7 @@ class TextFieldEntity {
       textInputAction: TextInputAction.done,
       keyboardType: TextInputType.number,
       focusNode: FocusNode(),
+      validator: (value) => ValidationBuilder().required().build().call(value),
     ),
   ];
 
@@ -186,30 +198,35 @@ class TextFieldEntity {
       isAutofocus: true,
       keyboardType: TextInputType.number,
       focusNode: FocusNode(),
+      validator: (value) => ValidationBuilder().required().build().call(value),
     ),
     TextFieldEntity(
       textController: TextEditingController(text: ''),
       hint: "",
       keyboardType: TextInputType.number,
       focusNode: FocusNode(),
+      validator: (value) => ValidationBuilder().required().build().call(value),
     ),
     TextFieldEntity(
       textController: TextEditingController(text: ''),
       hint: "",
       keyboardType: TextInputType.number,
       focusNode: FocusNode(),
+      validator: (value) => ValidationBuilder().required().build().call(value),
     ),
     TextFieldEntity(
       textController: TextEditingController(text: ''),
       hint: "",
       keyboardType: TextInputType.number,
       focusNode: FocusNode(),
+      validator: (value) => ValidationBuilder().required().build().call(value),
     ),
     TextFieldEntity(
       textController: TextEditingController(text: ''),
       hint: "",
       keyboardType: TextInputType.number,
       focusNode: FocusNode(),
+      validator: (value) => ValidationBuilder().required().build().call(value),
     ),
     TextFieldEntity(
       textController: TextEditingController(text: ''),
@@ -217,6 +234,7 @@ class TextFieldEntity {
       textInputAction: TextInputAction.done,
       keyboardType: TextInputType.number,
       focusNode: FocusNode(),
+      validator: (value) => ValidationBuilder().required().build().call(value),
     ),
   ];
 }

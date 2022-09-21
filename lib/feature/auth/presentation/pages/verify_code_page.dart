@@ -13,7 +13,11 @@ class VerifyCodePage extends StatefulWidget {
 }
 
 class _VerifyCodePageState extends State<VerifyCodePage> {
+  //* Text Form Field
   final List<TextFieldEntity> _textFieldList = TextFieldEntity.verify;
+  final _formKey = GlobalKey<FormState>();
+
+  //* Countdown
   late Timer _timer;
   int _start = 60;
 
@@ -62,93 +66,101 @@ class _VerifyCodePageState extends State<VerifyCodePage> {
   }
 
   void _handleOTP() {
-    final List<String> _pin = [];
-    for (final i in _textFieldList) {
-      _pin.add(i.textController.text);
+    FocusUtils(context).unfocus();
+
+    if (_formKey.currentState?.validate() == true) {
+      final List<String> _pin = [];
+      for (final i in _textFieldList) {
+        _pin.add(i.textController.text);
+      }
+      print(_pin.join());
+      Navigator.pushNamedAndRemoveUntil(
+        context,
+        PagePath.accountVerified,
+        (Route<dynamic> route) => false,
+      );
     }
-    print(_pin.join());
-    Navigator.pushNamedAndRemoveUntil(
-      context,
-      PagePath.accountVerified,
-      (Route<dynamic> route) => false,
-    );
   }
 
   @override
   Widget build(BuildContext context) {
     final _responsive = ResponsiveUtils(context);
 
-    return BaseAuthInputPage(
-      title: 'Verify Code',
-      description: 'Please enter the code we just sent to your email ',
-      moreDescription: 'adam2802002@gmail.com',
-      button: ButtonPrimary(
-        'Continue',
-        onPressed: () => _handleOTP(),
-      ),
-      body: [
-        Row(
-          children: List.generate(
-            _textFieldList.length,
-            (index) => Expanded(
-              child: Padding(
-                padding: const EdgeInsets.symmetric(
-                  horizontal: AppGap.extraSmall,
-                ),
-                child: CustomOTPTextFormField(
-                  textFieldEntity: _textFieldList[index],
-                  onChanged: (value) {
-                    if (value.isNotEmpty) {
-                      if (index != _textFieldList.length - 1) {
-                        FocusManager.instance.primaryFocus!.nextFocus();
-                      } else {
-                        FocusUtils(context).unfocus();
+    return Form(
+      key: _formKey,
+      child: BaseAuthInputPage(
+        title: 'Verify Code',
+        description: 'Please enter the code we just sent to your email ',
+        moreDescription: 'adam2802002@gmail.com',
+        button: ButtonPrimary(
+          'Continue',
+          onPressed: () => _handleOTP(),
+        ),
+        children: [
+          Row(
+            children: List.generate(
+              _textFieldList.length,
+              (index) => Expanded(
+                child: Padding(
+                  padding: const EdgeInsets.symmetric(
+                    horizontal: AppGap.extraSmall,
+                  ),
+                  child: CustomOTPTextFormField(
+                    textFieldEntity: _textFieldList[index],
+                    onChanged: (value) {
+                      if (value.isNotEmpty) {
+                        if (index != _textFieldList.length - 1) {
+                          FocusManager.instance.primaryFocus!.nextFocus();
+                        } else {
+                          FocusUtils(context).unfocus();
+                        }
+                      } else if (index != 0) {
+                        FocusManager.instance.primaryFocus!.previousFocus();
                       }
-                    } else if (index != 0) {
-                      FocusManager.instance.primaryFocus!.previousFocus();
-                    }
-                  },
+                    },
+                  ),
                 ),
               ),
             ),
           ),
-        ),
-        const Gap(height: AppGap.extraLarge),
-        if (_start == 0)
-          SizedBox(
-            height: AppButtonSize.small,
-            child: ButtonPrimary(
-              'Resend Code',
-              onPressed: () {
-                setState(() {
-                  _start = 60;
-                  startTimer();
-                });
-              },
-            ),
-          )
-        else
-          Center(
-            child: Text.rich(
-              TextSpan(
-                text: 'Resend code in ',
-                children: [
-                  TextSpan(
-                    text: DateHelper().minuteToSecond(_start),
-                    style: AppTextStyle.medium.copyWith(
-                      fontSize: _responsive.getResponsiveFontSize(
-                        AppFontSize.medium,
+          const Gap(height: AppGap.extraLarge),
+          if (_start == 0)
+            SizedBox(
+              height: AppButtonSize.small,
+              child: ButtonPrimary(
+                'Resend Code',
+                onPressed: () {
+                  setState(() {
+                    _start = 60;
+                    startTimer();
+                  });
+                },
+              ),
+            )
+          else
+            Center(
+              child: Text.rich(
+                TextSpan(
+                  text: 'Resend code in ',
+                  children: [
+                    TextSpan(
+                      text: DateHelper().minuteToSecond(_start),
+                      style: AppTextStyle.medium.copyWith(
+                        fontSize: _responsive.getResponsiveFontSize(
+                          AppFontSize.medium,
+                        ),
                       ),
                     ),
-                  ),
-                ],
-              ),
-              style: AppTextStyle.regular.copyWith(
-                fontSize: _responsive.getResponsiveFontSize(AppFontSize.medium),
+                  ],
+                ),
+                style: AppTextStyle.regular.copyWith(
+                  fontSize:
+                      _responsive.getResponsiveFontSize(AppFontSize.medium),
+                ),
               ),
             ),
-          ),
-      ],
+        ],
+      ),
     );
   }
 }

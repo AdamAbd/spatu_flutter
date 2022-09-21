@@ -11,7 +11,7 @@ class LoginPage extends StatefulWidget {
 
 class _LoginPageState extends State<LoginPage> {
   final List<TextFieldEntity> _textFieldList = TextFieldEntity.login;
-  final GlobalKey _formKey = GlobalKey<FormState>();
+  final _formKey = GlobalKey<FormState>();
 
   @override
   void initState() {
@@ -84,6 +84,8 @@ class _LoginPageState extends State<LoginPage> {
                 'Sign In',
                 onPressed: () {
                   FocusUtils(context).unfocus();
+
+                  if (_formKey.currentState?.validate() == true) {}
                 },
               ),
             ),

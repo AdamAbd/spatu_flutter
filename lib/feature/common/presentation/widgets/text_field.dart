@@ -343,22 +343,27 @@ class CustomOTPTextFormField extends StatefulWidget {
   const CustomOTPTextFormField({
     Key? key,
     required TextFieldEntity textFieldEntity,
-    int maxLines = 1,
     required Function(String) onChanged,
+    int maxLines = 1,
+    String? Function(String?)? validator,
   })  : _textFieldEntity = textFieldEntity,
-        _maxLines = maxLines,
         _onChanged = onChanged,
+        _validator = validator,
+        _maxLines = maxLines,
         super(key: key);
 
   final TextFieldEntity _textFieldEntity;
-  final int _maxLines;
   final Function(String) _onChanged;
+  final int _maxLines;
+  final String? Function(String?)? _validator;
 
   @override
   State<CustomOTPTextFormField> createState() => _CustomOTPTextFormFieldState();
 }
 
 class _CustomOTPTextFormFieldState extends State<CustomOTPTextFormField> {
+  String? _error;
+
   @override
   Widget build(BuildContext context) {
     final _responsive = ResponsiveUtils(context);
@@ -389,6 +394,14 @@ class _CustomOTPTextFormFieldState extends State<CustomOTPTextFormField> {
         // fillColor: widget._textFieldEntity.isEnabled
         //     ? TextFieldColors.backgroundEnable
         //     : TextFieldColors.backgroundDisable,
+        //* Hide error text
+        errorMaxLines: 1,
+        errorText: _error,
+        errorStyle: const TextStyle(
+          color: Colors.transparent,
+          fontSize: 0,
+          height: 00.1,
+        ),
         enabledBorder: OutlineInputBorder(
           borderSide: BorderSide(
             color: AppColors.transparant,
@@ -417,6 +430,17 @@ class _CustomOTPTextFormFieldState extends State<CustomOTPTextFormField> {
       ),
       textInputAction: widget._textFieldEntity.textInputAction,
       keyboardType: widget._textFieldEntity.keyboardType,
+      validator: (value) {
+        // Note : https://pub.dev/packages/form_validator (documentations)
+        _error = _error = widget._validator?.call(value) ??
+            widget._textFieldEntity.validator?.call(value);
+
+        WidgetsBinding.instance.addPostFrameCallback((_) {
+          setState(() {});
+        });
+
+        return _error;
+      },
       autovalidateMode: AutovalidateMode.onUserInteraction,
     );
   }

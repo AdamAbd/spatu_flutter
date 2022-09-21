@@ -10,7 +10,7 @@ class RegisterPage extends StatefulWidget {
 
 class RegisterPageState extends State<RegisterPage> {
   final List<TextFieldEntity> _textFieldList = TextFieldEntity.register;
-  final GlobalKey _formKey = GlobalKey<FormState>();
+  final _formKey = GlobalKey<FormState>();
 
   @override
   void initState() {
@@ -19,8 +19,6 @@ class RegisterPageState extends State<RegisterPage> {
     for (final i in _textFieldList) {
       i.textController = TextEditingController();
     }
-
-    setState(() {});
   }
 
   @override
@@ -73,11 +71,13 @@ class RegisterPageState extends State<RegisterPage> {
               height: AppButtonSize.large,
               width: double.infinity,
               child: ButtonPrimary(
-                'Sign In',
+                'Sign Up',
                 onPressed: () {
                   FocusUtils(context).unfocus();
 
-                  Navigator.pushNamed(context, PagePath.verifyCode);
+                  if (_formKey.currentState?.validate() == true) {
+                    Navigator.pushNamed(context, PagePath.verifyCode);
+                  }
                 },
               ),
             ),
