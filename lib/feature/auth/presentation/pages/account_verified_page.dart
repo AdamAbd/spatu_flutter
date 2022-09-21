@@ -4,6 +4,7 @@ import 'package:flutter/material.dart';
 import 'package:lottie/lottie.dart';
 
 import 'package:spatu_flutter/feature/feature.dart';
+import 'package:spatu_flutter/locator.dart';
 
 class AccountVerifiedPage extends StatefulWidget {
   const AccountVerifiedPage({Key? key}) : super(key: key);
@@ -38,6 +39,8 @@ class _AccountVerifiedPageState extends State<AccountVerifiedPage> {
   @override
   void initState() {
     super.initState();
+    sl<PageStackCubit>().saveStack(page: 'verified');
+
     startTimer();
   }
 

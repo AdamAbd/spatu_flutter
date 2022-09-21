@@ -19,8 +19,8 @@ class PageRouter {
               switch (page) {
                 case 'login':
                   return const LoginPage();
-                // case 'verify':
-                //   return const VerifyCodePage();
+                case 'verified':
+                  return const AccountVerifiedPage();
 
                 default:
                   return const LoginPage();
