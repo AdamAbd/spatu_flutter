@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:spatu_flutter/feature/common/common.dart';
+import 'package:spatu_flutter/locator.dart';
 
 class LoginPage extends StatefulWidget {
   const LoginPage({Key? key}) : super(key: key);
@@ -20,7 +21,12 @@ class _LoginPageState extends State<LoginPage> {
       i.textController = TextEditingController();
     }
 
-    setState(() {});
+    if (sl<PageStackCubit>().state.page == 'verify') {
+      Future.delayed(
+        const Duration(milliseconds: 500),
+        () => Navigator.pushNamed(context, PagePath.verifyCode),
+      );
+    }
   }
 
   @override

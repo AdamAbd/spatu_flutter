@@ -16,10 +16,14 @@ class PageRouter {
             builder: (args) {
               final String page = sl<PageStackCubit>().state.page;
 
-              if (page == 'verify') {
-                return const VerifyCodePage();
-              } else {
-                return const LoginPage();
+              switch (page) {
+                case 'login':
+                  return const LoginPage();
+                // case 'verify':
+                //   return const VerifyCodePage();
+
+                default:
+                  return const LoginPage();
               }
             },
           );
@@ -61,8 +65,12 @@ class PageRouter {
             builder: (args) => const VerifyPinPage(),
           );
         }
+
       default:
-        return null;
+        return _buildRouter(
+          settings: settings,
+          builder: (args) => const LoginPage(),
+        );
     }
   }
 
