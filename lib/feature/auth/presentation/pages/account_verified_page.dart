@@ -1,5 +1,3 @@
-import 'dart:async';
-
 import 'package:flutter/material.dart';
 import 'package:lottie/lottie.dart';
 
@@ -14,39 +12,14 @@ class AccountVerifiedPage extends StatefulWidget {
 }
 
 class _AccountVerifiedPageState extends State<AccountVerifiedPage> {
-  late Timer _timer;
-  int _start = 10;
-
-  void startTimer() {
-    const oneSec = Duration(seconds: 1);
-    _timer = Timer.periodic(
-      oneSec,
-      (Timer timer) {
-        if (_start == 0) {
-          setState(() {
-            timer.cancel();
-            Navigator.pushNamed(context, PagePath.createPin);
-          });
-        } else {
-          setState(() {
-            _start--;
-          });
-        }
-      },
-    );
-  }
-
   @override
   void initState() {
     super.initState();
     sl<PageStackCubit>().saveStack(page: 'verified');
-
-    startTimer();
   }
 
   @override
   void dispose() {
-    _timer.cancel();
     super.dispose();
   }
 
@@ -64,7 +37,7 @@ class _AccountVerifiedPageState extends State<AccountVerifiedPage> {
               height: AppButtonSize.large,
               width: double.infinity,
               child: ButtonPrimary(
-                '${_start != 0 ? '${_start}s ' : ''}Navigate to Create PIN Page',
+                'Create Spatu PIN',
                 onPressed: () => Navigator.pushNamed(
                   context,
                   PagePath.createPin,
