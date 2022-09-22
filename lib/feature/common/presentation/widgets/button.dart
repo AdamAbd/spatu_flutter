@@ -115,132 +115,91 @@ class ButtonIcon extends StatelessWidget {
   }
 }
 
-class ButtonPrimary extends StatelessWidget {
-  const ButtonPrimary(
-    String label, {
-    Key? key,
-    required Function() onPressed,
-    bool isButtonDisabled = false,
-    FontWeight fontWeight = AppFontWeight.bold,
-    Color buttonColor = Yellow.primary,
-    Color labelColor = Blue.tertiary,
-    Color borderColor = Colors.transparent,
-    double borderWidth = 1,
-    double borderRadius = AppBorderRadius.small,
-    double fontSize = AppFontSize.normal,
-    double paddingVertical = 0,
-    double paddingHorizontal = AppGap.normal,
-    double? height,
-    double? width,
-  })  : _label = label,
-        _onPressed = onPressed,
-        _fontWeight = fontWeight,
-        _buttonColor = buttonColor,
-        _labelColor = labelColor,
-        _isButtonDisabled = isButtonDisabled,
-        _borderColor = borderColor,
-        _borderWidth = borderWidth,
-        _borderRadius = borderRadius,
-        _fontSize = fontSize,
-        _paddingVertical = paddingVertical,
-        _paddingHorizontal = paddingHorizontal,
-        _height = height,
-        _width = width,
-        super(key: key);
+// class ButtonPrimary extends StatelessWidget {
+//   const ButtonPrimary(
+//     String label, {
+//     super.key,
+//     required VoidCallback onPressed,
+//     double height = AppButtonSize.large,
+//     double? width,
+//     bool isButtonDisabled = false,
+//     Color buttonColor = Yellow.primary,
+//     double paddingVertical = 0,
+//     double paddingHorizontal = AppGap.normal,
+//     Color borderColor = Colors.transparent,
+//     double borderWidth = 0,
+//     double borderRadius = AppBorderRadius.small,
+//     double fontSize = AppFontSize.normal,
+//     FontWeight? fontWeight,
+//     Color labelColor = Blue.tertiary,
+//   })  : _label = label,
+//         _onPressed = onPressed,
+//         _height = height,
+//         _width = width,
+//         _isButtonDisabled = isButtonDisabled,
+//         _buttonColor = buttonColor,
+//         _paddingVertical = paddingVertical,
+//         _paddingHorizontal = paddingHorizontal,
+//         _borderColor = borderColor,
+//         _borderWidth = borderWidth,
+//         _borderRadius = borderRadius,
+//         _fontWeight = fontWeight,
+//         _fontSize = fontSize,
+//         _labelColor = labelColor;
 
-  final String _label;
-  final Function() _onPressed;
-  final FontWeight _fontWeight;
-  final Color _buttonColor;
-  final Color? _labelColor;
-  final Color _borderColor;
-  final double _borderWidth;
-  final bool _isButtonDisabled;
-  final double _borderRadius;
-  final double _fontSize;
-  final double _paddingVertical;
-  final double _paddingHorizontal;
-  final double? _height;
-  final double? _width;
+//   final String _label;
+//   final VoidCallback _onPressed;
+//   final double _height;
+//   final double? _width;
+//   final bool _isButtonDisabled;
+//   final Color _buttonColor;
+//   final double _paddingVertical;
+//   final double _paddingHorizontal;
+//   final Color _borderColor;
+//   final double _borderWidth;
+//   final double _borderRadius;
+//   final FontWeight? _fontWeight;
+//   final double _fontSize;
+//   final Color? _labelColor;
 
-  @override
-  Widget build(BuildContext context) {
-    final _responsive = ResponsiveUtils(context);
+//   @override
+//   Widget build(BuildContext context) {
+//     final _responsive = ResponsiveUtils(context);
 
-    if (Platform.isAndroid) {
-      return SizedBox(
-        height: _height ??
-            _responsive.getResponsiveSize(
-              AppButtonSize.normal,
-            ),
-        width: _width,
-        child: OutlinedButton(
-          onPressed: _isButtonDisabled ? null : _onPressed,
-          style: OutlinedButton.styleFrom(
-            backgroundColor: _buttonColor,
-            padding: EdgeInsets.symmetric(
-              vertical: _paddingVertical,
-              horizontal: _paddingHorizontal,
-            ),
-            tapTargetSize: MaterialTapTargetSize.shrinkWrap,
-            side: BorderSide(color: _borderColor, width: _borderWidth),
-            shape: RoundedRectangleBorder(
-              borderRadius: BorderRadius.circular(
-                _borderRadius,
-              ),
-            ),
-          ),
-          child: Text(
-            _label,
-            style: ButtonTextStyle.medium.copyWith(
-              fontSize: _responsive.getResponsiveFontSize(
-                _fontSize,
-              ),
-              color: _labelColor,
-            ),
-            // style: TextStyle(
-            //   fontWeight: _fontWeight,
-            // ),
-            overflow: TextOverflow.ellipsis,
-          ),
-        ),
-      );
-    } else {
-      return Container(
-        height: _height ??
-            _responsive.getResponsiveSize(
-              AppButtonSize.normal,
-            ),
-        width: _width,
-        decoration: BoxDecoration(
-          border: Border.all(color: _borderColor),
-          borderRadius: BorderRadius.circular(_borderRadius),
-        ),
-        child: CupertinoButton(
-          onPressed: _isButtonDisabled ? null : _onPressed,
-          color: _buttonColor,
-          disabledColor: _buttonColor,
-          padding: EdgeInsets.symmetric(
-            vertical: _paddingVertical,
-            horizontal: _paddingHorizontal,
-          ),
-          pressedOpacity: 0.8,
-          borderRadius: BorderRadius.circular(_borderRadius),
-          child: Text(
-            _label,
-            style: ButtonTextStyle.medium.copyWith(
-              color: _labelColor,
-              fontSize: _responsive.getResponsiveFontSize(
-                _fontSize,
-              ),
-            ),
-            overflow: TextOverflow.ellipsis,
-          ),
-        ),
-      );
-    }
-  }
-}
+//     return SizedBox(
+//       height: _responsive.getResponsiveSize(_height),
+//       width: _width,
+//       child: OutlinedButton(
+//         onPressed: _isButtonDisabled ? null : _onPressed,
+//         style: OutlinedButton.styleFrom(
+//           backgroundColor: _buttonColor,
+//           padding: EdgeInsets.symmetric(
+//             vertical: _paddingVertical,
+//             horizontal: _paddingHorizontal,
+//           ),
+//           tapTargetSize: MaterialTapTargetSize.shrinkWrap,
+//           side: BorderSide(color: _borderColor, width: _borderWidth),
+//           shape: RoundedRectangleBorder(
+//             borderRadius: BorderRadius.circular(
+//               _borderRadius,
+//             ),
+//           ),
+//         ),
+//         child: Text(
+//           _label,
+//           style: ButtonTextStyle.medium.copyWith(
+//             fontSize: _responsive.getResponsiveFontSize(
+//               _fontSize,
+//             ),
+//             fontWeight: _fontWeight,
+//             color: _labelColor,
+//           ),
+//           overflow: TextOverflow.ellipsis,
+//         ),
+//       ),
+//     );
+//   }
+// }
 
 // class BottomSheetButtonWithIcon extends StatelessWidget {
 //   const BottomSheetButtonWithIcon({
@@ -357,144 +316,113 @@ class ButtonPrimary extends StatelessWidget {
 //   }
 // }
 
-// class ButtonPrimaryWithIcon extends StatelessWidget {
-//   const ButtonPrimaryWithIcon(
-//     String label, {
-//     Key? key,
-//     required VoidCallback onPressed,
-//     required Widget icon,
-//     double height = AppButtonSize.normal,
-//     double? width,
-//     double paddingVertical = 0,
-//     double paddingHorizontal = AppGap.extraLarge,
-//     bool isCenterLabel = true,
-//     FontWeight fontWeight = AppFontWeight.semiBold,
-//     Color buttonColor = Blue.secondary,
-//     Color labelColor = AppColors.white,
-//     bool isButtonDisabled = false,
-//     Color borderColor = Colors.transparent,
-//     double borderRadius = AppBorderRadius.extraSmall,
-//     double fontSize = AppFontSize.normal,
-//   })  : _label = label,
-//         _onPressed = onPressed,
-//         _icon = icon,
-//         _height = height,
-//         _width = width,
-//         _paddingVertical = paddingVertical,
-//         _paddingHorizontal = paddingHorizontal,
-//         _isCenterLabel = isCenterLabel,
-//         _fontWeight = fontWeight,
-//         _buttonColor = buttonColor,
-//         _labelColor = labelColor,
-//         _isButtonDisabled = isButtonDisabled,
-//         _borderColor = borderColor,
-//         _borderRadius = borderRadius,
-//         _fontSize = fontSize,
-//         super(key: key);
+class ButtonPrimary extends StatelessWidget {
+  const ButtonPrimary(
+    String label, {
+    super.key,
+    required VoidCallback onPressed,
+    Widget? leading,
+    Widget? trailing,
+    double height = AppButtonSize.large,
+    double? width,
+    bool isButtonDisabled = false,
+    Color buttonColor = Yellow.primary,
+    double paddingVertical = 0,
+    double paddingHorizontal = AppGap.extraLarge,
+    Color borderColor = Colors.transparent,
+    double borderWidth = 0,
+    double borderRadius = AppBorderRadius.extraSmall,
+    FontWeight fontWeight = AppFontWeight.semiBold,
+    Color labelColor = Blue.tertiary,
+    double fontSize = AppFontSize.normal,
+    bool isLoading = false,
+  })  : _label = label,
+        _onPressed = onPressed,
+        _leading = leading,
+        _trailing = trailing,
+        _height = height,
+        _width = width,
+        _isButtonDisabled = isButtonDisabled,
+        _buttonColor = buttonColor,
+        _paddingVertical = paddingVertical,
+        _paddingHorizontal = paddingHorizontal,
+        _fontWeight = fontWeight,
+        _labelColor = labelColor,
+        _borderColor = borderColor,
+        _borderWidth = borderWidth,
+        _borderRadius = borderRadius,
+        _fontSize = fontSize,
+        _isLoading = isLoading;
 
-//   final String _label;
-//   final VoidCallback _onPressed;
-//   final Widget _icon;
-//   final double _height;
-//   final double? _width;
-//   final double _paddingVertical;
-//   final double _paddingHorizontal;
-//   final bool _isCenterLabel;
-//   final FontWeight _fontWeight;
-//   final Color _buttonColor;
-//   final Color? _labelColor;
-//   final Color _borderColor;
-//   final bool _isButtonDisabled;
-//   final double _borderRadius;
-//   final double _fontSize;
+  final String _label;
+  final VoidCallback _onPressed;
+  final Widget? _leading;
+  final Widget? _trailing;
+  final double _height;
+  final double? _width;
+  final bool _isButtonDisabled;
+  final Color _buttonColor;
+  final double _paddingVertical;
+  final double _paddingHorizontal;
+  final Color _borderColor;
+  final double _borderWidth;
+  final double _borderRadius;
+  final double _fontSize;
+  final FontWeight _fontWeight;
+  final Color? _labelColor;
+  final bool _isLoading;
 
-//   @override
-//   Widget build(BuildContext context) {
-//     final _responsive = ResponsiveUtils(context);
+  @override
+  Widget build(BuildContext context) {
+    final _responsive = ResponsiveUtils(context);
 
-//     if (Platform.isAndroid) {
-//       return SizedBox(
-//         height: _responsive.getResponsiveSize(_height),
-//         width: _width,
-//         child: OutlinedButton(
-//           onPressed: _isButtonDisabled ? null : _onPressed,
-//           style: OutlinedButton.styleFrom(
-//             backgroundColor: _buttonColor,
-//             padding: EdgeInsets.symmetric(
-//               vertical: _paddingVertical,
-//               horizontal: _paddingHorizontal,
-//             ),
-//             tapTargetSize: MaterialTapTargetSize.shrinkWrap,
-//             side: BorderSide(color: _borderColor),
-//             shape: RoundedRectangleBorder(
-//               borderRadius: BorderRadius.circular(
-//                 _borderRadius,
-//               ),
-//             ),
-//           ),
-//           child: Row(
-//             mainAxisAlignment: MainAxisAlignment.center,
-//             children: [
-//               _icon,
-//               const Gap(),
-//               Text(
-//                 _label.toUpperCase(),
-//                 style: TextStyle(
-//                   fontSize: _responsive.getResponsiveFontSize(
-//                     _fontSize,
-//                   ),
-//                   color: _labelColor,
-//                   fontWeight: _fontWeight,
-//                 ),
-//                 textAlign: _isCenterLabel ? TextAlign.center : TextAlign.start,
-//                 overflow: TextOverflow.ellipsis,
-//               ),
-//             ],
-//           ),
-//         ),
-//       );
-//     } else {
-//       return Container(
-//         height: _responsive.getResponsiveSize(_height),
-//         width: _width,
-//         decoration: BoxDecoration(
-//           border: Border.all(color: _borderColor),
-//           borderRadius: BorderRadius.circular(_borderRadius),
-//         ),
-//         child: CupertinoButton(
-//           onPressed: _isButtonDisabled ? null : _onPressed,
-//           color: _buttonColor,
-//           disabledColor: _buttonColor,
-//           padding: EdgeInsets.symmetric(
-//             vertical: _paddingVertical,
-//             horizontal: _paddingHorizontal,
-//           ),
-//           pressedOpacity: 0.8,
-//           borderRadius: BorderRadius.circular(_borderRadius),
-//           child: Row(
-//             mainAxisAlignment: MainAxisAlignment.center,
-//             children: [
-//               _icon,
-//               const Gap(),
-//               Text(
-//                 _label.toUpperCase(),
-//                 style: TextStyle(
-//                   fontSize: _responsive.getResponsiveFontSize(
-//                     _fontSize,
-//                   ),
-//                   color: _labelColor,
-//                   fontWeight: _fontWeight,
-//                 ),
-//                 textAlign: _isCenterLabel ? TextAlign.center : TextAlign.start,
-//                 overflow: TextOverflow.ellipsis,
-//               ),
-//             ],
-//           ),
-//         ),
-//       );
-//     }
-//   }
-// }
+    return SizedBox(
+      height: _responsive.getResponsiveSize(_height),
+      width: _width,
+      child: OutlinedButton(
+        onPressed: _isButtonDisabled ? null : _onPressed,
+        style: OutlinedButton.styleFrom(
+          backgroundColor: _buttonColor,
+          padding: EdgeInsets.symmetric(
+            vertical: _paddingVertical,
+            horizontal: _paddingHorizontal,
+          ),
+          tapTargetSize: MaterialTapTargetSize.shrinkWrap,
+          side: BorderSide(color: _borderColor, width: _borderWidth),
+          shape: RoundedRectangleBorder(
+            borderRadius: BorderRadius.circular(
+              _borderRadius,
+            ),
+          ),
+        ),
+        child: _isLoading
+            ? const SizedBox(
+                height: AppGap.big,
+                width: AppGap.big,
+                child: CircularProgressIndicator(),
+              )
+            : Row(
+                mainAxisAlignment: MainAxisAlignment.center,
+                children: [
+                  _leading ?? const SizedBox(),
+                  Gap(width: _leading == null ? 0 : AppGap.small),
+                  Text(
+                    _label,
+                    style: ButtonTextStyle.medium.copyWith(
+                      fontSize: _responsive.getResponsiveFontSize(_fontSize),
+                      fontWeight: _fontWeight,
+                      color: _labelColor,
+                    ),
+                    overflow: TextOverflow.ellipsis,
+                  ),
+                  Gap(width: _trailing == null ? 0 : AppGap.small),
+                  _trailing ?? const SizedBox(),
+                ],
+              ),
+      ),
+    );
+  }
+}
 
 // class ButtonAttachment extends StatelessWidget {
 //   const ButtonAttachment({

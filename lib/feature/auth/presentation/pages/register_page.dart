@@ -67,19 +67,15 @@ class RegisterPageState extends State<RegisterPage> {
               ),
             ),
             const Gap(height: AppGap.dialog - 2),
-            SizedBox(
-              height: AppButtonSize.large,
-              width: double.infinity,
-              child: ButtonPrimary(
-                'Sign Up',
-                onPressed: () {
-                  FocusUtils(context).unfocus();
+            ButtonPrimary(
+              'Sign Up',
+              onPressed: () {
+                FocusUtils(context).unfocus();
 
-                  if (_formKey.currentState?.validate() == true) {
-                    Navigator.pushNamed(context, PagePath.verifyCode);
-                  }
-                },
-              ),
+                if (_formKey.currentState?.validate() == true) {
+                  Navigator.pushNamed(context, PagePath.verifyCode);
+                }
+              },
             ),
             const Gap(height: AppGap.extraLarge),
           ],

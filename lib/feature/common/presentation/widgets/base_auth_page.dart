@@ -49,25 +49,19 @@ class BaseAuthPage extends StatelessWidget {
                     ),
                   ),
                   const Gap(height: 50),
-                  SizedBox(
-                    height: AppButtonSize.large,
-                    child: ButtonIcon(
-                      onTap: () {
-                        FocusUtils(context).unfocus();
-                      },
-                      backgroundColor: Blue.secondary,
-                      child: Row(
-                        mainAxisAlignment: MainAxisAlignment.center,
-                        children: [
-                          Image.asset(AppIcon.google, width: AppIconSize.large),
-                          const Gap(width: AppGap.normal),
-                          Text(
-                            'Sign In with Google',
-                            style: ButtonTextStyle.light,
-                          ),
-                        ],
-                      ),
+                  ButtonPrimary(
+                    'Sign In with Google',
+                    onPressed: () {
+                      FocusUtils(context).unfocus();
+                    },
+                    width: double.infinity,
+                    labelColor: AppColors.white,
+                    buttonColor: Blue.secondary,
+                    leading: Image.asset(
+                      AppIcon.google,
+                      width: AppIconSize.large,
                     ),
+                    // isLoading: true,
                   ),
                   const Gap(height: AppGap.extraLarge),
                   Row(

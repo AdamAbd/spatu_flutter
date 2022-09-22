@@ -77,17 +77,13 @@ class _LoginPageState extends State<LoginPage> {
               ),
             ),
             const Gap(height: AppGap.dialog - 2),
-            SizedBox(
-              height: AppButtonSize.large,
-              width: double.infinity,
-              child: ButtonPrimary(
-                'Sign In',
-                onPressed: () {
-                  FocusUtils(context).unfocus();
+            ButtonPrimary(
+              'Sign In',
+              onPressed: () {
+                FocusUtils(context).unfocus();
 
-                  if (_formKey.currentState?.validate() == true) {}
-                },
-              ),
+                if (_formKey.currentState?.validate() == true) {}
+              },
             ),
             const Gap(height: AppGap.extraLarge),
           ],

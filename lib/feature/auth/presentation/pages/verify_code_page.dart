@@ -127,6 +127,7 @@ class _VerifyCodePageState extends State<VerifyCodePage> {
           if (_start == 0)
             SizedBox(
               height: AppButtonSize.small,
+              // width: AppButtonSize.large * 3,
               child: ButtonPrimary(
                 'Resend Code',
                 onPressed: () {
