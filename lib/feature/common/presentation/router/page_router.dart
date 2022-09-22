@@ -65,6 +65,13 @@ class PageRouter {
             builder: (args) => const VerifyPinPage(),
           );
         }
+      case PagePath.resetPassword:
+        {
+          return _buildRouter(
+            settings: settings,
+            builder: (args) => const ResetPasswordPage(),
+          );
+        }
 
       default:
         return _buildRouter(

@@ -73,6 +73,8 @@ class _LoginPageState extends State<LoginPage> {
                 'Forgot Password?',
                 onTap: () {
                   FocusUtils(context).unfocus();
+
+                  Navigator.pushNamed(context, PagePath.resetPassword);
                 },
               ),
             ),

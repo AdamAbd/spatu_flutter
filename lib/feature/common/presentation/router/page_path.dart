@@ -6,4 +6,5 @@ class PagePath {
   static const accountVerified = '/verified';
   static const createPin = '/create_pin';
   static const verifyPin = '/verify_pin';
+  static const resetPassword = '/reset';
 }
