@@ -1,11 +1,27 @@
 import 'dart:async';
 
 import 'package:flutter/material.dart';
+
 import 'package:spatu_flutter/feature/feature.dart';
 import 'package:spatu_flutter/locator.dart';
 
+enum VerifyType { email, reset }
+
+class VerifyCodePageArgs {
+  final VerifyType verifyType;
+
+  const VerifyCodePageArgs({
+    required this.verifyType,
+  });
+}
+
 class VerifyCodePage extends StatefulWidget {
-  const VerifyCodePage({Key? key}) : super(key: key);
+  const VerifyCodePage({
+    super.key,
+    required VerifyCodePageArgs args,
+  }) : _args = args;
+
+  final VerifyCodePageArgs _args;
 
   @override
   State<VerifyCodePage> createState() => _VerifyCodePageState();
@@ -49,7 +65,7 @@ class _VerifyCodePageState extends State<VerifyCodePage> {
       i.textController = TextEditingController();
     }
 
-    setState(() {});
+    print('arguments: ${widget._args.verifyType.name}');
   }
 
   @override

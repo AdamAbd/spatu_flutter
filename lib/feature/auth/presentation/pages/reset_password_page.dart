@@ -36,7 +36,11 @@ class _ResetPasswordPageState extends State<ResetPasswordPage> {
     return BaseAuthInputPage(
       button: ButtonPrimary(
         'Send Code',
-        onPressed: () {},
+        onPressed: () => Navigator.pushNamed(
+          context,
+          PagePath.verifyCode,
+          arguments: const VerifyCodePageArgs(verifyType: VerifyType.reset),
+        ),
       ),
       title: 'Reset Password',
       description: 'Please enter valid email where we can send the code',

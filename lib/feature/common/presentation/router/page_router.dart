@@ -41,7 +41,9 @@ class PageRouter {
         {
           return _buildRouter(
             settings: settings,
-            builder: (args) => const VerifyCodePage(),
+            builder: (args) => VerifyCodePage(
+              args: args! as VerifyCodePageArgs,
+            ),
           );
         }
       case PagePath.accountVerified:
