@@ -104,12 +104,12 @@ class SpatuTheme {
           ),
         ),
       ),
-      splashColor: Platform.isAndroid
-          ? Blue.secondary.withOpacity(0.1)
-          : Colors.transparent,
-      highlightColor: Platform.isAndroid
-          ? Colors.transparent
-          : Blue.secondary.withOpacity(0.1),
+      // splashColor: Platform.isAndroid
+      //     ? Blue.secondary.withOpacity(0.1)
+      //     : Colors.transparent,
+      // highlightColor: Platform.isAndroid
+      //     ? Colors.transparent
+      //     : Blue.secondary.withOpacity(0.1),
       textTheme: _theme.textTheme.copyWith().apply(
             fontFamily: GoogleFonts.inter().fontFamily,
           ),
