@@ -21,6 +21,8 @@ class PageRouter {
                   return const LoginPage();
                 case 'verified':
                   return const AccountVerifiedPage();
+                case 'createNewPassword':
+                  return const CreateNewPasswordPage();
 
                 default:
                   return const LoginPage();
@@ -72,6 +74,13 @@ class PageRouter {
           return _buildRouter(
             settings: settings,
             builder: (args) => const ResetPasswordPage(),
+          );
+        }
+      case PagePath.createNewPassword:
+        {
+          return _buildRouter(
+            settings: settings,
+            builder: (args) => const CreateNewPasswordPage(),
           );
         }
 

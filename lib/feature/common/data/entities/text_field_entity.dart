@@ -250,4 +250,28 @@ class TextFieldEntity {
       },
     ),
   ];
+
+  static final List<TextFieldEntity> createNewPassword = [
+    TextFieldEntity(
+      textController: TextEditingController(text: ''),
+      hint: "Type your new password",
+      label: "Password",
+      isPassword: true,
+      focusNode: FocusNode(),
+      validator: (value) {
+        return ValidationBuilder().minLength(8).build().call(value);
+      },
+    ),
+    TextFieldEntity(
+      textController: TextEditingController(text: ''),
+      hint: "Confirm your new password",
+      label: "Password",
+      isPassword: true,
+      textInputAction: TextInputAction.done,
+      focusNode: FocusNode(),
+      validator: (value) {
+        return ValidationBuilder().minLength(8).build().call(value);
+      },
+    ),
+  ];
 }
