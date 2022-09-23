@@ -68,6 +68,12 @@ class CreateNewPasswordPageState extends State<CreateNewPasswordPage> {
             AppIcon.password,
             width: AppIconSize.large,
           ),
+          validator: (val) {
+            if (val != _textFieldList[0].textController.text) {
+              return 'Not match';
+            }
+            return null;
+          },
         ),
       ],
     );
