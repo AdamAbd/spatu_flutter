@@ -54,6 +54,25 @@ class _VerifyCodePageState extends State<VerifyCodePage> {
     );
   }
 
+  void _handleOTP() {
+    FocusUtils(context).unfocus();
+
+    if (_formKey.currentState?.validate() == true) {
+      final List<String> _pin = [];
+      for (final i in _textFieldList) {
+        _pin.add(i.textController.text);
+      }
+      print(_pin.join());
+      Navigator.pushNamedAndRemoveUntil(
+        context,
+        widget._args.verifyType == VerifyType.email
+            ? PagePath.accountVerified
+            : PagePath.createNewPassword,
+        (Route<dynamic> route) => false,
+      );
+    }
+  }
+
   @override
   void initState() {
     super.initState();
@@ -78,23 +97,6 @@ class _VerifyCodePageState extends State<VerifyCodePage> {
     }
 
     super.dispose();
-  }
-
-  void _handleOTP() {
-    FocusUtils(context).unfocus();
-
-    if (_formKey.currentState?.validate() == true) {
-      final List<String> _pin = [];
-      for (final i in _textFieldList) {
-        _pin.add(i.textController.text);
-      }
-      print(_pin.join());
-      Navigator.pushNamedAndRemoveUntil(
-        context,
-        PagePath.accountVerified,
-        (Route<dynamic> route) => false,
-      );
-    }
   }
 
   @override
@@ -170,8 +172,9 @@ class _VerifyCodePageState extends State<VerifyCodePage> {
                   ],
                 ),
                 style: AppTextStyle.regular.copyWith(
-                  fontSize:
-                      _responsive.getResponsiveFontSize(AppFontSize.medium),
+                  fontSize: _responsive.getResponsiveFontSize(
+                    AppFontSize.medium,
+                  ),
                 ),
               ),
             ),
