@@ -33,26 +33,37 @@ class _ResetPasswordPageState extends State<ResetPasswordPage> {
 
   @override
   Widget build(BuildContext context) {
-    return BaseAuthInputPage(
-      button: ButtonPrimary(
-        'Send Code',
-        onPressed: () => Navigator.pushNamed(
-          context,
-          PagePath.verifyCode,
-          arguments: const VerifyCodePageArgs(verifyType: VerifyType.reset),
+    return Form(
+      key: _formKey,
+      child: BaseAuthInputPage(
+        button: ButtonPrimary(
+          'Send Code',
+          onPressed: () {
+            FocusUtils(context).unfocus();
+
+            if (_formKey.currentState?.validate() == true) {
+              Navigator.pushNamed(
+                context,
+                PagePath.verifyCode,
+                arguments:
+                    const VerifyCodePageArgs(verifyType: VerifyType.reset),
+              );
+            }
+          },
         ),
-      ),
-      title: 'Reset Password',
-      description: 'Please enter valid email where we can send the code',
-      children: [
-        CustomTextFormField(
-          textFieldEntity: _textFieldList[0],
-          prefixImage: Image.asset(
-            AppIcon.email,
-            width: AppIconSize.large,
+        title: 'Reset Password',
+        description: 'Please enter valid email where we can send the code',
+        children: [
+          CustomTextFormField(
+            textFieldEntity: _textFieldList[0],
+            
+            prefixImage: Image.asset(
+              AppIcon.email,
+              width: AppIconSize.large,
+            ),
           ),
-        ),
-      ],
+        ],
+      ),
     );
   }
 }
