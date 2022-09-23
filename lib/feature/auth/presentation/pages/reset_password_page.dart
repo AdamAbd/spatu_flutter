@@ -56,7 +56,6 @@ class _ResetPasswordPageState extends State<ResetPasswordPage> {
         children: [
           CustomTextFormField(
             textFieldEntity: _textFieldList[0],
-            
             prefixImage: Image.asset(
               AppIcon.email,
               width: AppIconSize.large,
