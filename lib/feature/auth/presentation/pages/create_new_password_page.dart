@@ -37,45 +37,49 @@ class CreateNewPasswordPageState extends State<CreateNewPasswordPage> {
 
   @override
   Widget build(BuildContext context) {
-    return BaseAuthInputPage(
-      button: ButtonPrimary(
-        'Create New Password',
-        onPressed: () {
-          FocusUtils(context).unfocus();
+    return Form(
+      key: _formKey,
+      child: BaseAuthInputPage(
+        button: ButtonPrimary(
+          'Create New Password',
+          onPressed: () {
+            FocusUtils(context).unfocus();
 
-          if (_formKey.currentState?.validate() == true) {
-            Navigator.pushNamed(
-              context,
-              PagePath.verifyCode,
-              arguments: const VerifyCodePageArgs(verifyType: VerifyType.reset),
-            );
-          }
-        },
-      ),
-      title: 'Create New Password',
-      description: 'Please enter valid email where we can send the code',
-      children: [
-        CustomTextFormField(
-          textFieldEntity: _textFieldList[0],
-          prefixImage: Image.asset(
-            AppIcon.password,
-            width: AppIconSize.large,
-          ),
-        ),
-        CustomTextFormField(
-          textFieldEntity: _textFieldList[1],
-          prefixImage: Image.asset(
-            AppIcon.password,
-            width: AppIconSize.large,
-          ),
-          validator: (val) {
-            if (val != _textFieldList[0].textController.text) {
-              return 'Not match';
+            if (_formKey.currentState?.validate() == true) {
+              Navigator.pushNamed(
+                context,
+                PagePath.verifyCode,
+                arguments:
+                    const VerifyCodePageArgs(verifyType: VerifyType.reset),
+              );
             }
-            return null;
           },
         ),
-      ],
+        title: 'Create New Password',
+        description: 'Please enter valid email where we can send the code',
+        children: [
+          CustomTextFormField(
+            textFieldEntity: _textFieldList[0],
+            prefixImage: Image.asset(
+              AppIcon.password,
+              width: AppIconSize.large,
+            ),
+          ),
+          CustomTextFormField(
+            textFieldEntity: _textFieldList[1],
+            prefixImage: Image.asset(
+              AppIcon.password,
+              width: AppIconSize.large,
+            ),
+            validator: (val) {
+              if (val != _textFieldList[0].textController.text) {
+                return 'Not match';
+              }
+              return null;
+            },
+          ),
+        ],
+      ),
     );
   }
 }
