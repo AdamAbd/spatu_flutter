@@ -1,6 +1,5 @@
 import 'package:flutter/material.dart';
-import 'package:spatu_flutter/feature/auth/auth.dart';
-import 'package:spatu_flutter/feature/common/common.dart';
+import 'package:spatu_flutter/feature/feature.dart';
 import 'package:spatu_flutter/locator.dart';
 
 class LoginPage extends StatefulWidget {
@@ -22,7 +21,17 @@ class _LoginPageState extends State<LoginPage> {
       i.textController = TextEditingController();
     }
 
-    if (sl<PageStackCubit>().state.page == 'verify') {
+    if (sl<PageStackCubit>().state.page == 'verify ${VerifyType.reset.name}') {
+      Future.delayed(
+        const Duration(milliseconds: 500),
+        () => Navigator.pushNamed(
+          context,
+          PagePath.verifyCode,
+          arguments: const VerifyCodePageArgs(verifyType: VerifyType.reset),
+        ),
+      );
+    } else if (sl<PageStackCubit>().state.page ==
+        'verify ${VerifyType.email.name}') {
       Future.delayed(
         const Duration(milliseconds: 500),
         () => Navigator.pushNamed(

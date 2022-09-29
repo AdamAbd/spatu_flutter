@@ -76,7 +76,7 @@ class _VerifyCodePageState extends State<VerifyCodePage> {
   @override
   void initState() {
     super.initState();
-    sl<PageStackCubit>().saveStack(page: 'verify');
+    sl<PageStackCubit>().saveStack(page: 'verify ${widget._args.verifyType.name}');
 
     startTimer();
 
