@@ -18,7 +18,7 @@ class CreateNewPasswordPageState extends State<CreateNewPasswordPage> {
   void initState() {
     super.initState();
 
-    sl<PageStackCubit>().saveStack(page: 'createNewPassword');
+    sl<PageStackCubit>().saveStack(page: 'login');
 
     for (final i in _textFieldList) {
       i.textController = TextEditingController();
@@ -46,11 +46,10 @@ class CreateNewPasswordPageState extends State<CreateNewPasswordPage> {
             FocusUtils(context).unfocus();
 
             if (_formKey.currentState?.validate() == true) {
-              Navigator.pushNamed(
+              Navigator.pushNamedAndRemoveUntil(
                 context,
-                PagePath.verifyCode,
-                arguments:
-                    const VerifyCodePageArgs(verifyType: VerifyType.reset),
+                PagePath.home,
+                (route) => false,
               );
             }
           },
