@@ -62,21 +62,29 @@ class _VerifyCodePageState extends State<VerifyCodePage> {
       for (final i in _textFieldList) {
         _pin.add(i.textController.text);
       }
+
       print(_pin.join());
-      Navigator.pushNamedAndRemoveUntil(
-        context,
-        widget._args.verifyType == VerifyType.email
-            ? PagePath.accountVerified
-            : PagePath.createNewPassword,
-        (Route<dynamic> route) => false,
-      );
+
+      if (widget._args.verifyType == VerifyType.reset) {
+        Navigator.pushNamed(
+          context,
+          PagePath.createNewPassword,
+        );
+      } else {
+        Navigator.pushNamedAndRemoveUntil(
+          context,
+          PagePath.accountVerified,
+          (route) => false,
+        );
+      }
     }
   }
 
   @override
   void initState() {
     super.initState();
-    sl<PageStackCubit>().saveStack(page: 'verify ${widget._args.verifyType.name}');
+    sl<PageStackCubit>()
+        .saveStack(page: 'verify ${widget._args.verifyType.name}');
 
     startTimer();
 
