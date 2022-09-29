@@ -21,8 +21,6 @@ class PageRouter {
                   return const LoginPage();
                 case 'verified':
                   return const AccountVerifiedPage();
-                case 'createNewPassword':
-                  return const CreateNewPasswordPage();
 
                 default:
                   return const LoginPage();
