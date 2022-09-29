@@ -1,5 +1,5 @@
 import 'package:flutter/material.dart';
-import 'package:spatu_flutter/feature/common/common.dart';
+import 'package:spatu_flutter/feature/feature.dart';
 
 class RegisterPage extends StatefulWidget {
   const RegisterPage({Key? key}) : super(key: key);
@@ -73,7 +73,9 @@ class RegisterPageState extends State<RegisterPage> {
                 FocusUtils(context).unfocus();
 
                 if (_formKey.currentState?.validate() == true) {
-                  Navigator.pushNamed(context, PagePath.verifyCode);
+                  Navigator.pushNamed(context, PagePath.verifyCode, 
+          arguments: const VerifyCodePageArgs(verifyType: VerifyType.email),
+                  );
                 }
               },
             ),
