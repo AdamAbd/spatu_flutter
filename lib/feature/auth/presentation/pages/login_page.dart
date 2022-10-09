@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:spatu_flutter/feature/feature.dart';
 import 'package:spatu_flutter/locator.dart';
 
@@ -57,53 +58,107 @@ class _LoginPageState extends State<LoginPage> {
   Widget build(BuildContext context) {
     final _responsive = ResponsiveUtils(context);
 
-    return BaseAuthPage(
-      title: 'Welcome Back!',
-      description: 'Sign In to your account',
-      isLoginPage: true,
-      child: Form(
-        key: _formKey,
-        child: Column(
-          children: [
-            CustomTextFormField(
-              textFieldEntity: _textFieldList[0],
-              prefixImage: Image.asset(
-                AppIcon.email,
-                width: AppIconSize.large,
-              ),
-            ),
-            const Gap(height: AppGap.medium),
-            CustomTextFormField(
-              textFieldEntity: _textFieldList[1],
-              prefixImage: Image.asset(
-                AppIcon.password,
-                width: AppIconSize.large,
-              ),
-            ),
-            const Gap(height: AppGap.medium),
-            Align(
-              alignment: Alignment.centerRight,
-              child: Hyperlink(
-                'Forgot Password?',
-                onTap: () {
-                  FocusUtils(context).unfocus();
+    return BlocProvider(
+      create: (context) => sl<LoginCubit>(),
+      child: Builder(
+        builder: (context) {
+          return BaseAuthPage(
+            title: 'Welcome Back!',
+            description: sl<UserCubit>().state.userEntity!.username ?? '',
+            // description: 'Sign In to your account',
+            isLoginPage: true,
+            child: Form(
+              key: _formKey,
+              child: Column(
+                children: [
+                  CustomTextFormField(
+                    textFieldEntity: _textFieldList[0],
+                    prefixImage: Image.asset(
+                      AppIcon.email,
+                      width: AppIconSize.large,
+                    ),
+                  ),
+                  const Gap(height: AppGap.medium),
+                  CustomTextFormField(
+                    textFieldEntity: _textFieldList[1],
+                    prefixImage: Image.asset(
+                      AppIcon.password,
+                      width: AppIconSize.large,
+                    ),
+                  ),
+                  const Gap(height: AppGap.medium),
+                  Align(
+                    alignment: Alignment.centerRight,
+                    child: Hyperlink(
+                      'Forgot Password?',
+                      onTap: () {
+                        FocusUtils(context).unfocus();
 
-                  Navigator.pushNamed(context, PagePath.resetPassword);
-                },
+                        Navigator.pushNamed(context, PagePath.resetPassword);
+                      },
+                    ),
+                  ),
+                  const Gap(height: AppGap.dialog - 2),
+                  BlocConsumer<LoginCubit, LoginState>(
+                    listener: (context, state) {
+                      if (state is LoginLoading) {
+                        print("Login Loading");
+                      }
+                      // else {
+                      //   Navigator.popUntil(
+                      //     context,
+                      //     ModalRoute.withName(PagePath.authenticationLogin),
+                      //   );
+                      // }
+
+                      if (state is LoginSuccess) {
+                        print("Login Success");
+                        // context.successDialog(
+                        //   messageBody: MessageConstant.successLogin,
+                        //   buttonText: "OK",
+                        //   onTap: () => Navigator.pushNamedAndRemoveUntil(
+                        //     context,
+                        //     PagePath.main,
+                        //     (route) => false,
+                        //   ),
+                        // );
+                      } else if (state is LoginError) {
+                        print("Login Error");
+                        // context.errorDialog(
+                        //   messageBody: state.failure.error?.message ??
+                        //       MessageConstant.defaultErrorMessage,
+                        //   onTap: () {},
+                        // );
+                      }
+                    },
+                    builder: (contextLoginCubit, state) {
+                      return ButtonPrimary(
+                        'Sign In',
+                        onPressed: () {
+                          FocusUtils(context).unfocus();
+
+                          if (_formKey.currentState?.validate() == true) {
+                            contextLoginCubit.read<LoginCubit>().login(
+                                  email: _textFieldList[0]
+                                      .textController
+                                      .text
+                                      .trim(),
+                                  password: _textFieldList[1]
+                                      .textController
+                                      .text
+                                      .trim(),
+                                );
+                          }
+                        },
+                      );
+                    },
+                  ),
+                  const Gap(height: AppGap.extraLarge),
+                ],
               ),
             ),
-            const Gap(height: AppGap.dialog - 2),
-            ButtonPrimary(
-              'Sign In',
-              onPressed: () {
-                FocusUtils(context).unfocus();
-
-                if (_formKey.currentState?.validate() == true) {}
-              },
-            ),
-            const Gap(height: AppGap.extraLarge),
-          ],
-        ),
+          );
+        },
       ),
     );
   }

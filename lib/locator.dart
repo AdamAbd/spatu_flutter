@@ -1,12 +1,13 @@
-// import 'package:spatu_flutter/core/core.dart';
-import 'package:spatu_flutter/feature/feature.dart';
 import 'package:get_it/get_it.dart';
+
+import 'package:spatu_flutter/core/core.dart';
+import 'package:spatu_flutter/feature/feature.dart';
 
 final sl = GetIt.instance;
 
 Future<void> init() async {
-  // /// Dio
-  // sl.registerLazySingleton(() => DioClient.dioInit());
+  /// Dio
+  sl.registerLazySingleton(() => DioClient.dioInit());
 
   // /// Menu
   // sl.registerLazySingleton(() => MenuCubit());
@@ -17,10 +18,10 @@ Future<void> init() async {
   /// User
   sl.registerLazySingleton(() => UserCubit());
 
-  // ///Auth
-  // sl.registerLazySingleton(() => AuthRepository(sl()));
-  // sl.registerLazySingleton(() => AuthRemoteDataSource(sl()));
-  // sl.registerFactory(() => AuthCubit(sl()));
+  ///Auth
+  sl.registerLazySingleton(() => AuthRepository(sl()));
+  sl.registerLazySingleton(() => AuthRemoteDataSource(sl()));
+  sl.registerFactory(() => LoginCubit(sl()));
 
   // /// Home
   // sl.registerLazySingleton(() => HomeRepository(sl()));
