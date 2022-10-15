@@ -31,6 +31,25 @@ class AuthRepository with BaseRepository {
     });
   }
 
+  Future<Either<Failure, BaseApiResponseEntity<String>>> register({
+    required String username,
+    required String email,
+    required String password,
+  }) async {
+    return catchOrThrow(() async {
+      final response = await authRemoteDataSource.register(
+        username: username,
+        email: email,
+        password: password,
+      );
+
+      return BaseApiResponseEntity.fromBaseApiResponseModel(
+        response,
+        data: response.message,
+      );
+    });
+  }
+
   // Future<Either<Failure, BaseApiResponseEntity<UserEntity>>> loginGoogle({
   //   String? googleId,
   //   String? email,
@@ -55,27 +74,6 @@ class AuthRepository with BaseRepository {
   //     return BaseApiResponseEntity.fromBaseApiResponseModel(
   //       response,
   //       data: response.data?.toUserEntity(),
-  //     );
-  //   });
-  // }
-
-  // Future<Either<Failure, BaseApiResponseEntity<SuccessEntity>>> register({
-  //   required String username,
-  //   required String email,
-  //   required String password,
-  //   required String ipAddress,
-  // }) async {
-  //   return catchOrThrow(() async {
-  //     final response = await authRemoteDataSource.register(
-  //       username: username,
-  //       email: email,
-  //       password: password,
-  //       ipAddress: ipAddress,
-  //     );
-
-  //     return BaseApiResponseEntity.fromBaseApiResponseModel(
-  //       response,
-  //       data: response.data?.toSuccessEntity(),
   //     );
   //   });
   // }

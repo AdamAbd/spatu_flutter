@@ -30,6 +30,27 @@ class AuthRemoteDataSource with BaseDataSource {
     });
   }
 
+  Future<BaseApiResponseModel<String>> register({
+    required String username,
+    required String email,
+    required String password,
+  }) async {
+    return dioCatchOrThrow(() async {
+      var response = await dio.post(
+        UrlConstant.register,
+        data: {
+          'username': username,
+          'email': email,
+          'password': password,
+        },
+      );
+
+      return BaseApiResponseModel.fromJson(
+        response.data as Map<String, dynamic>,
+      );
+    });
+  }
+
   // Future<BaseApiResponseModel<UserModel>> loginGoogle({
   //   String? googleId,
   //   String? email,
@@ -52,30 +73,6 @@ class AuthRemoteDataSource with BaseDataSource {
   //       generatedData: (data) {
   //         return UserModel.fromJson(data as Map<String, Object?>);
   //       },
-  //     );
-  //   });
-  // }
-
-  // Future<BaseApiResponseModel<SuccessModel>> register({
-  //   required String username,
-  //   required String email,
-  //   required String password,
-  //   required String ipAddress,
-  // }) async {
-  //   return dioCatchOrThrow(() async {
-  //     var response = await dio.post(UrlConstant.register, data: {
-  //       'username': username,
-  //       'email': email,
-  //       'password': password,
-  //       'ip_address': ipAddress,
-  //     });
-
-  //     return BaseApiResponseModel.fromJson(
-  //       response.data as Map<String, dynamic>,
-  //       // keyData: 'user',
-  //       // generatedData: (data) {
-  //       //   return RegisterModel.fromJson(data as Map<String, Object?>);
-  //       // },
   //     );
   //   });
   // }
