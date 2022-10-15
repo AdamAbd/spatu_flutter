@@ -1,9 +1,11 @@
 class BaseApiResponseModel<T> {
-  final int status;
+  final int code;
+  final String status;
   final String message;
   final T? data;
 
   const BaseApiResponseModel({
+    required this.code,
     required this.status,
     required this.message,
     this.data,
@@ -12,12 +14,14 @@ class BaseApiResponseModel<T> {
   factory BaseApiResponseModel.fromJson(
     Map<String, Object?> json, {
     T? Function(Object? response)? generatedData,
-    String? keyData,
+    // String? keyData,
   }) {
     return BaseApiResponseModel(
-      status: json['status'] as int,
-      message: json['message'] as String,
-      data: generatedData?.call(json[keyData ?? 'data']),
+      code: int.parse(json['code'].toString()),
+      status: json['status'].toString(),
+      message: json['message'].toString(),
+      data: generatedData?.call(json['data']),
+      // data: generatedData?.call(json[keyData ?? 'data']),
     );
   }
 
@@ -25,8 +29,9 @@ class BaseApiResponseModel<T> {
     Object? Function(T? data) generateJsonData,
   ) =>
       {
-        'message': message,
+        'code': code,
         'status': status,
+        'message': message,
         'data': generateJsonData(data),
       };
 }

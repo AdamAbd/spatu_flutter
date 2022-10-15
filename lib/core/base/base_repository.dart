@@ -9,7 +9,7 @@ abstract class BaseRepository {
       final data = await body();
 
       /// If response message is Success or User Created
-      if (data is BaseApiResponseEntity && (data.status == 200)) {
+      if (data is BaseApiResponseEntity && (data.status == 'Success')) {
         /// Initialize User Cubit
         // final userCubit = sl<UserCubit>();
 
