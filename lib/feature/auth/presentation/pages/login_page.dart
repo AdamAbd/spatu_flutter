@@ -123,7 +123,9 @@ class _LoginPageState extends State<LoginPage> {
                         //   ),
                         // );
                       } else if (state is LoginError) {
-                        print("Login Error");
+                        print(
+                          "Login Error : ${state.failure.error?.errors ?? ''}",
+                        );
                         // context.errorDialog(
                         //   messageBody: state.failure.error?.message ??
                         //       MessageConstant.defaultErrorMessage,

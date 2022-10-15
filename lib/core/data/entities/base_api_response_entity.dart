@@ -5,13 +5,15 @@ import 'package:spatu_flutter/core/core.dart';
 class BaseApiResponseEntity<T> extends Equatable {
   final int code;
   final String status;
-  final String message;
+  final String? message;
+  final String? errors;
   final T? data;
 
   const BaseApiResponseEntity({
     required this.code,
     required this.status,
-    required this.message,
+    this.message,
+    this.errors,
     this.data,
   });
 
@@ -23,6 +25,7 @@ class BaseApiResponseEntity<T> extends Equatable {
         code: response.code,
         status: response.status,
         message: response.message,
+        errors: response.errors,
         data: data,
       );
 
@@ -32,6 +35,7 @@ class BaseApiResponseEntity<T> extends Equatable {
       code,
       status,
       message,
+      errors,
       data,
     ];
   }
@@ -39,13 +43,15 @@ class BaseApiResponseEntity<T> extends Equatable {
   BaseApiResponseEntity<T> copyWith({
     required int code,
     required String status,
-    required String message,
+    String? message,
+    String? errors,
     T? data,
   }) {
     return BaseApiResponseEntity<T>(
       code: code,
       status: status,
       message: message,
+      errors: errors,
       data: data ?? this.data,
     );
   }

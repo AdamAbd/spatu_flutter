@@ -1,13 +1,15 @@
 class BaseApiResponseModel<T> {
   final int code;
   final String status;
-  final String message;
+  final String? message;
+  final String? errors;
   final T? data;
 
   const BaseApiResponseModel({
     required this.code,
     required this.status,
-    required this.message,
+    this.message,
+    this.errors,
     this.data,
   });
 
@@ -19,7 +21,8 @@ class BaseApiResponseModel<T> {
     return BaseApiResponseModel(
       code: int.parse(json['code'].toString()),
       status: json['status'].toString(),
-      message: json['message'].toString(),
+      message: json['message'] as String?,
+      errors: json['errors'] as String?,
       data: generatedData?.call(json['data']),
       // data: generatedData?.call(json[keyData ?? 'data']),
     );
@@ -32,6 +35,7 @@ class BaseApiResponseModel<T> {
         'code': code,
         'status': status,
         'message': message,
+        'errors': errors,
         'data': generateJsonData(data),
       };
 }
