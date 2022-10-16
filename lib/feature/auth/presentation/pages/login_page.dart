@@ -64,8 +64,7 @@ class _LoginPageState extends State<LoginPage> {
         builder: (context) {
           return BaseAuthPage(
             title: 'Welcome Back!',
-            description: sl<UserCubit>().state.userEntity!.username ?? '',
-            // description: 'Sign In to your account',
+            description: 'Sign In to your account',
             isLoginPage: true,
             child: Form(
               key: _formKey,
