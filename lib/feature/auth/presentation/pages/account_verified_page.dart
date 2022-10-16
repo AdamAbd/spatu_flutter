@@ -66,7 +66,7 @@ class _AccountVerifiedPageState extends State<AccountVerifiedPage> {
             SizedBox(
               width: AppIconSize.dialog + 46,
               child: Lottie.asset(
-                'assets/lottie/checkmark.json',
+                AppLottie.checkmark,
                 height: AppIconSize.dialog + 28,
                 fit: BoxFit.fitWidth,
                 repeat: false,
