@@ -265,7 +265,7 @@ extension CustomDialog on context.BuildContext {
     final _theme = Theme.of(this);
     showDialog(
       context: this,
-      barrierDismissible: true,
+      barrierDismissible: false,
       builder: (context) => MediaQuery(
         data: MediaQuery.of(context).copyWith(
           textScaleFactor: 1,
