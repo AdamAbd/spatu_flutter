@@ -23,6 +23,7 @@ Future<void> init() async {
   sl.registerLazySingleton(() => AuthRemoteDataSource(sl()));
   sl.registerFactory(() => LoginCubit(sl()));
   sl.registerFactory(() => RegisterCubit(sl()));
+  sl.registerFactory(() => VerifyCubit(sl()));
 
   // /// Home
   // sl.registerLazySingleton(() => HomeRepository(sl()));

@@ -36,7 +36,7 @@ class AuthRemoteDataSource with BaseDataSource {
     required String password,
   }) async {
     return dioCatchOrThrow(() async {
-      var response = await dio.post(
+      final response = await dio.post(
         UrlConstant.register,
         data: {
           'username': username,
@@ -47,6 +47,27 @@ class AuthRemoteDataSource with BaseDataSource {
 
       return BaseApiResponseModel.fromJson(
         response.data as Map<String, dynamic>,
+      );
+    });
+  }
+
+  Future<BaseApiResponseModel<UserDataModel>> verifyEmail({
+    required int code,
+  }) async {
+    return dioCatchOrThrow(() async {
+      final response = await dio.post(
+        UrlConstant.verify,
+        data: {
+          'code': code,
+          'type': 'email',
+        },
+      );
+
+      return BaseApiResponseModel.fromJson(
+        response.data as Map<String, dynamic>,
+        generatedData: (data) {
+          return UserDataModel.fromJson(data as Map<String, dynamic>);
+        },
       );
     });
   }

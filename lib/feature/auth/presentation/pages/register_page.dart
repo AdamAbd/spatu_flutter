@@ -86,6 +86,21 @@ class RegisterPageState extends State<RegisterPage> {
                         );
                       }
                       if (state is RegisterSuccess) {
+                        final userCubit = sl<UserCubit>();
+
+                        /// Logic when access_token is not null or not empty
+                        userCubit.updateUser(
+                          userEntity: UserModel(
+                            id: '',
+                            username:
+                                _textFieldList[0].textController.text.trim(),
+                            email: _textFieldList[1].textController.text.trim(),
+                            roles: '',
+                            createdAt: DateTime.now(),
+                            updatedAt: DateTime.now(),
+                          ).toUserEntity(),
+                        );
+
                         context.successDialog(
                           messageBody: MessageConstant.pleaseCheckEmail,
                           buttonText: "OK",

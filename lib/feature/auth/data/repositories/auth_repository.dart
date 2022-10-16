@@ -50,6 +50,26 @@ class AuthRepository with BaseRepository {
     });
   }
 
+  Future<Either<Failure, BaseApiResponseEntity<UserDataEntity>>> verifyEmail({
+    required int code,
+  }) async {
+    return catchOrThrow(() async {
+      final response = await authRemoteDataSource.verifyEmail(
+        code: code,
+      );
+      final userCubit = sl<UserCubit>();
+
+      if (response.data != null) {
+        userCubit.updateUser(userEntity: response.data!.user.toUserEntity());
+      }
+
+      return BaseApiResponseEntity.fromBaseApiResponseModel(
+        response,
+        data: response.data?.toUserDataEntity(),
+      );
+    });
+  }
+
   // Future<Either<Failure, BaseApiResponseEntity<UserEntity>>> loginGoogle({
   //   String? googleId,
   //   String? email,

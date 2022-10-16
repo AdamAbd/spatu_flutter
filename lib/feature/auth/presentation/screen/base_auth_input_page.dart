@@ -4,7 +4,7 @@ import 'package:spatu_flutter/feature/common/common.dart';
 class BaseAuthInputPage extends StatelessWidget {
   const BaseAuthInputPage({
     super.key,
-    required ButtonPrimary button,
+    required Widget button,
     required String title,
     required String description,
     required List<Widget> children,
@@ -15,7 +15,7 @@ class BaseAuthInputPage extends StatelessWidget {
         _children = children,
         _moreDescription = moreDescription;
 
-  final ButtonPrimary _button;
+  final Widget _button;
   final String _title;
   final String _description;
   final List<Widget> _children;

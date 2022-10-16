@@ -1,7 +1,9 @@
 import 'dart:async';
 
 import 'package:flutter/material.dart';
+import 'package:flutter_bloc/flutter_bloc.dart';
 
+import 'package:spatu_flutter/core/core.dart';
 import 'package:spatu_flutter/feature/feature.dart';
 import 'package:spatu_flutter/locator.dart';
 
@@ -54,32 +56,6 @@ class _VerifyCodePageState extends State<VerifyCodePage> {
     );
   }
 
-  void _handleOTP() {
-    FocusUtils(context).unfocus();
-
-    if (_formKey.currentState?.validate() == true) {
-      final List<String> _pin = [];
-      for (final i in _textFieldList) {
-        _pin.add(i.textController.text);
-      }
-
-      print(_pin.join());
-
-      if (widget._args.verifyType == VerifyType.reset) {
-        Navigator.pushNamed(
-          context,
-          PagePath.createNewPassword,
-        );
-      } else {
-        Navigator.pushNamedAndRemoveUntil(
-          context,
-          PagePath.accountVerified,
-          (route) => false,
-        );
-      }
-    }
-  }
-
   @override
   void initState() {
     super.initState();
@@ -111,82 +87,144 @@ class _VerifyCodePageState extends State<VerifyCodePage> {
   Widget build(BuildContext context) {
     final _responsive = ResponsiveUtils(context);
 
-    return Form(
-      key: _formKey,
-      child: BaseAuthInputPage(
-        title: 'Verify Code',
-        description: 'Please enter the code we just sent to your email ',
-        moreDescription: 'adam2802002@gmail.com',
-        button: ButtonPrimary(
-          'Continue',
-          onPressed: () => _handleOTP(),
-        ),
-        children: [
-          Row(
-            children: List.generate(
-              _textFieldList.length,
-              (index) => Expanded(
-                child: Padding(
-                  padding: const EdgeInsets.symmetric(
-                    horizontal: AppGap.extraSmall,
-                  ),
-                  child: CustomOTPTextFormField(
-                    textFieldEntity: _textFieldList[index],
-                    onChanged: (value) {
-                      if (value.isNotEmpty) {
-                        if (index != _textFieldList.length - 1) {
-                          FocusManager.instance.primaryFocus!.nextFocus();
-                        } else {
-                          FocusUtils(context).unfocus();
-                        }
-                      } else if (index != 0) {
-                        FocusManager.instance.primaryFocus!.previousFocus();
-                      }
+    return BlocProvider(
+      create: (context) => sl<VerifyCubit>(),
+      child: Form(
+        key: _formKey,
+        child: BaseAuthInputPage(
+          title: 'Verify Code',
+          description: 'Please enter the code we just sent to your email ',
+          moreDescription: sl<UserCubit>().state.userEntity?.email ?? '',
+          button: BlocConsumer<VerifyCubit, VerifyState>(
+            listener: (context, state) {
+              if (state is VerifyLoading) {
+                context.loadingDialog();
+              } else {
+                Navigator.popUntil(
+                  context,
+                  ModalRoute.withName(PagePath.verifyCode),
+                );
+              }
+              if (state is VerifyEmailSuccess) {
+                if (widget._args.verifyType == VerifyType.reset) {
+                  context.successDialog(
+                    messageBody: "Success",
+                    buttonText: "OK",
+                    onTap: () {
+                      Navigator.pushNamed(
+                        context,
+                        PagePath.createNewPassword,
+                      );
                     },
+                  );
+                } else {
+                  Navigator.pushNamedAndRemoveUntil(
+                    context,
+                    PagePath.accountVerified,
+                    (route) => false,
+                  );
+                }
+              } else if (state is VerifyError) {
+                context.errorDialog(
+                  messageBody: state.failure.error?.status ??
+                      MessageConstant.defaultErrorMessage,
+                  onTap: () {
+                    for (final i in _textFieldList) {
+                      i.textController.clear();
+                    }
+                  },
+                );
+              }
+            },
+            builder: (contextVerifyEmailCubit, state) {
+              return ButtonPrimary(
+                'Continue',
+                onPressed: () {
+                  {
+                    FocusUtils(context).unfocus();
+
+                    if (_formKey.currentState?.validate() == true) {
+                      final List<String> _pin = [];
+                      for (final i in _textFieldList) {
+                        _pin.add(i.textController.text);
+                      }
+
+                      contextVerifyEmailCubit.read<VerifyCubit>().verifyEmail(
+                            code: int.parse(_pin.join()),
+                          );
+                    }
+                  }
+                },
+              );
+            },
+          ),
+          children: [
+            Row(
+              children: List.generate(
+                _textFieldList.length,
+                (index) => Expanded(
+                  child: Padding(
+                    padding: const EdgeInsets.symmetric(
+                      horizontal: AppGap.extraSmall,
+                    ),
+                    child: CustomOTPTextFormField(
+                      textFieldEntity: _textFieldList[index],
+                      onChanged: (value) {
+                        if (value.isNotEmpty) {
+                          if (index != _textFieldList.length - 1) {
+                            FocusManager.instance.primaryFocus!.nextFocus();
+                          } else {
+                            FocusUtils(context).unfocus();
+                          }
+                        } else if (index != 0) {
+                          FocusManager.instance.primaryFocus!.previousFocus();
+                        }
+                      },
+                    ),
                   ),
                 ),
               ),
             ),
-          ),
-          const Gap(height: AppGap.extraLarge),
-          if (_start == 0)
-            SizedBox(
-              height: AppButtonSize.small,
-              // width: AppButtonSize.large * 3,
-              child: ButtonPrimary(
-                'Resend Code',
-                onPressed: () {
-                  setState(() {
-                    _start = 60;
-                    startTimer();
-                  });
-                },
-              ),
-            )
-          else
-            Center(
-              child: Text.rich(
-                TextSpan(
-                  text: 'Resend code in ',
-                  children: [
-                    TextSpan(
-                      text: DateHelper().minuteToSecond(_start),
-                      style: AppTextStyle.medium.copyWith(
-                        fontSize: _responsive.getResponsiveFontSize(
-                          AppFontSize.medium,
+            const Gap(height: AppGap.extraLarge),
+            if (_start == 0)
+              SizedBox(
+                height: AppButtonSize.small,
+                // width: AppButtonSize.large * 3,
+                child: ButtonPrimary(
+                  'Resend Code',
+                  onPressed: () {
+                    setState(() {
+                      _start = 60;
+                      startTimer();
+                    });
+                  },
+                ),
+              )
+            else
+              Center(
+                child: Text.rich(
+                  TextSpan(
+                    text: 'Resend code in ',
+                    children: [
+                      TextSpan(
+                        text: DateHelper().minuteToSecond(_start),
+                        style: AppTextStyle.medium.copyWith(
+                          fontSize: _responsive.getResponsiveFontSize(
+                            AppFontSize.medium,
+                          ),
                         ),
                       ),
+                    ],
+                  ),
+                  style: AppTextStyle.regular.copyWith(
+                    fontSize: _responsive.getResponsiveFontSize(
+                      AppFontSize.medium,
                     ),
-                  ],
-                ),
-                style: AppTextStyle.regular.copyWith(
-                  fontSize: _responsive.getResponsiveFontSize(
-                    AppFontSize.medium,
                   ),
                 ),
               ),
-            ),
-        ],
+          ],
+        ),
       ),
     );
   }
