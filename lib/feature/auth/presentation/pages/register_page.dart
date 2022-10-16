@@ -102,7 +102,7 @@ class RegisterPageState extends State<RegisterPage> {
                         );
 
                         context.successDialog(
-                          messageBody: MessageConstant.pleaseCheckEmail,
+                          messageBody: state.message,
                           buttonText: "OK",
                           onTap: () => Navigator.pushNamed(
                             context,
