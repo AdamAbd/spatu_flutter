@@ -21,4 +21,6 @@ class AppIllustration {
 
 class AppLottie {
   static const checkmark = "./assets/lottie/checkmark.json";
+  static const loading = "./assets/lottie/loading.json";
+  static const fail = "./assets/lottie/fail.json";
 }

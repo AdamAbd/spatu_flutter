@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
+import 'package:spatu_flutter/core/core.dart';
 
 import 'package:spatu_flutter/feature/feature.dart';
 import 'package:spatu_flutter/locator.dart';
@@ -77,43 +78,30 @@ class RegisterPageState extends State<RegisterPage> {
                   BlocConsumer<RegisterCubit, RegisterState>(
                     listener: (context, state) {
                       if (state is RegisterLoading) {
-                        print("Register Loading");
-                      }
-                      // else {
-                      //   Navigator.popUntil(
-                      //     context,
-                      //     ModalRoute.withName(PagePath.authenticationRegister),
-                      //   );
-                      // }
-
-                      if (state is RegisterSuccess) {
-                        print("Register Success : ${state.message}");
-                        // context.successDialog(
-                        //   messageBody: MessageConstant.successRegister,
-                        //   buttonText: "OK",
-                        //   onTap: () => Navigator.pushNamedAndRemoveUntil(
-                        //     context,
-                        //     PagePath.main,
-                        //     (route) => false,
-                        //   ),
-                        // );
-
-                        // Navigator.pushNamed(
-                        //   context,
-                        //   PagePath.verifyCode,
-                        //   arguments: const VerifyCodePageArgs(
-                        //     verifyType: VerifyType.email,
-                        //   ),
-                        // );
-                      } else if (state is RegisterError) {
-                        print(
-                          "Register Error : ${state.failure.error?.errors ?? ''}",
+                        context.loadingDialog();
+                      } else {
+                        Navigator.popUntil(
+                          context,
+                          ModalRoute.withName(PagePath.register),
                         );
-                        // context.errorDialog(
-                        //   messageBody: state.failure.error?.message ??
-                        //       MessageConstant.defaultErrorMessage,
-                        //   onTap: () {},
-                        // );
+                      }
+                      if (state is RegisterSuccess) {
+                        context.successDialog(
+                          messageBody: MessageConstant.pleaseCheckEmail,
+                          buttonText: "OK",
+                          onTap: () => Navigator.pushNamed(
+                            context,
+                            PagePath.verifyCode,
+                            arguments: const VerifyCodePageArgs(
+                              verifyType: VerifyType.email,
+                            ),
+                          ),
+                        );
+                      } else if (state is RegisterError) {
+                        context.errorDialog(
+                          messageBody: state.failure.error?.errors ??
+                              MessageConstant.defaultErrorMessage,
+                        );
                       }
                     },
                     builder: (contextRegisterCubit, state) {
