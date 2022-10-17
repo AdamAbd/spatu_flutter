@@ -72,6 +72,25 @@ class AuthRemoteDataSource with BaseDataSource {
     });
   }
 
+  Future<BaseApiResponseModel<String>> resend({
+    required String type,
+    required String email,
+  }) async {
+    return dioCatchOrThrow(() async {
+      final response = await dio.post(
+        UrlConstant.resend,
+        data: {
+          'type': type,
+          'email': email,
+        },
+      );
+
+      return BaseApiResponseModel.fromJson(
+        response.data as Map<String, dynamic>,
+      );
+    });
+  }
+
   // Future<BaseApiResponseModel<UserModel>> loginGoogle({
   //   String? googleId,
   //   String? email,

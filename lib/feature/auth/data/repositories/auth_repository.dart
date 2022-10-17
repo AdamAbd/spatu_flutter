@@ -70,6 +70,23 @@ class AuthRepository with BaseRepository {
     });
   }
 
+  Future<Either<Failure, BaseApiResponseEntity<String>>> resend({
+    required String type,
+    required String email,
+  }) async {
+    return catchOrThrow(() async {
+      final response = await authRemoteDataSource.resend(
+        type: type,
+        email: email,
+      );
+
+      return BaseApiResponseEntity.fromBaseApiResponseModel(
+        response,
+        data: response.message,
+      );
+    });
+  }
+
   // Future<Either<Failure, BaseApiResponseEntity<UserEntity>>> loginGoogle({
   //   String? googleId,
   //   String? email,

@@ -24,6 +24,7 @@ Future<void> init() async {
   sl.registerFactory(() => LoginCubit(sl()));
   sl.registerFactory(() => RegisterCubit(sl()));
   sl.registerFactory(() => VerifyCubit(sl()));
+  sl.registerFactory(() => ResendCodeCubit(sl()));
 
   // /// Home
   // sl.registerLazySingleton(() => HomeRepository(sl()));

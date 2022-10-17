@@ -67,8 +67,6 @@ class _VerifyCodePageState extends State<VerifyCodePage> {
     for (final i in _textFieldList) {
       i.textController = TextEditingController();
     }
-
-    print('arguments: ${widget._args.verifyType.name}');
   }
 
   @override
@@ -87,8 +85,15 @@ class _VerifyCodePageState extends State<VerifyCodePage> {
   Widget build(BuildContext context) {
     final _responsive = ResponsiveUtils(context);
 
-    return BlocProvider(
-      create: (context) => sl<VerifyCubit>(),
+    return MultiBlocProvider(
+      providers: [
+        BlocProvider(
+          create: (context) => sl<VerifyCubit>(),
+        ),
+        BlocProvider(
+          create: (context) => sl<ResendCodeCubit>(),
+        ),
+      ],
       child: Form(
         key: _formKey,
         child: BaseAuthInputPage(
@@ -186,22 +191,9 @@ class _VerifyCodePageState extends State<VerifyCodePage> {
               ),
             ),
             const Gap(height: AppGap.extraLarge),
-            if (_start == 0)
-              SizedBox(
-                height: AppButtonSize.small,
-                // width: AppButtonSize.large * 3,
-                child: ButtonPrimary(
-                  'Resend Code',
-                  onPressed: () {
-                    setState(() {
-                      _start = 60;
-                      startTimer();
-                    });
-                  },
-                ),
-              )
-            else
-              Center(
+            Visibility(
+              visible: _start == 0,
+              replacement: Center(
                 child: Text.rich(
                   TextSpan(
                     text: 'Resend code in ',
@@ -223,6 +215,43 @@ class _VerifyCodePageState extends State<VerifyCodePage> {
                   ),
                 ),
               ),
+              child: SizedBox(
+                height: AppButtonSize.small,
+                child: BlocConsumer<ResendCodeCubit, ResendCodeState>(
+                  listener: (context, state) {
+                    if (state is ResendCodeLoading) {}
+                    if (state is ResendCodeSuccess) {
+                    } else if (state is ResendCodeError) {
+                      context.errorDialog(
+                        messageBody: state.failure.error?.status ??
+                            MessageConstant.defaultErrorMessage,
+                        onTap: () {
+                          for (final i in _textFieldList) {
+                            i.textController.clear();
+                          }
+                        },
+                      );
+                    }
+                  },
+                  builder: (contextResendCodeCubit, state) {
+                    return ButtonPrimary(
+                      'Resend Code',
+                      onPressed: () {
+                        setState(() {
+                          _start = 60;
+                          startTimer();
+                        });
+
+                        contextResendCodeCubit.read<ResendCodeCubit>().resend(
+                              email: sl<UserCubit>().state.userEntity?.email ?? '',
+                              type: widget._args.verifyType.name,
+                            );
+                      },
+                    );
+                  },
+                ),
+              ),
+            ),
           ],
         ),
       ),
