@@ -1,5 +1,3 @@
-import 'dart:async';
-
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 
@@ -34,35 +32,13 @@ class _VerifyCodePageState extends State<VerifyCodePage> {
   final List<TextFieldEntity> _textFieldList = TextFieldEntity.verify;
   final _formKey = GlobalKey<FormState>();
 
-  //* Countdown
-  late Timer _timer;
-  int _start = 60;
-
-  void startTimer() {
-    const oneSec = Duration(seconds: 1);
-    _timer = Timer.periodic(
-      oneSec,
-      (Timer timer) {
-        if (_start == 0) {
-          setState(() {
-            timer.cancel();
-          });
-        } else {
-          setState(() {
-            _start--;
-          });
-        }
-      },
-    );
-  }
-
   @override
   void initState() {
     super.initState();
     sl<PageStackCubit>()
         .saveStack(page: 'verify ${widget._args.verifyType.name}');
 
-    startTimer();
+    sl<CountdownCubit>().startCountdown();
 
     for (final i in _textFieldList) {
       i.textController = TextEditingController();
@@ -71,7 +47,7 @@ class _VerifyCodePageState extends State<VerifyCodePage> {
 
   @override
   void dispose() {
-    _timer.cancel();
+    sl<CountdownCubit>().cancel();
 
     for (final i in _textFieldList) {
       i.textController.clear();
@@ -191,66 +167,75 @@ class _VerifyCodePageState extends State<VerifyCodePage> {
               ),
             ),
             const Gap(height: AppGap.extraLarge),
-            Visibility(
-              visible: _start == 0,
-              replacement: Center(
-                child: Text.rich(
-                  TextSpan(
-                    text: 'Resend code in ',
-                    children: [
+            BlocBuilder<CountdownCubit, CountdownState>(
+              builder: (context, state) {
+                if (state.start <= 0) {
+                  sl<CountdownCubit>().cancel();
+                }
+
+                return Visibility(
+                  visible: state.start == 0,
+                  replacement: Center(
+                    child: Text.rich(
                       TextSpan(
-                        text: DateHelper().minuteToSecond(_start),
-                        style: AppTextStyle.medium.copyWith(
-                          fontSize: _responsive.getResponsiveFontSize(
-                            AppFontSize.medium,
+                        text: 'Resend code in ',
+                        children: [
+                          TextSpan(
+                            text: DateHelper().minuteToSecond(state.start),
+                            style: AppTextStyle.medium.copyWith(
+                              fontSize: _responsive.getResponsiveFontSize(
+                                AppFontSize.medium,
+                              ),
+                            ),
                           ),
+                        ],
+                      ),
+                      style: AppTextStyle.regular.copyWith(
+                        fontSize: _responsive.getResponsiveFontSize(
+                          AppFontSize.medium,
                         ),
                       ),
-                    ],
-                  ),
-                  style: AppTextStyle.regular.copyWith(
-                    fontSize: _responsive.getResponsiveFontSize(
-                      AppFontSize.medium,
                     ),
                   ),
-                ),
-              ),
-              child: SizedBox(
-                height: AppButtonSize.small,
-                child: BlocConsumer<ResendCodeCubit, ResendCodeState>(
-                  listener: (context, state) {
-                    if (state is ResendCodeLoading) {}
-                    if (state is ResendCodeSuccess) {
-                    } else if (state is ResendCodeError) {
-                      context.errorDialog(
-                        messageBody: state.failure.error?.status ??
-                            MessageConstant.defaultErrorMessage,
-                        onTap: () {
-                          for (final i in _textFieldList) {
-                            i.textController.clear();
-                          }
-                        },
-                      );
-                    }
-                  },
-                  builder: (contextResendCodeCubit, state) {
-                    return ButtonPrimary(
-                      'Resend Code',
-                      onPressed: () {
-                        setState(() {
-                          _start = 60;
-                          startTimer();
-                        });
-
-                        contextResendCodeCubit.read<ResendCodeCubit>().resend(
-                              email: sl<UserCubit>().state.userEntity?.email ?? '',
-                              type: widget._args.verifyType.name,
-                            );
+                  child: SizedBox(
+                    height: AppButtonSize.small,
+                    child: BlocConsumer<ResendCodeCubit, ResendCodeState>(
+                      listener: (context, state) {
+                        if (state is ResendCodeLoading) {}
+                        if (state is ResendCodeSuccess) {
+                        } else if (state is ResendCodeError) {
+                          context.errorDialog(
+                            messageBody: state.failure.error?.status ??
+                                MessageConstant.defaultErrorMessage,
+                            onTap: () {
+                              for (final i in _textFieldList) {
+                                i.textController.clear();
+                              }
+                            },
+                          );
+                        }
                       },
-                    );
-                  },
-                ),
-              ),
+                      builder: (contextResendCodeCubit, state) {
+                        return ButtonPrimary(
+                          'Resend Code',
+                          onPressed: () {
+                            sl<CountdownCubit>().reset();
+
+                            contextResendCodeCubit
+                                .read<ResendCodeCubit>()
+                                .resend(
+                                  email:
+                                      sl<UserCubit>().state.userEntity?.email ??
+                                          '',
+                                  type: widget._args.verifyType.name,
+                                );
+                          },
+                        );
+                      },
+                    ),
+                  ),
+                );
+              },
             ),
           ],
         ),
