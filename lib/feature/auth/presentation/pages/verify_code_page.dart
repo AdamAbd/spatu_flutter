@@ -204,8 +204,8 @@ class _VerifyCodePageState extends State<VerifyCodePage> {
                     height: AppButtonSize.small,
                     child: BlocConsumer<ResendCodeCubit, ResendCodeState>(
                       listener: (context, state) {
-                        if (state is ResendCodeLoading) {}
                         if (state is ResendCodeSuccess) {
+                          sl<CountdownCubit>().reset();
                         } else if (state is ResendCodeError) {
                           context.errorDialog(
                             messageBody: state.failure.error?.status ??
@@ -219,11 +219,15 @@ class _VerifyCodePageState extends State<VerifyCodePage> {
                         }
                       },
                       builder: (contextResendCodeCubit, state) {
+                        if (state is ResendCodeLoading) {
+                          return const SizedBox(
+                            width: AppButtonSize.small,
+                            child: CircularProgressIndicator(),
+                          );
+                        }
                         return ButtonPrimary(
                           'Resend Code',
                           onPressed: () {
-                            sl<CountdownCubit>().reset();
-
                             contextResendCodeCubit
                                 .read<ResendCodeCubit>()
                                 .resend(
