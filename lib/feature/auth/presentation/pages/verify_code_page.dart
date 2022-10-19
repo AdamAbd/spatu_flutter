@@ -69,6 +69,9 @@ class _VerifyCodePageState extends State<VerifyCodePage> {
         BlocProvider(
           create: (context) => sl<ResendCodeCubit>(),
         ),
+        BlocProvider(
+          create: (context) => sl<CountdownCubit>(),
+        ),
       ],
       child: Form(
         key: _formKey,

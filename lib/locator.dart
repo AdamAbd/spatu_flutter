@@ -25,7 +25,7 @@ Future<void> init() async {
   sl.registerFactory(() => RegisterCubit(sl()));
   sl.registerFactory(() => VerifyCubit(sl()));
   sl.registerFactory(() => ResendCodeCubit(sl()));
-  sl.registerLazySingleton(() => TimerCubit());
+  sl.registerLazySingleton(() => CountdownCubit());
 
   // /// Home
   // sl.registerLazySingleton(() => HomeRepository(sl()));

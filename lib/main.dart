@@ -34,9 +34,6 @@ class MyApp extends StatelessWidget {
         BlocProvider.value(
           value: locator.sl<UserCubit>(),
         ),
-        BlocProvider.value(
-          value: locator.sl<TimerCubit>(),
-        ),
       ],
       child: MaterialApp(
         title: 'Flutter Demo',
