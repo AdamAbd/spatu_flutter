@@ -205,16 +205,37 @@ class _VerifyCodePageState extends State<VerifyCodePage> {
                     child: BlocConsumer<ResendCodeCubit, ResendCodeState>(
                       listener: (context, state) {
                         if (state is ResendCodeSuccess) {
+                          ScaffoldMessenger.of(context).showSnackBar(
+                            SnackBar(
+                              content: Text(
+                                state.message,
+                                style: ButtonTextStyle.medium.copyWith(
+                                  fontSize: _responsive.getResponsiveFontSize(
+                                    AppFontSize.normal,
+                                  ),
+                                  fontWeight: AppFontWeight.semiBold,
+                                  color: AppColors.white,
+                                ),
+                              ),
+                            ),
+                          );
                           sl<CountdownCubit>().reset();
                         } else if (state is ResendCodeError) {
-                          context.errorDialog(
-                            messageBody: state.failure.error?.status ??
-                                MessageConstant.defaultErrorMessage,
-                            onTap: () {
-                              for (final i in _textFieldList) {
-                                i.textController.clear();
-                              }
-                            },
+                          ScaffoldMessenger.of(context).showSnackBar(
+                            SnackBar(
+                              content: Text(
+                                state.failure.error?.errors ??
+                                    MessageConstant.defaultErrorMessage,
+                                style: ButtonTextStyle.medium.copyWith(
+                                  fontSize: _responsive.getResponsiveFontSize(
+                                    AppFontSize.normal,
+                                  ),
+                                  fontWeight: AppFontWeight.semiBold,
+                                  color: AppColors.white,
+                                ),
+                              ),
+                              backgroundColor: AppColors.red,
+                            ),
                           );
                         }
                       },
