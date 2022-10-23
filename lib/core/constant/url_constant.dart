@@ -1,6 +1,7 @@
 mixin UrlConstant {
   /// Base URL
-  static const String baseUrl = 'https://spatu-production.up.railway.app/';
+  // static const String baseUrl = 'https://spatu-production.up.railway.app/';
+  static const String baseUrl = 'https://b6b1-103-213-128-130.ngrok.io/';
 
   ///API URL
   static const String apiUrl = '${baseUrl}api/v1';

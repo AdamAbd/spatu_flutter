@@ -64,7 +64,7 @@ class _VerifyCodePageState extends State<VerifyCodePage> {
     return MultiBlocProvider(
       providers: [
         BlocProvider(
-          create: (context) => sl<VerifyCubit>(),
+          create: (context) => sl<VerifyCodeCubit>(),
         ),
         BlocProvider(
           create: (context) => sl<ResendCodeCubit>(),
@@ -79,9 +79,9 @@ class _VerifyCodePageState extends State<VerifyCodePage> {
           title: 'Verify Code',
           description: 'Please enter the code we just sent to your email ',
           moreDescription: sl<UserCubit>().state.userEntity?.email ?? '',
-          button: BlocConsumer<VerifyCubit, VerifyState>(
+          button: BlocConsumer<VerifyCodeCubit, VerifyCodeState>(
             listener: (context, state) {
-              if (state is VerifyLoading) {
+              if (state is VerifyCodeLoading) {
                 context.loadingDialog();
               } else {
                 Navigator.popUntil(
@@ -89,26 +89,24 @@ class _VerifyCodePageState extends State<VerifyCodePage> {
                   ModalRoute.withName(PagePath.verifyCode),
                 );
               }
-              if (state is VerifyEmailSuccess) {
-                if (widget._args.verifyType == VerifyType.reset) {
-                  context.successDialog(
-                    messageBody: "Success",
-                    buttonText: "OK",
-                    onTap: () {
-                      Navigator.pushNamed(
-                        context,
-                        PagePath.createNewPassword,
-                      );
-                    },
-                  );
-                } else {
-                  Navigator.pushNamedAndRemoveUntil(
-                    context,
-                    PagePath.accountVerified,
-                    (route) => false,
-                  );
-                }
-              } else if (state is VerifyError) {
+              if (state is VerifyCodeEmailSuccess) {
+                Navigator.pushNamedAndRemoveUntil(
+                  context,
+                  PagePath.accountVerified,
+                  (route) => false,
+                );
+              } else if (state is VerifyCodeResetSuccess) {
+                context.successDialog(
+                  messageBody: "Success",
+                  buttonText: "OK",
+                  onTap: () {
+                    Navigator.pushNamed(
+                      context,
+                      PagePath.createNewPassword,
+                    );
+                  },
+                );
+              } else if (state is VerifyCodeError) {
                 context.errorDialog(
                   messageBody: state.failure.error?.status ??
                       MessageConstant.defaultErrorMessage,
@@ -133,9 +131,19 @@ class _VerifyCodePageState extends State<VerifyCodePage> {
                         _pin.add(i.textController.text);
                       }
 
-                      contextVerifyEmailCubit.read<VerifyCubit>().verifyEmail(
-                            code: int.parse(_pin.join()),
-                          );
+                      if (widget._args.verifyType == VerifyType.reset) {
+                        contextVerifyEmailCubit
+                            .read<VerifyCodeCubit>()
+                            .verifyReset(
+                              code: int.parse(_pin.join()),
+                            );
+                      } else {
+                        contextVerifyEmailCubit
+                            .read<VerifyCodeCubit>()
+                            .verifyEmail(
+                              code: int.parse(_pin.join()),
+                            );
+                      }
                     }
                   }
                 },

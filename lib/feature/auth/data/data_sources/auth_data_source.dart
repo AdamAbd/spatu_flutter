@@ -108,6 +108,24 @@ class AuthRemoteDataSource with BaseDataSource {
     });
   }
 
+  Future<BaseApiResponseModel<String>> verifyReset({
+    required int code,
+  }) async {
+    return dioCatchOrThrow(() async {
+      final response = await dio.post(
+        UrlConstant.verify,
+        data: {
+          'code': code,
+          'type': 'reset',
+        },
+      );
+
+      return BaseApiResponseModel.fromJson(
+        response.data as Map<String, dynamic>,
+      );
+    });
+  }
+
   // Future<BaseApiResponseModel<UserModel>> loginGoogle({
   //   String? googleId,
   //   String? email,
