@@ -24,7 +24,6 @@ class _CreatePinPageState extends State<CreatePinPage> {
 
       sl<UserCubit>().saveUserPin(pin: _pin.join());
       Navigator.pushNamed(context, PagePath.verifyPin);
-      // print(sl<UserCubit>().state.pin);
     }
   }
 
@@ -82,6 +81,7 @@ class _CreatePinPageState extends State<CreatePinPage> {
                         FocusManager.instance.primaryFocus!.previousFocus();
                       }
                     },
+                    isObscureText: true,
                   ),
                 ),
               ),

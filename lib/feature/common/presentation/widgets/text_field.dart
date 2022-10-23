@@ -346,16 +346,19 @@ class CustomOTPTextFormField extends StatefulWidget {
     required Function(String) onChanged,
     int maxLines = 1,
     String? Function(String?)? validator,
+    bool isObscureText = false,
   })  : _textFieldEntity = textFieldEntity,
         _onChanged = onChanged,
         _validator = validator,
         _maxLines = maxLines,
+        _isObscureText = isObscureText,
         super(key: key);
 
   final TextFieldEntity _textFieldEntity;
   final Function(String) _onChanged;
   final int _maxLines;
   final String? Function(String?)? _validator;
+  final bool _isObscureText;
 
   @override
   State<CustomOTPTextFormField> createState() => _CustomOTPTextFormFieldState();
@@ -363,6 +366,20 @@ class CustomOTPTextFormField extends StatefulWidget {
 
 class _CustomOTPTextFormFieldState extends State<CustomOTPTextFormField> {
   String? _error;
+
+  @override
+  void initState() {
+    // widget._isObscureText = widget._textFieldEntity.isPassword;
+
+    widget._textFieldEntity.focusNode?.addListener(() {
+      if (widget._textFieldEntity.focusNode?.hasFocus ?? false) {
+      } else {
+        widget._textFieldEntity.focusNode?.unfocus();
+      }
+    });
+
+    super.initState();
+  }
 
   @override
   Widget build(BuildContext context) {
@@ -429,6 +446,8 @@ class _CustomOTPTextFormFieldState extends State<CustomOTPTextFormField> {
         ),
       ),
       textInputAction: widget._textFieldEntity.textInputAction,
+      obscureText: widget._isObscureText,
+      obscuringCharacter: '*',
       keyboardType: widget._textFieldEntity.keyboardType,
       validator: (value) {
         // Note : https://pub.dev/packages/form_validator (documentations)

@@ -81,6 +81,7 @@ class _VerifyPinPageState extends State<VerifyPinPage> {
                         FocusManager.instance.primaryFocus!.previousFocus();
                       }
                     },
+                    isObscureText: true,
                     // validator: (val) {
                     //   if (val != sl<UserCubit>().state.pin) {
                     //     return 'PIN not match!';
