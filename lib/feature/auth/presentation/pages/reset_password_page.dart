@@ -33,13 +33,13 @@ class _ResetPasswordPageState extends State<ResetPasswordPage> {
   @override
   Widget build(BuildContext context) {
     return BlocProvider(
-      create: (context) => sl<ResetPasswordCubit>(),
+      create: (context) => sl<SendResetCubit>(),
       child: Form(
         key: _formKey,
         child: BaseAuthInputPage(
-          button: BlocConsumer<ResetPasswordCubit, ResetPasswordState>(
+          button: BlocConsumer<SendResetCubit, SendResetState>(
             listener: (context, state) {
-              if (state is ResetPasswordLoading) {
+              if (state is SendResetLoading) {
                 context.loadingDialog();
               } else {
                 Navigator.popUntil(
@@ -47,7 +47,7 @@ class _ResetPasswordPageState extends State<ResetPasswordPage> {
                   ModalRoute.withName(PagePath.resetPassword),
                 );
               }
-              if (state is ResetPasswordSuccess) {
+              if (state is SendResetSuccess) {
                 final userCubit = sl<UserCubit>();
 
                 /// Logic when access_token is not null or not empty
@@ -73,7 +73,7 @@ class _ResetPasswordPageState extends State<ResetPasswordPage> {
                     ),
                   ),
                 );
-              } else if (state is ResetPasswordError) {
+              } else if (state is SendResetError) {
                 context.errorDialog(
                   messageBody: state.failure.error?.errors ??
                       MessageConstant.defaultErrorMessage,
@@ -87,7 +87,7 @@ class _ResetPasswordPageState extends State<ResetPasswordPage> {
                   FocusUtils(context).unfocus();
 
                   if (_formKey.currentState?.validate() == true) {
-                    ctxResetPasswordCubit.read<ResetPasswordCubit>().reset(
+                    ctxResetPasswordCubit.read<SendResetCubit>().sendReset(
                           email: _textField.textController.text.trim(),
                         );
                   }

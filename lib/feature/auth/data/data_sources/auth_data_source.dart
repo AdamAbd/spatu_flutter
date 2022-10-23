@@ -91,7 +91,7 @@ class AuthRemoteDataSource with BaseDataSource {
     });
   }
 
-  Future<BaseApiResponseModel<String>> reset({
+  Future<BaseApiResponseModel<String>> sendReset({
     required String email,
   }) async {
     return dioCatchOrThrow(() async {

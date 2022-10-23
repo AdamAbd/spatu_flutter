@@ -52,15 +52,15 @@ class CreateNewPasswordPageState extends State<CreateNewPasswordPage> {
   @override
   Widget build(BuildContext context) {
     return BlocProvider(
-      create: (context) => sl<SendResetCubit>(),
+      create: (context) => sl<ResetPasswordCubit>(),
       child: Builder(
         builder: (context) {
           return Form(
             key: _formKey,
             child: BaseAuthInputPage(
-              button: BlocConsumer<SendResetCubit, SendResetState>(
+              button: BlocConsumer<ResetPasswordCubit, ResetPasswordState>(
                 listener: (context, state) {
-                  if (state is SendResetLoading) {
+                  if (state is ResetPasswordLoading) {
                     context.loadingDialog();
                   } else {
                     Navigator.popUntil(
@@ -68,7 +68,7 @@ class CreateNewPasswordPageState extends State<CreateNewPasswordPage> {
                       ModalRoute.withName(PagePath.createNewPassword),
                     );
                   }
-                  if (state is SendResetSuccess) {
+                  if (state is ResetPasswordSuccess) {
                     context.successDialog(
                       messageBody: state.message,
                       buttonText: "OK",
@@ -78,7 +78,7 @@ class CreateNewPasswordPageState extends State<CreateNewPasswordPage> {
                         (route) => false,
                       ),
                     );
-                  } else if (state is SendResetError) {
+                  } else if (state is ResetPasswordError) {
                     context.errorDialog(
                       messageBody: state.failure.error?.errors ??
                           MessageConstant.defaultErrorMessage,
@@ -92,7 +92,9 @@ class CreateNewPasswordPageState extends State<CreateNewPasswordPage> {
                       FocusUtils(context).unfocus();
 
                       if (_formKey.currentState?.validate() == true) {
-                        ctxSendResetCubit.read<SendResetCubit>().resetPassword(
+                        ctxSendResetCubit
+                            .read<ResetPasswordCubit>()
+                            .resetPassword(
                               code: widget._args.code,
                               password:
                                   _textFieldList[0].textController.text.trim(),

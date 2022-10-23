@@ -11,17 +11,13 @@ class SendResetCubit extends Cubit<SendResetState> {
 
   SendResetCubit(this.authRepository) : super(SendResetInitial());
 
-  Future<void> resetPassword({
-    required int code,
-    required String password,
-    required String passwordConfirmation,
+  Future<void> sendReset({
+    required String email,
   }) async {
     emit(SendResetLoading());
 
-    final response = await authRepository.resetPassword(
-      code: code,
-      password: password,
-      passwordConfirmation: passwordConfirmation,
+    final response = await authRepository.sendReset(
+      email: email,
     );
 
     emit(

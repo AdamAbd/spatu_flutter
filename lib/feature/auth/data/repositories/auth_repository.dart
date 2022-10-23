@@ -87,11 +87,11 @@ class AuthRepository with BaseRepository {
     });
   }
 
-  Future<Either<Failure, BaseApiResponseEntity<String>>> reset({
+  Future<Either<Failure, BaseApiResponseEntity<String>>> sendReset({
     required String email,
   }) async {
     return catchOrThrow(() async {
-      final response = await authRemoteDataSource.reset(
+      final response = await authRemoteDataSource.sendReset(
         email: email,
       );
 
