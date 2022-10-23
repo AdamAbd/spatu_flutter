@@ -96,7 +96,7 @@ class AuthRemoteDataSource with BaseDataSource {
   }) async {
     return dioCatchOrThrow(() async {
       final response = await dio.put(
-        UrlConstant.resetPassword,
+        UrlConstant.sendReset,
         data: {
           'email': email,
         },
@@ -117,6 +117,27 @@ class AuthRemoteDataSource with BaseDataSource {
         data: {
           'code': code,
           'type': 'reset',
+        },
+      );
+
+      return BaseApiResponseModel.fromJson(
+        response.data as Map<String, dynamic>,
+      );
+    });
+  }
+
+  Future<BaseApiResponseModel<String>> resetPassword({
+    required int code,
+    required String password,
+    required String passwordConfirmation,
+  }) async {
+    return dioCatchOrThrow(() async {
+      final response = await dio.put(
+        UrlConstant.resetPassword,
+        data: {
+          'code': code,
+          'password': password,
+          'password_confirmation': passwordConfirmation,
         },
       );
 

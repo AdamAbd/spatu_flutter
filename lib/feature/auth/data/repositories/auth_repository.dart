@@ -117,6 +117,25 @@ class AuthRepository with BaseRepository {
     });
   }
 
+  Future<Either<Failure, BaseApiResponseEntity<String>>> resetPassword({
+    required int code,
+    required String password,
+    required String passwordConfirmation,
+  }) async {
+    return catchOrThrow(() async {
+      final response = await authRemoteDataSource.resetPassword(
+        code: code,
+        password: password,
+        passwordConfirmation: passwordConfirmation,
+      );
+
+      return BaseApiResponseEntity.fromBaseApiResponseModel(
+        response,
+        data: response.message,
+      );
+    });
+  }
+
   // Future<Either<Failure, BaseApiResponseEntity<UserEntity>>> loginGoogle({
   //   String? googleId,
   //   String? email,

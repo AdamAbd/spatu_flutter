@@ -31,6 +31,7 @@ class _VerifyCodePageState extends State<VerifyCodePage> {
   //* Text Form Field
   final List<TextFieldEntity> _textFieldList = TextFieldEntity.verify;
   final _formKey = GlobalKey<FormState>();
+  final List<String> _pin = [];
 
   @override
   void initState() {
@@ -103,6 +104,9 @@ class _VerifyCodePageState extends State<VerifyCodePage> {
                     Navigator.pushNamed(
                       context,
                       PagePath.createNewPassword,
+                      arguments: CreateNewPasswordPageArgs(
+                        code: int.parse(_pin.join()),
+                      ),
                     );
                   },
                 );
@@ -126,7 +130,6 @@ class _VerifyCodePageState extends State<VerifyCodePage> {
                     FocusUtils(context).unfocus();
 
                     if (_formKey.currentState?.validate() == true) {
-                      final List<String> _pin = [];
                       for (final i in _textFieldList) {
                         _pin.add(i.textController.text);
                       }

@@ -78,7 +78,9 @@ class PageRouter {
         {
           return _buildRouter(
             settings: settings,
-            builder: (args) => const CreateNewPasswordPage(),
+            builder: (args) => CreateNewPasswordPage(
+              args: args! as CreateNewPasswordPageArgs,
+            ),
           );
         }
 
