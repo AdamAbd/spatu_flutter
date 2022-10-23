@@ -8,6 +8,7 @@ mixin UrlConstant {
   /// Auth
   static const String login = '$apiUrl/auth/login';
   static const String register = '$apiUrl/auth/register';
-  static String verify = '$apiUrl/auth/verify';
-  static String resend = '$apiUrl/auth/resend_code';
+  static const String verify = '$apiUrl/auth/verify';
+  static const String resendCode = '$apiUrl/auth/resend_code';
+  static const String resetPassword = '$apiUrl/auth/reset';
 }

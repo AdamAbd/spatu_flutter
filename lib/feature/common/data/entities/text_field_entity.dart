@@ -238,18 +238,16 @@ class TextFieldEntity {
     ),
   ];
 
-  static final List<TextFieldEntity> reset = [
-    TextFieldEntity(
-      textController: TextEditingController(text: ''),
-      hint: "Type your email",
-      label: "Email",
-      keyboardType: TextInputType.emailAddress,
-      focusNode: FocusNode(),
-      validator: (value) {
-        return ValidationBuilder().email().build().call(value);
-      },
-    ),
-  ];
+  static final TextFieldEntity resetPassword = TextFieldEntity(
+    textController: TextEditingController(text: ''),
+    hint: "Type your email",
+    label: "Email",
+    keyboardType: TextInputType.emailAddress,
+    focusNode: FocusNode(),
+    validator: (value) {
+      return ValidationBuilder().email().build().call(value);
+    },
+  );
 
   static final List<TextFieldEntity> createNewPassword = [
     TextFieldEntity(
