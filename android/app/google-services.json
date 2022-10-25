@@ -1,0 +1,47 @@
+{
+  "project_info": {
+    "project_number": "165787926933",
+    "project_id": "spatu-501ae",
+    "storage_bucket": "spatu-501ae.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:165787926933:android:6701590e699734eb70b69c",
+        "android_client_info": {
+          "package_name": "com.example.spatu_flutter"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "165787926933-tslkdgmu7i6vqperptnjrpnudqpgcs6m.apps.googleusercontent.com",
+          "client_type": 1,
+          "android_info": {
+            "package_name": "com.example.spatu_flutter",
+            "certificate_hash": "8d155d7e82b607d55239bc45a57cddbd1a68b4ca"
+          }
+        },
+        {
+          "client_id": "165787926933-8lq6gcuj21ao3nias2q4k286susreuvg.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyA9cHk2tJ5985RC9BvC_F5nv_E3qvw4qq0"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": [
+            {
+              "client_id": "165787926933-8lq6gcuj21ao3nias2q4k286susreuvg.apps.googleusercontent.com",
+              "client_type": 3
+            }
+          ]
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}

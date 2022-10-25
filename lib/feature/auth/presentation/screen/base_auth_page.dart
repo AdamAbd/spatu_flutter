@@ -1,14 +1,16 @@
+import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/material.dart';
+import 'package:google_sign_in/google_sign_in.dart';
 import 'package:spatu_flutter/feature/feature.dart';
 
-class BaseAuthPage extends StatelessWidget {
-  const BaseAuthPage({
-    Key? key,
+class BaseAuthPage extends StatefulWidget {
+  BaseAuthPage({
+    super.key,
     required this.title,
     required this.description,
     required this.child,
     required this.isLoginPage,
-  }) : super(key: key);
+  });
 
   final String title;
   final String description;
@@ -16,8 +18,53 @@ class BaseAuthPage extends StatelessWidget {
   final Widget child;
 
   @override
+  State<BaseAuthPage> createState() => _BaseAuthPageState();
+}
+
+class _BaseAuthPageState extends State<BaseAuthPage> {
+  final GoogleSignIn _googleSignIn = GoogleSignIn(scopes: ['email']);
+  final FirebaseAuth _auth = FirebaseAuth.instance;
+
+  GoogleSignInAccount? googleSignInAccount;
+  GoogleSignInAuthentication? googleSignInAuthentication;
+  AuthCredential? credential;
+  UserCredential? user;
+
+  Future<void> _handleSignIn() async {
+    try {
+      FocusUtils(context).unfocus();
+
+      googleSignInAccount = await _googleSignIn.signIn();
+      googleSignInAuthentication = await googleSignInAccount!.authentication;
+      credential = GoogleAuthProvider.credential(
+        accessToken: googleSignInAuthentication?.accessToken,
+        idToken: googleSignInAuthentication?.idToken,
+      );
+
+      user = await _auth.signInWithCredential(credential!);
+
+      setState(() {});
+    } catch (error) {
+      print(error);
+    }
+  }
+
+  Future<void> _handleSignOut() async {
+    try {
+      FocusUtils(context).unfocus();
+
+      await _googleSignIn.signOut();
+
+      setState(() {});
+    } catch (error) {
+      print(error);
+    }
+  }
+
+  @override
   Widget build(BuildContext context) {
     final _responsive = ResponsiveUtils(context);
+    // GoogleSignInAccount? user = _googleSignIn.currentUser;
 
     return GestureDetector(
       onTap: () => FocusUtils(context).unfocus(),
@@ -33,7 +80,7 @@ class BaseAuthPage extends StatelessWidget {
                   Image.asset(AppIcon.logo, height: 50),
                   const Gap(height: AppGap.medium),
                   Text(
-                    title,
+                    widget.title,
                     style: AppTextStyle.medium.copyWith(
                       color: AppColors.white,
                       fontSize: _responsive
@@ -42,7 +89,7 @@ class BaseAuthPage extends StatelessWidget {
                   ),
                   const Gap(height: AppGap.extraSmall),
                   Text(
-                    description,
+                    widget.description,
                     style: AppTextStyle.regular.copyWith(
                       fontSize:
                           _responsive.getResponsiveFontSize(AppFontSize.medium),
@@ -51,9 +98,20 @@ class BaseAuthPage extends StatelessWidget {
                   const Gap(height: 50),
                   ButtonPrimary(
                     'Sign In with Google',
-                    onPressed: () {
-                      FocusUtils(context).unfocus();
-                    },
+                    onPressed: () => _handleSignIn(),
+                    width: double.infinity,
+                    labelColor: AppColors.white,
+                    buttonColor: Blue.secondary,
+                    leading: Image.asset(
+                      AppIcon.google,
+                      width: AppIconSize.large,
+                    ),
+                    // isLoading: true,
+                  ),
+                  ButtonPrimary(
+                    '${user?.user?.uid}',
+                    onPressed: () => print(user),
+                    // onPressed: () => _handleSignOut(),
                     width: double.infinity,
                     labelColor: AppColors.white,
                     buttonColor: Blue.secondary,
@@ -88,13 +146,13 @@ class BaseAuthPage extends StatelessWidget {
                     ],
                   ),
                   const Gap(height: AppGap.large),
-                  child,
+                  widget.child,
                   Row(
                     crossAxisAlignment: CrossAxisAlignment.start,
                     mainAxisAlignment: MainAxisAlignment.center,
                     children: [
                       Text(
-                        isLoginPage
+                        widget.isLoginPage
                             ? 'Dont have account? '
                             : 'Already have an account? ',
                         style: AppTextStyle.light.copyWith(
@@ -102,9 +160,9 @@ class BaseAuthPage extends StatelessWidget {
                         ),
                       ),
                       Hyperlink(
-                        isLoginPage ? 'Sign Up' : 'Sign In',
+                        widget.isLoginPage ? 'Sign Up' : 'Sign In',
                         onTap: () {
-                          isLoginPage
+                          widget.isLoginPage
                               ? Navigator.pushNamed(context, PagePath.register)
                               : Navigator.pop(context);
                         },
