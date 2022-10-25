@@ -1,6 +1,8 @@
 class PagePath {
-  //* Auth
   static const home = '/';
+
+  //* Auth
+  static const login = '/login';
   static const register = '/register';
   static const verifyCode = '/verify';
   static const accountVerified = '/verified';

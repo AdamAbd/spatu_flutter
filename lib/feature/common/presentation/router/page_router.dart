@@ -30,6 +30,13 @@ class PageRouter {
         }
 
       //* Auth
+      case PagePath.login:
+        {
+          return _buildRouter(
+            settings: settings,
+            builder: (args) => const LoginPage(),
+          );
+        }
       case PagePath.register:
         {
           return _buildRouter(

@@ -72,10 +72,8 @@ class CreateNewPasswordPageState extends State<CreateNewPasswordPage> {
                     context.successDialog(
                       messageBody: state.message,
                       buttonText: "OK",
-                      onTap: () => Navigator.pushNamedAndRemoveUntil(
-                        context,
-                        PagePath.home,
-                        (route) => false,
+                      onTap: () => Navigator.popUntil(
+                        context, ModalRoute.withName(PagePath.home),
                       ),
                     );
                   } else if (state is ResetPasswordError) {
