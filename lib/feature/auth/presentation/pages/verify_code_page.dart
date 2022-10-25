@@ -98,7 +98,7 @@ class _VerifyCodePageState extends State<VerifyCodePage> {
                 );
               } else if (state is VerifyCodeResetSuccess) {
                 context.successDialog(
-                  messageBody: "Success",
+                  messageBody: state.message,
                   buttonText: "OK",
                   onTap: () {
                     Navigator.pushNamed(
@@ -115,6 +115,8 @@ class _VerifyCodePageState extends State<VerifyCodePage> {
                   messageBody: state.failure.error?.status ??
                       MessageConstant.defaultErrorMessage,
                   onTap: () {
+                    _pin.clear();
+
                     for (final i in _textFieldList) {
                       i.textController.clear();
                     }
