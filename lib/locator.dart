@@ -29,6 +29,11 @@ Future<void> init() async {
   sl.registerFactory(() => SendResetCubit(sl()));
   sl.registerLazySingleton(() => CountdownCubit());
 
+  /// Sign In With Google
+  sl.registerLazySingleton(() => GoogleSignInRemoteDataSource());
+  sl.registerLazySingleton(() => GoogleSignInRepository(sl()));
+  sl.registerFactory(() => GoogleSignInCubit(sl()));
+
   // /// Home
   // sl.registerLazySingleton(() => HomeRepository(sl()));
   // sl.registerLazySingleton(() => HomeRemoteDataSource(sl()));
@@ -71,11 +76,6 @@ Future<void> init() async {
   // sl.registerLazySingleton(() => SubscriptionRemoteDataSource(sl()));
   // sl.registerFactory(() => SubscriptionPlanCubit(sl()));
   // sl.registerFactory(() => SubscribeUserCubit(sl()));
-
-  // /// Sign In With Google
-  // sl.registerLazySingleton(() => GoogleSigninRemoteDataSource());
-  // sl.registerLazySingleton(() => GoogleSigninRepository(sl()));
-  // sl.registerFactory(() => GoogleSigninCubit(sl()));
 
   // /// Notification
   // sl.registerLazySingleton(() => NotificationRemoteDataSource(sl()));
