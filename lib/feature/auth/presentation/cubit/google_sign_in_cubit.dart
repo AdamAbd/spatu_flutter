@@ -8,29 +8,63 @@ import 'package:spatu_flutter/feature/feature.dart';
 part 'google_sign_in_state.dart';
 
 class GoogleSignInCubit extends Cubit<GoogleSignInState> {
-  final GoogleSignInRepository _googleSignInRepository;
+  final GoogleSignInRepository googleSignInRepository;
+  final AuthRepository authRepository;
 
-  GoogleSignInCubit(this._googleSignInRepository)
+  GoogleSignInCubit(this.googleSignInRepository, this.authRepository)
       : super(GoogleSignInInitial());
 
   Future<void> signInWithGoogle() async {
-    emit(GoogleSigninLoading());
+    emit(GoogleSignInLoading());
 
-    final response = await _googleSignInRepository.googleSignIn();
+    final response = await googleSignInRepository.googleSignIn();
 
     emit(
       response.fold(
         (failure) => GoogleSignInError(failure),
-        (user) => GoogleSigninSuccess(userCredential: user),
+        (user) {
+          googleLogin(
+            username: user.user?.displayName ?? '',
+            email: user.user?.email ?? '',
+            avatar: user.user?.photoURL ?? '',
+            googleId: user.user?.uid ?? '',
+          );
+
+          // return GoogleSignInSuccess(userCredential: user);
+          return GoogleSignInLoading();
+        },
+      ),
+    );
+  }
+
+  Future<void> googleLogin({
+    required String username,
+    required String email,
+    required String avatar,
+    required String googleId,
+  }) async {
+    // emit(GoogleSignInLoading());
+
+    final response = await authRepository.googleLogin(
+      username: username,
+      email: email,
+      avatar: avatar,
+      googleId: googleId,
+    );
+
+    emit(
+      response.fold(
+        (failure) => GoogleLoginError(failure),
+        (user) => GoogleLoginSuccess(userDataEntity: user.data!),
       ),
     );
   }
 
   Future<void> signOutFromGoogle() async {
-    emit(GoogleSigninLoading());
+    emit(GoogleSignInLoading());
 
-    await _googleSignInRepository.googleSignOut();
+    await googleSignInRepository.googleSignOut();
 
-    emit(const GoogleSigninSuccess());
+    emit(const GoogleSignInSuccess());
   }
 }

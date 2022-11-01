@@ -9,16 +9,28 @@ abstract class GoogleSignInState extends Equatable {
 
 class GoogleSignInInitial extends GoogleSignInState {}
 
-class GoogleSigninLoading extends GoogleSignInState {}
-
-class GoogleSigninSuccess extends GoogleSignInState {
-  final UserCredential? userCredential;
-
-  const GoogleSigninSuccess({this.userCredential});
-}
+class GoogleSignInLoading extends GoogleSignInState {}
 
 class GoogleSignInError extends GoogleSignInState {
   final Failure failure;
 
   const GoogleSignInError(this.failure);
+}
+
+class GoogleSignInSuccess extends GoogleSignInState {
+  final UserCredential? userCredential;
+
+  const GoogleSignInSuccess({this.userCredential});
+}
+
+class GoogleLoginError extends GoogleSignInState {
+  final Failure failure;
+
+  const GoogleLoginError(this.failure);
+}
+
+class GoogleLoginSuccess extends GoogleSignInState {
+  final UserDataEntity userDataEntity;
+
+  const GoogleLoginSuccess({required this.userDataEntity});
 }

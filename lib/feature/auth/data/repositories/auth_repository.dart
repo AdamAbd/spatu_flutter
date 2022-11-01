@@ -136,47 +136,32 @@ class AuthRepository with BaseRepository {
     });
   }
 
-  // Future<Either<Failure, BaseApiResponseEntity<UserEntity>>> loginGoogle({
-  //   String? googleId,
-  //   String? email,
-  //   String? username,
-  //   String? picturePath,
-  //   String? ipAddress,
-  // }) async {
-  //   return catchOrThrow(() async {
-  //     final response = await authRemoteDataSource.loginGoogle(
-  //       googleId: googleId,
-  //       email: email,
-  //       username: username,
-  //       picturePath: picturePath,
-  //       ipAddress: ipAddress,
-  //     );
-  //     final userCubit = sl<UserCubit>();
+  Future<Either<Failure, BaseApiResponseEntity<UserDataEntity>>> googleLogin({
+    required String username,
+    required String email,
+    required String avatar,
+    required String googleId,
+  }) async {
+    return catchOrThrow(() async {
+      final response = await authRemoteDataSource.googleLogin(
+        username: username,
+        email: email,
+        avatar: avatar,
+        googleId: googleId,
+      );
 
-  //     if (response.data != null) {
-  //       userCubit.updateUser(userEntity: response.data!.toUserEntity());
-  //     }
+      final userCubit = sl<UserCubit>();
 
-  //     return BaseApiResponseEntity.fromBaseApiResponseModel(
-  //       response,
-  //       data: response.data?.toUserEntity(),
-  //     );
-  //   });
-  // }
+      if (response.data != null) {
+        userCubit.updateUser(userEntity: response.data!.user.toUserEntity());
+      }
 
-  // Future<Either<Failure, BaseApiResponseEntity<SuccessEntity>>> forgotPassword(
-  //     {required String email}) async {
-  //   return catchOrThrow(() async {
-  //     final response = await authRemoteDataSource.forgotPassword(
-  //       email: email,
-  //     );
-
-  //     return BaseApiResponseEntity.fromBaseApiResponseModel(
-  //       response,
-  //       data: response.data?.toSuccessEntity(),
-  //     );
-  //   });
-  // }
+      return BaseApiResponseEntity.fromBaseApiResponseModel(
+        response,
+        data: response.data?.toUserDataEntity(),
+      );
+    });
+  }
 
   // Future<Either<Failure, BaseApiResponseEntity<SuccessEntity>>> logout() async {
   //   return catchOrThrow(() async {

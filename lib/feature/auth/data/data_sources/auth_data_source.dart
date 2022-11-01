@@ -147,44 +147,31 @@ class AuthRemoteDataSource with BaseDataSource {
     });
   }
 
-  // Future<BaseApiResponseModel<UserModel>> loginGoogle({
-  //   String? googleId,
-  //   String? email,
-  //   String? username,
-  //   String? picturePath,
-  //   String? ipAddress,
-  // }) async {
-  //   return dioCatchOrThrow(() async {
-  //     var response = await dio.post(UrlConstant.loginGoogle, data: {
-  //       'google_id': googleId,
-  //       'email': email,
-  //       'username': username,
-  //       'picture_path': picturePath,
-  //       'ip_address': ipAddress,
-  //     });
+  Future<BaseApiResponseModel<UserDataModel>> googleLogin({
+    required String username,
+    required String email,
+    required String avatar,
+    required String googleId,
+  }) async {
+    return dioCatchOrThrow(() async {
+      final response = await dio.post(
+        UrlConstant.google,
+        data: {
+          'username': username,
+          'email': email,
+          'avatar': avatar,
+          'google_id': googleId,
+        },
+      );
 
-  //     return BaseApiResponseModel.fromJson(
-  //       response.data as Map<String, dynamic>,
-  //       keyData: 'user',
-  //       generatedData: (data) {
-  //         return UserModel.fromJson(data as Map<String, Object?>);
-  //       },
-  //     );
-  //   });
-  // }
-
-  // Future<BaseApiResponseModel<SuccessModel>> forgotPassword(
-  //     {required String email}) async {
-  //   return dioCatchOrThrow(() async {
-  //     var response = await dio.post(UrlConstant.forgotPassword, data: {
-  //       'email': email,
-  //     });
-
-  //     return BaseApiResponseModel.fromJson(
-  //       response.data as Map<String, dynamic>,
-  //     );
-  //   });
-  // }
+      return BaseApiResponseModel.fromJson(
+        response.data as Map<String, dynamic>,
+        generatedData: (data) {
+          return UserDataModel.fromJson(data as Map<String, dynamic>);
+        },
+      );
+    });
+  }
 
   // Future<BaseApiResponseModel<SuccessModel>> logout() async {
   //   return dioCatchOrThrow(() async {
