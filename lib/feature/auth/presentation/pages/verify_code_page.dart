@@ -218,37 +218,15 @@ class _VerifyCodePageState extends State<VerifyCodePage> {
                     child: BlocConsumer<ResendCodeCubit, ResendCodeState>(
                       listener: (context, state) {
                         if (state is ResendCodeSuccess) {
-                          ScaffoldMessenger.of(context).showSnackBar(
-                            SnackBar(
-                              content: Text(
-                                state.message,
-                                style: ButtonTextStyle.medium.copyWith(
-                                  fontSize: _responsive.getResponsiveFontSize(
-                                    AppFontSize.normal,
-                                  ),
-                                  fontWeight: AppFontWeight.semiBold,
-                                  color: AppColors.white,
-                                ),
-                              ),
-                            ),
-                          );
+                          showSnackBar(context, message: state.message);
+
                           sl<CountdownCubit>().reset();
                         } else if (state is ResendCodeError) {
-                          ScaffoldMessenger.of(context).showSnackBar(
-                            SnackBar(
-                              content: Text(
-                                state.failure.error?.errors ??
-                                    MessageConstant.defaultErrorMessage,
-                                style: ButtonTextStyle.medium.copyWith(
-                                  fontSize: _responsive.getResponsiveFontSize(
-                                    AppFontSize.normal,
-                                  ),
-                                  fontWeight: AppFontWeight.semiBold,
-                                  color: AppColors.white,
-                                ),
-                              ),
-                              backgroundColor: AppColors.red,
-                            ),
+                          showSnackBar(
+                            context,
+                            message: state.failure.error?.errors ??
+                                MessageConstant.defaultErrorMessage,
+                            backgroundColor: AppColors.red,
                           );
                         }
                       },
