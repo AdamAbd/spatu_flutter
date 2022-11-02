@@ -6,18 +6,21 @@ import 'package:spatu_flutter/feature/feature.dart';
 import 'package:spatu_flutter/locator.dart';
 
 class BaseAuthPage extends StatefulWidget {
-  BaseAuthPage({
+  const BaseAuthPage({
     super.key,
-    required this.title,
-    required this.description,
-    required this.child,
-    required this.isLoginPage,
-  });
+    required String title,
+    required String description,
+    required bool isLoginPage,
+    required Widget child,
+  })  : _title = title,
+        _description = description,
+        _isLoginPage = isLoginPage,
+        _child = child;
 
-  final String title;
-  final String description;
-  final bool isLoginPage;
-  final Widget child;
+  final String _title;
+  final String _description;
+  final bool _isLoginPage;
+  final Widget _child;
 
   @override
   State<BaseAuthPage> createState() => _BaseAuthPageState();
@@ -46,7 +49,7 @@ class _BaseAuthPageState extends State<BaseAuthPage> {
                         Image.asset(AppIcon.logo, height: 50),
                         const Gap(height: AppGap.medium),
                         Text(
-                          widget.title,
+                          widget._title,
                           style: AppTextStyle.medium.copyWith(
                             color: AppColors.white,
                             fontSize: _responsive
@@ -55,7 +58,7 @@ class _BaseAuthPageState extends State<BaseAuthPage> {
                         ),
                         const Gap(height: AppGap.extraSmall),
                         Text(
-                          widget.description,
+                          widget._description,
                           style: AppTextStyle.regular.copyWith(
                             fontSize: _responsive
                                 .getResponsiveFontSize(AppFontSize.medium),
@@ -70,7 +73,7 @@ class _BaseAuthPageState extends State<BaseAuthPage> {
                               Navigator.popUntil(
                                 context,
                                 ModalRoute.withName(
-                                  widget.isLoginPage
+                                  widget._isLoginPage
                                       ? PagePath.home
                                       : PagePath.register,
                                 ),
@@ -146,13 +149,13 @@ class _BaseAuthPageState extends State<BaseAuthPage> {
                           ],
                         ),
                         const Gap(height: AppGap.large),
-                        widget.child,
+                        widget._child,
                         Row(
                           crossAxisAlignment: CrossAxisAlignment.start,
                           mainAxisAlignment: MainAxisAlignment.center,
                           children: [
                             Text(
-                              widget.isLoginPage
+                              widget._isLoginPage
                                   ? 'Dont have account? '
                                   : 'Already have an account? ',
                               style: AppTextStyle.light.copyWith(
@@ -160,9 +163,9 @@ class _BaseAuthPageState extends State<BaseAuthPage> {
                               ),
                             ),
                             Hyperlink(
-                              widget.isLoginPage ? 'Sign Up' : 'Sign In',
+                              widget._isLoginPage ? 'Sign Up' : 'Sign In',
                               onTap: () {
-                                widget.isLoginPage
+                                widget._isLoginPage
                                     ? Navigator.pushNamed(
                                         context,
                                         PagePath.register,
