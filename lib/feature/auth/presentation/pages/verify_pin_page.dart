@@ -22,10 +22,35 @@ class _VerifyPinPageState extends State<VerifyPinPage> {
         _pin.add(i.textController.text);
       }
 
-      print(_pin.join() == sl<UserCubit>().state.pin);
+      if (_pin.join() == sl<UserCubit>().state.pin) {
+        context.successDialog(
+          messageBody: "PIN created successfully",
+          buttonText: "OK",
+          onTap: () {
+            // Navigator.pushNamed(
+            //   context,
+            //   PagePath.createNewPassword,
+            //   arguments: CreateNewPasswordPageArgs(
+            //     code: int.parse(_pin.join()),
+            //   ),
+            // );
+          },
+        );
+      } else {
+        context.errorDialog(
+          messageBody: "PIN does not match !",
+          onTap: () {
+            _pin.clear();
+
+            for (final i in _textFieldList) {
+              i.textController.clear();
+            }
+          },
+        );
+      }
 
       //TODO: Remove below code and use it on confirm button
-      sl<PageStackCubit>().saveStack(page: 'login');
+      // sl<PageStackCubit>().saveStack(page: 'login');
     }
   }
 
@@ -82,12 +107,6 @@ class _VerifyPinPageState extends State<VerifyPinPage> {
                       }
                     },
                     isObscureText: true,
-                    // validator: (val) {
-                    //   if (val != sl<UserCubit>().state.pin) {
-                    //     return 'PIN not match!';
-                    //   }
-                    //   return null;
-                    // },
                   ),
                 ),
               ),
