@@ -18,7 +18,8 @@ class LoginError extends LoginState {
 }
 
 class LoginSuccess extends LoginState {
+  final String message;
   final UserDataEntity userDataEntity;
 
-  const LoginSuccess({required this.userDataEntity});
+  const LoginSuccess({required this.message, required this.userDataEntity});
 }

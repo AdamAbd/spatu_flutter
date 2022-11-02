@@ -25,7 +25,10 @@ class LoginCubit extends Cubit<LoginState> {
     emit(
       response.fold(
         (failure) => LoginError(failure),
-        (user) => LoginSuccess(userDataEntity: user.data!),
+        (user) => LoginSuccess(
+          message: user.message ?? MessageConstant.successLogin,
+          userDataEntity: user.data!,
+        ),
       ),
     );
   }

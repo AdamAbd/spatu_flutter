@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
+import 'package:spatu_flutter/core/core.dart';
 import 'package:spatu_flutter/feature/feature.dart';
 import 'package:spatu_flutter/locator.dart';
 
@@ -101,35 +102,28 @@ class _LoginPageState extends State<LoginPage> {
                   BlocConsumer<LoginCubit, LoginState>(
                     listener: (context, state) {
                       if (state is LoginLoading) {
-                        print("Login Loading");
+                        context.loadingDialog();
+                      } else {
+                        Navigator.popUntil(
+                          context,
+                          ModalRoute.withName(PagePath.home),
+                        );
                       }
-                      // else {
-                      //   Navigator.popUntil(
-                      //     context,
-                      //     ModalRoute.withName(PagePath.authenticationLogin),
-                      //   );
-                      // }
 
                       if (state is LoginSuccess) {
-                        print("Login Success");
-                        // context.successDialog(
-                        //   messageBody: MessageConstant.successLogin,
-                        //   buttonText: "OK",
-                        //   onTap: () => Navigator.pushNamedAndRemoveUntil(
-                        //     context,
-                        //     PagePath.main,
-                        //     (route) => false,
-                        //   ),
-                        // );
-                      } else if (state is LoginError) {
-                        print(
-                          "Login Error : ${state.failure.error?.errors ?? ''}",
+                        context.successDialog(
+                          messageBody: state.message,
+                          buttonText: "OK",
+                          onTap: () => Navigator.pushNamed(
+                            context,
+                            PagePath.accountVerified,
+                          ),
                         );
-                        // context.errorDialog(
-                        //   messageBody: state.failure.error?.message ??
-                        //       MessageConstant.defaultErrorMessage,
-                        //   onTap: () {},
-                        // );
+                      } else if (state is LoginError) {
+                        context.errorDialog(
+                          messageBody: state.failure.error?.errors ??
+                              MessageConstant.defaultErrorMessage,
+                        );
                       }
                     },
                     builder: (contextLoginCubit, state) {
