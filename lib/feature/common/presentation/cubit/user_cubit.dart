@@ -9,14 +9,23 @@ part 'user_state.dart';
 class UserCubit extends HydratedCubit<UserState> {
   UserCubit() : super(const UserState());
 
-  Future<void> saveUserPin({required String pin}) async {
+  Future<void> savePIN({
+    required String pin,
+  }) async {
     emit(state.copyWith(pin: pin));
   }
 
-  Future<void> updateUser({
+  Future<void> saveUser({
     required UserEntity userEntity,
   }) async {
     emit(state.copyWith(userEntity: userEntity));
+  }
+
+  Future<void> saveToken({
+    required String refreshToken,
+    required String accessToken,
+  }) async {
+    emit(state.copyWith(refreshToken: refreshToken, accessToken: accessToken));
   }
 
   Future<void> logOut() async {
@@ -33,6 +42,8 @@ class UserCubit extends HydratedCubit<UserState> {
           jsonDecode(json['userEntity'].toString()) as Map<String, dynamic>,
         ),
         pin: json['pin'].toString(),
+        accessToken: json['accessToken'].toString(),
+        refreshToken: json['refreshToken'].toString(),
       );
     } catch (e) {
       throw UnimplementedError();
@@ -45,6 +56,8 @@ class UserCubit extends HydratedCubit<UserState> {
       return {
         'userEntity': state.userEntity,
         'pin': state.pin,
+        'accessToken': state.accessToken,
+        'refreshToken': state.refreshToken,
       };
     } catch (e) {
       throw UnimplementedError();

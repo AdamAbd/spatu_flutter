@@ -21,7 +21,7 @@ class AuthRepository with BaseRepository {
       final userCubit = sl<UserCubit>();
 
       if (response.data != null) {
-        userCubit.updateUser(userEntity: response.data!.user.toUserEntity());
+        userCubit.saveUser(userEntity: response.data!.user.toUserEntity());
       }
 
       return BaseApiResponseEntity.fromBaseApiResponseModel(
@@ -60,7 +60,7 @@ class AuthRepository with BaseRepository {
       final userCubit = sl<UserCubit>();
 
       if (response.data != null) {
-        userCubit.updateUser(userEntity: response.data!.user.toUserEntity());
+        userCubit.saveUser(userEntity: response.data!.user.toUserEntity());
       }
 
       return BaseApiResponseEntity.fromBaseApiResponseModel(
@@ -153,7 +153,7 @@ class AuthRepository with BaseRepository {
       final userCubit = sl<UserCubit>();
 
       if (response.data != null) {
-        userCubit.updateUser(userEntity: response.data!.user.toUserEntity());
+        userCubit.saveUser(userEntity: response.data!.user.toUserEntity());
       }
 
       return BaseApiResponseEntity.fromBaseApiResponseModel(

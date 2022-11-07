@@ -27,6 +27,14 @@ class _AccountVerifiedPageState extends State<AccountVerifiedPage> {
   Widget build(BuildContext context) {
     final _responsive = ResponsiveUtils(context);
 
+    final String rawCookie = sl<UserCubit>().state.refreshToken!;
+    final int index = rawCookie.indexOf(';');
+    final String refreshToken =
+        (index == -1) ? rawCookie : rawCookie.substring(0, index);
+    final int idx = refreshToken.indexOf("=");
+    final List<String> old =
+        refreshToken.substring(idx + 1).trim().split('%7C');
+
     return Scaffold(
       bottomSheet: Padding(
         padding: const EdgeInsets.symmetric(horizontal: AppGap.medium),
@@ -111,6 +119,13 @@ class _AccountVerifiedPageState extends State<AccountVerifiedPage> {
               ),
             ),
             const Gap(height: AppGap.giant - 20),
+            Text(
+              // refreshToken.substring(idx + 1).trim(),
+              "${old[0]}|${old[1]}",
+              style: TextStyle(
+                color: Colors.white,
+              ),
+            ),
           ],
         ),
       ),

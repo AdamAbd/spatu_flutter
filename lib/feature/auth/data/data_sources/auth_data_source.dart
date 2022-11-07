@@ -2,6 +2,7 @@ import 'package:dio/dio.dart';
 
 import 'package:spatu_flutter/core/core.dart';
 import 'package:spatu_flutter/feature/feature.dart';
+import 'package:spatu_flutter/locator.dart';
 
 class AuthRemoteDataSource with BaseDataSource {
   final Dio dio;
@@ -163,6 +164,15 @@ class AuthRemoteDataSource with BaseDataSource {
           'google_id': googleId,
         },
       );
+
+      final userCubit = sl<UserCubit>();
+
+      if (response.data != null && response.headers['set-cookie'] != null) {
+        userCubit.saveToken(
+          accessToken: response.data['data']['access_token'].toString(),
+          refreshToken: response.headers['set-cookie'].toString(),
+        );
+      }
 
       return BaseApiResponseModel.fromJson(
         response.data as Map<String, dynamic>,

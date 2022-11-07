@@ -22,7 +22,7 @@ class _CreatePinPageState extends State<CreatePinPage> {
         _pin.add(i.textController.text);
       }
 
-      sl<UserCubit>().saveUserPin(pin: _pin.join());
+      sl<UserCubit>().savePIN(pin: _pin.join());
       Navigator.pushNamed(context, PagePath.verifyPin);
     }
   }

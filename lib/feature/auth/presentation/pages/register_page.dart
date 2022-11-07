@@ -89,7 +89,7 @@ class RegisterPageState extends State<RegisterPage> {
                         final userCubit = sl<UserCubit>();
 
                         /// Logic when access_token is not null or not empty
-                        userCubit.updateUser(
+                        userCubit.saveUser(
                           userEntity: UserModel(
                             id: '',
                             username:
