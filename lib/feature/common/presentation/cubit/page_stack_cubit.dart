@@ -10,12 +10,6 @@ class PageStackCubit extends HydratedCubit<PageStackState> {
     emit(state.copyWith(page: page));
   }
 
-  Future<void> logOut() async {
-    emit(const PageStackState(page: 'login'));
-
-    // clear();
-  }
-
   @override
   PageStackState? fromJson(Map<String, dynamic> json) {
     try {

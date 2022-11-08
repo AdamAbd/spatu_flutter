@@ -29,10 +29,7 @@ class _VerifyPinPageState extends State<VerifyPinPage> {
           onTap: () {
             sl<PageStackCubit>().saveStack(page: 'home');
 
-            Navigator.popUntil(
-              context,
-              ModalRoute.withName(PagePath.home),
-            );
+            Navigator.pushReplacementNamed(context, PagePath.home);
           },
         );
       } else {

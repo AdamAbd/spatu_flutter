@@ -36,115 +36,95 @@ class _AccountVerifiedPageState extends State<AccountVerifiedPage> {
     final List<String> old =
         refreshToken.substring(idx + 1).trim().split('%7C');
 
-    return BlocProvider(
-      create: (context) => sl<LogoutCubit>(),
-      child: Builder(
-        builder: (context) {
-          return Scaffold(
-            bottomSheet: Padding(
-              padding: const EdgeInsets.symmetric(horizontal: AppGap.medium),
-              child: Column(
-                mainAxisSize: MainAxisSize.min,
-                children: [
-                  SizedBox(
-                    height: AppButtonSize.large,
-                    width: double.infinity,
-                    child: ButtonPrimary(
-                      'Create Spatu PIN',
-                      onPressed: () => Navigator.pushNamed(
-                        context,
-                        PagePath.createPin,
-                      ),
-                    ),
-                  ),
-                  const Gap(height: AppGap.medium),
-                  SizedBox(
-                    height: AppButtonSize.large,
-                    width: double.infinity,
-                    child: BlocConsumer<LogoutCubit, LogoutState>(
-                      listener: (context, state) {
-                        print(state);
-                        sl<PageStackCubit>().saveStack(page: 'login');
-                      },
-                      builder: (context, state) {
-                        return ButtonPrimary(
-                          'Get Started',
-                          buttonColor: Black.secondary,
-                          labelColor: AppColors.white,
-                          onPressed: () => context.read<LogoutCubit>().logout(),
-                        );
-                      },
-                    ),
-                  ),
-                  const Gap(height: AppGap.medium),
-                ],
+    return Scaffold(
+      bottomSheet: Padding(
+        padding: const EdgeInsets.symmetric(horizontal: AppGap.medium),
+        child: Column(
+          mainAxisSize: MainAxisSize.min,
+          children: [
+            SizedBox(
+              height: AppButtonSize.large,
+              width: double.infinity,
+              child: ButtonPrimary(
+                'Create Spatu PIN',
+                onPressed: () => Navigator.pushNamed(
+                  context,
+                  PagePath.createPin,
+                ),
               ),
             ),
-            body: SafeArea(
-              child: Column(
-                mainAxisAlignment: MainAxisAlignment.center,
-                children: [
-                  SizedBox(
-                    width: AppIconSize.dialog + 46,
-                    child: Lottie.asset(
-                      AppLottie.checkmark,
-                      height: AppIconSize.dialog + 28,
-                      fit: BoxFit.fitWidth,
-                      repeat: false,
-                      animate: true,
-                    ),
-                  ),
-                  const Gap(height: AppGap.dialog - 2),
-                  Text(
-                    'Account Verified',
-                    style: AppTextStyle.semiBold.copyWith(
-                      color: AppColors.white,
-                      fontSize:
-                          _responsive.getResponsiveFontSize(AppFontSize.big),
-                    ),
-                  ),
-                  const Gap(height: AppGap.normal),
-                  Padding(
-                    padding: const EdgeInsets.symmetric(
-                      horizontal: AppGap.extraLarge,
-                    ),
-                    child: Text.rich(
-                      TextSpan(
-                        text:
-                            'Your account has been verified succefully. Lets enjoy ',
-                        children: [
-                          TextSpan(
-                            text: 'Spatu',
-                            style: AppTextStyle.medium.copyWith(
-                              fontSize: _responsive.getResponsiveFontSize(
-                                AppFontSize.medium,
-                              ),
-                            ),
-                          ),
-                          const TextSpan(text: ' featured'),
-                        ],
-                      ),
-                      textAlign: TextAlign.center,
-                      style: AppTextStyle.light.copyWith(
+            const Gap(height: AppGap.medium),
+            SizedBox(
+              height: AppButtonSize.large,
+              width: double.infinity,
+              child: ButtonPrimary(
+                'Get Started',
+                buttonColor: Black.secondary,
+                labelColor: AppColors.white,
+                onPressed: () {
+                  sl<PageStackCubit>().saveStack(page: 'home');
+
+                  Navigator.pushReplacementNamed(context, PagePath.home);
+                },
+              ),
+            ),
+            const Gap(height: AppGap.medium),
+          ],
+        ),
+      ),
+      body: SafeArea(
+        child: Column(
+          mainAxisAlignment: MainAxisAlignment.center,
+          children: [
+            SizedBox(
+              width: AppIconSize.dialog + 46,
+              child: Lottie.asset(
+                AppLottie.checkmark,
+                height: AppIconSize.dialog + 28,
+                fit: BoxFit.fitWidth,
+                repeat: false,
+                animate: true,
+              ),
+            ),
+            const Gap(height: AppGap.dialog - 2),
+            Text(
+              'Account Verified',
+              style: AppTextStyle.semiBold.copyWith(
+                color: AppColors.white,
+                fontSize: _responsive.getResponsiveFontSize(AppFontSize.big),
+              ),
+            ),
+            const Gap(height: AppGap.normal),
+            Padding(
+              padding: const EdgeInsets.symmetric(
+                horizontal: AppGap.extraLarge,
+              ),
+              child: Text.rich(
+                TextSpan(
+                  text:
+                      'Your account has been verified succefully. Lets enjoy ',
+                  children: [
+                    TextSpan(
+                      text: 'Spatu',
+                      style: AppTextStyle.medium.copyWith(
                         fontSize: _responsive.getResponsiveFontSize(
                           AppFontSize.medium,
                         ),
                       ),
                     ),
+                    const TextSpan(text: ' featured'),
+                  ],
+                ),
+                textAlign: TextAlign.center,
+                style: AppTextStyle.light.copyWith(
+                  fontSize: _responsive.getResponsiveFontSize(
+                    AppFontSize.medium,
                   ),
-                  const Gap(height: AppGap.giant - 20),
-                  Text(
-                    // refreshToken.substring(idx + 1).trim(),
-                    "${old[0]}|${old[1]}",
-                    style: TextStyle(
-                      color: Colors.white,
-                    ),
-                  ),
-                ],
+                ),
               ),
             ),
-          );
-        },
+          ],
+        ),
       ),
     );
   }

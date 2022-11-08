@@ -74,7 +74,7 @@ class CreateNewPasswordPageState extends State<CreateNewPasswordPage> {
                       buttonText: "OK",
                       onTap: () => Navigator.popUntil(
                         context,
-                        ModalRoute.withName(PagePath.home),
+                        ModalRoute.withName(PagePath.login),
                       ),
                     );
                   } else if (state is ResetPasswordError) {

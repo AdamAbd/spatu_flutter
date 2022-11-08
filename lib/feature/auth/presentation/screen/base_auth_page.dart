@@ -74,7 +74,7 @@ class _BaseAuthPageState extends State<BaseAuthPage> {
                                 context,
                                 ModalRoute.withName(
                                   widget._isLoginPage
-                                      ? PagePath.home
+                                      ? PagePath.login
                                       : PagePath.register,
                                 ),
                               );

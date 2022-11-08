@@ -22,27 +22,6 @@ class _LoginPageState extends State<LoginPage> {
     for (final i in _textFieldList) {
       i.textController = TextEditingController();
     }
-
-    if (sl<PageStackCubit>().state.page == 'verify ${VerifyType.reset.name}') {
-      Future.delayed(
-        const Duration(milliseconds: 500),
-        () => Navigator.pushNamed(
-          context,
-          PagePath.verifyCode,
-          arguments: const VerifyCodePageArgs(verifyType: VerifyType.reset),
-        ),
-      );
-    } else if (sl<PageStackCubit>().state.page ==
-        'verify ${VerifyType.email.name}') {
-      Future.delayed(
-        const Duration(milliseconds: 500),
-        () => Navigator.pushNamed(
-          context,
-          PagePath.verifyCode,
-          arguments: const VerifyCodePageArgs(verifyType: VerifyType.email),
-        ),
-      );
-    }
   }
 
   @override
@@ -106,7 +85,7 @@ class _LoginPageState extends State<LoginPage> {
                       } else {
                         Navigator.popUntil(
                           context,
-                          ModalRoute.withName(PagePath.home),
+                          ModalRoute.withName(PagePath.login),
                         );
                       }
 

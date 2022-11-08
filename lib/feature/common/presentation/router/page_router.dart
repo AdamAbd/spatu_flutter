@@ -1,6 +1,5 @@
 import 'package:flutter/material.dart';
 import 'package:spatu_flutter/feature/feature.dart';
-import 'package:spatu_flutter/locator.dart';
 
 class PageRouter {
   Route<dynamic>? getRoute(
@@ -13,21 +12,7 @@ class PageRouter {
         {
           return _buildRouter(
             settings: settings,
-            builder: (args) {
-              final String page = sl<PageStackCubit>().state.page;
-
-              switch (page) {
-                case 'login':
-                  return const LoginPage();
-                case 'verified':
-                  return const AccountVerifiedPage();
-                case 'home':
-                  return const HomePage();
-
-                default:
-                  return const LoginPage();
-              }
-            },
+            builder: (args) => const HomePage(),
           );
         }
 
@@ -96,7 +81,7 @@ class PageRouter {
       default:
         return _buildRouter(
           settings: settings,
-          builder: (args) => const LoginPage(),
+          builder: (args) => const HomePage(),
         );
     }
   }
