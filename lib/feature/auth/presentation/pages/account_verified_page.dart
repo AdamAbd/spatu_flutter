@@ -1,12 +1,11 @@
 import 'package:flutter/material.dart';
-import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:lottie/lottie.dart';
 
 import 'package:spatu_flutter/feature/feature.dart';
 import 'package:spatu_flutter/locator.dart';
 
 class AccountVerifiedPage extends StatefulWidget {
-  const AccountVerifiedPage({Key? key}) : super(key: key);
+  const AccountVerifiedPage({super.key});
 
   @override
   State<AccountVerifiedPage> createState() => _AccountVerifiedPageState();
@@ -27,14 +26,6 @@ class _AccountVerifiedPageState extends State<AccountVerifiedPage> {
   @override
   Widget build(BuildContext context) {
     final _responsive = ResponsiveUtils(context);
-
-    final String rawCookie = sl<UserCubit>().state.refreshToken!;
-    final int index = rawCookie.indexOf(';');
-    final String refreshToken =
-        (index == -1) ? rawCookie : rawCookie.substring(0, index);
-    final int idx = refreshToken.indexOf("=");
-    final List<String> old =
-        refreshToken.substring(idx + 1).trim().split('%7C');
 
     return Scaffold(
       bottomSheet: Padding(
