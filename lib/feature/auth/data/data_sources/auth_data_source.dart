@@ -183,17 +183,13 @@ class AuthRemoteDataSource with BaseDataSource {
     });
   }
 
-  // Future<BaseApiResponseModel<SuccessModel>> logout() async {
-  //   return dioCatchOrThrow(() async {
-  //     var response = await dio.post(UrlConstant.logout);
+  Future<BaseApiResponseModel<String>> logout() async {
+    return dioCatchOrThrow(() async {
+      final response = await dio.post(UrlConstant.logout);
 
-  //     return BaseApiResponseModel.fromJson(
-  //       response.data as Map<String, dynamic>,
-  //       keyData: 'user',
-  //       generatedData: (data) {
-  //         return SuccessModel.fromJson(data as Map<String, Object?>);
-  //       },
-  //     );
-  //   });
-  // }
+      return BaseApiResponseModel.fromJson(
+        response.data as Map<String, dynamic>,
+      );
+    });
+  }
 }

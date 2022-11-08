@@ -30,6 +30,7 @@ Future<void> init() async {
   sl.registerFactory(() => ResendCodeCubit(sl()));
   sl.registerFactory(() => ResetPasswordCubit(sl()));
   sl.registerFactory(() => SendResetCubit(sl()));
+  sl.registerFactory(() => LogoutCubit(sl()));
 
   /// Sign In With Google
   sl.registerLazySingleton(() => GoogleSignInRemoteDataSource());

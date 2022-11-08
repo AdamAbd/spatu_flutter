@@ -163,14 +163,14 @@ class AuthRepository with BaseRepository {
     });
   }
 
-  // Future<Either<Failure, BaseApiResponseEntity<SuccessEntity>>> logout() async {
-  //   return catchOrThrow(() async {
-  //     final response = await authRemoteDataSource.logout();
+  Future<Either<Failure, BaseApiResponseEntity<String>>> logout() async {
+    return catchOrThrow(() async {
+      final response = await authRemoteDataSource.logout();
 
-  //     return BaseApiResponseEntity.fromBaseApiResponseModel(
-  //       response,
-  //       data: response.data?.toSuccessEntity(),
-  //     );
-  //   });
-  // }
+      return BaseApiResponseEntity.fromBaseApiResponseModel(
+        response,
+        data: response.message,
+      );
+    });
+  }
 }
