@@ -37,24 +37,26 @@ class CustomInterceptor extends Interceptor {
   @override
   void onRequest(RequestOptions options, RequestInterceptorHandler handler) {
     final userCubit = sl<UserCubit>().state;
-    Map<String, dynamic> header;
 
     if (options.path.contains("logout") != true &&
-        userCubit.accessToken != null) {
-      header = {"Authorization": "Bearer ${userCubit.accessToken}"};
-    } else {
+        userCubit.accessToken?.isNotEmpty == true) {
+      options.headers
+          .addAll({"Authorization": "Bearer ${userCubit.accessToken}"});
+    }
+
+    if (options.path.contains("logout") &&
+        userCubit.refreshToken?.isNotEmpty == true) {
       final String rawCookie = userCubit.refreshToken!;
       final int index = rawCookie.indexOf(';');
       final String refreshToken =
           (index == -1) ? rawCookie : rawCookie.substring(0, index);
       final int idx = refreshToken.indexOf("=");
-      final List<String> splitToken =
+      final List<String> splitTkn =
           refreshToken.substring(idx + 1).trim().split('%7C');
 
-      header = {"Authorization": "Bearer ${splitToken[0]}|${splitToken[1]}"};
+      options.headers
+          .addAll({"Authorization": "Bearer ${splitTkn[0]}|${splitTkn[1]}"});
     }
-
-    options.headers.addAll(header);
 
     super.onRequest(options, handler);
   }
@@ -117,9 +119,15 @@ class CustomInterceptor extends Interceptor {
             queryParameters: err.requestOptions.queryParameters,
           );
 
+          print("Ini dionya udh selesai dam");
+
+          return handler.resolve(cloneReq);
+        } else {
           super.onError(err, handler);
         }
       });
+    } else {
+      super.onError(err, handler);
     }
   }
 }
