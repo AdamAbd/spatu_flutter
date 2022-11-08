@@ -27,13 +27,12 @@ class _VerifyPinPageState extends State<VerifyPinPage> {
           messageBody: "PIN created successfully",
           buttonText: "OK",
           onTap: () {
-            // Navigator.pushNamed(
-            //   context,
-            //   PagePath.createNewPassword,
-            //   arguments: CreateNewPasswordPageArgs(
-            //     code: int.parse(_pin.join()),
-            //   ),
-            // );
+            sl<PageStackCubit>().saveStack(page: 'home');
+
+            Navigator.popUntil(
+              context,
+              ModalRoute.withName(PagePath.home),
+            );
           },
         );
       } else {
@@ -48,9 +47,6 @@ class _VerifyPinPageState extends State<VerifyPinPage> {
           },
         );
       }
-
-      //TODO: Remove below code and use it on confirm button
-      // sl<PageStackCubit>().saveStack(page: 'login');
     }
   }
 
