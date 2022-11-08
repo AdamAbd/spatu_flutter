@@ -1,7 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:google_fonts/google_fonts.dart';
 
-import 'utils.dart';
+import 'package:spatu_flutter/feature/feature.dart';
 
 class AppFontWeight {
   static const FontWeight light = FontWeight.w300;
@@ -16,51 +16,78 @@ class AppFontWeight {
 // ignore: avoid_classes_with_only_static_members
 class AppTextStyle {
   /// FontWeight.w300
-  static final TextStyle light = GoogleFonts.roboto(
+  static final TextStyle light = GoogleFonts.inter(
     fontSize: AppFontSize.normal,
     fontWeight: AppFontWeight.light,
-    color: Black.primary,
+    color: Blue.primary,
   );
 
   /// FontWeight.w400
-  static final TextStyle regular = GoogleFonts.roboto(
+  static final TextStyle regular = GoogleFonts.inter(
     fontSize: AppFontSize.normal,
     fontWeight: AppFontWeight.regular,
-    color: Black.primary,
+    color: Blue.primary,
   );
 
   /// FontWeight.w500
-  static final TextStyle medium = GoogleFonts.roboto(
+  static final TextStyle medium = GoogleFonts.inter(
     fontSize: AppFontSize.normal,
     fontWeight: AppFontWeight.medium,
-    color: Black.primary,
+    color: AppColors.white,
   );
 
   /// FontWeight.w600
-  static final TextStyle semiBold = GoogleFonts.roboto(
+  static final TextStyle semiBold = GoogleFonts.inter(
     fontSize: AppFontSize.normal,
     fontWeight: AppFontWeight.semiBold,
-    color: Black.primary,
+    color: Blue.primary,
   );
 
   /// FontWeight.w700
-  static final TextStyle bold = GoogleFonts.roboto(
+  static final TextStyle bold = GoogleFonts.inter(
     fontSize: AppFontSize.normal,
     fontWeight: AppFontWeight.bold,
-    color: Black.primary,
+    color: Blue.primary,
   );
 
   /// FontWeight.w800
-  static final TextStyle extraBold = GoogleFonts.roboto(
+  static final TextStyle extraBold = GoogleFonts.inter(
     fontSize: AppFontSize.normal,
     fontWeight: AppFontWeight.extraBold,
-    color: Black.primary,
+    color: Blue.primary,
   );
 
   /// FontWeight.w900
-  static final TextStyle black = GoogleFonts.roboto(
+  static final TextStyle black = GoogleFonts.inter(
     fontSize: AppFontSize.normal,
     fontWeight: AppFontWeight.black,
-    color: Black.primary,
+    color: Blue.primary,
+  );
+}
+
+// ignore: avoid_classes_with_only_static_members
+class ButtonTextStyle {
+  /// FontWeight.w300
+  static final TextStyle light = GoogleFonts.poppins(
+    fontSize: AppFontSize.normal,
+    fontWeight: AppFontWeight.light,
+    color: AppColors.white,
+  );
+
+  /// FontWeight.w500
+  static final TextStyle medium = GoogleFonts.poppins(
+    fontSize: AppFontSize.normal,
+    fontWeight: AppFontWeight.medium,
+    color: Blue.tertiary,
+  );
+}
+
+// ignore: avoid_classes_with_only_static_members
+class TextFieldTextStyle {
+  /// FontWeight.w700
+  static final TextStyle bold = GoogleFonts.urbanist(
+    fontSize: AppFontSize.extraLarge,
+    fontWeight: AppFontWeight.bold,
+    color: AppColors.white,
   );
 }

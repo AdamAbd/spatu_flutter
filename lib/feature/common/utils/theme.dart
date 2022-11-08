@@ -10,14 +10,17 @@ class SpatuTheme {
     final _theme = Theme.of(context);
     return _theme.copyWith(
       primaryColor: Blue.secondary,
-      scaffoldBackgroundColor: Black.primary,
+      scaffoldBackgroundColor: AppColors.background,
       shadowColor: Grey.secondary,
       errorColor: Red.primary,
       disabledColor: Grey.primary,
       textSelectionTheme: _theme.textSelectionTheme.copyWith(
-        cursorColor: Blue.primary,
-        selectionHandleColor: Blue.primary,
-        selectionColor: Blue.quaternary,
+        //* warna garis kedip kedip
+        cursorColor: Yellow.primary,
+        //* bunderan yang muncul waktu ngehold
+        selectionHandleColor: Yellow.primary,
+        //* warna highlight pas seleksi teks
+        selectionColor: Yellow.primary.withOpacity(0.5),
       ),
       colorScheme: _theme.colorScheme.copyWith(
         primary: Blue.primary,
@@ -30,10 +33,11 @@ class SpatuTheme {
         backgroundColor: Yellow.primary,
       ),
       appBarTheme: _theme.appBarTheme.copyWith(
-        backgroundColor: AppColors.white,
+        backgroundColor: AppColors.background,
         titleSpacing: 0,
-        systemOverlayStyle: SystemUiOverlayStyle.dark,
+        systemOverlayStyle: SystemUiOverlayStyle.light,
         centerTitle: true,
+        elevation: 0,
       ),
       visualDensity: VisualDensity.adaptivePlatformDensity,
       cardTheme: _theme.cardTheme.copyWith(
@@ -57,70 +61,57 @@ class SpatuTheme {
       bottomNavigationBarTheme: _theme.bottomNavigationBarTheme.copyWith(
         type: BottomNavigationBarType.fixed,
       ),
+      bottomSheetTheme: BottomSheetThemeData(
+        backgroundColor: Colors.black.withOpacity(0),
+      ),
       dividerTheme: _theme.dividerTheme.copyWith(
-        color: Grey.primary.withOpacity(0.3),
+        color: Blue.primary,
       ),
       inputDecorationTheme: _theme.inputDecorationTheme.copyWith(
         filled: true,
         fillColor: Grey.secondary,
         isDense: true,
-        hintStyle: AppTextStyle.regular.copyWith(
-          fontSize: AppFontSize.small,
-          color: Grey.primary,
+        hintStyle: AppTextStyle.light.copyWith(
+          fontSize: AppFontSize.normal,
+          color: TextFieldColors.hint,
         ),
         contentPadding: const EdgeInsets.symmetric(
-          vertical: AppGap.normal,
-          horizontal: AppGap.normal,
+          vertical: AppGap.extraLarge - 2,
         ),
-        disabledBorder: const OutlineInputBorder(
-          borderRadius: BorderRadius.all(
-            Radius.circular(AppBorderRadius.small),
-          ),
+        disabledBorder: const UnderlineInputBorder(
           borderSide: BorderSide(
             color: TextFieldColors.enabledBorder,
           ),
         ),
-        enabledBorder: const OutlineInputBorder(
-          borderRadius: BorderRadius.all(
-            Radius.circular(AppBorderRadius.small),
-          ),
+        enabledBorder: const UnderlineInputBorder(
           borderSide: BorderSide(
             color: TextFieldColors.enabledBorder,
           ),
         ),
-        focusedBorder: const OutlineInputBorder(
-          borderRadius: BorderRadius.all(
-            Radius.circular(AppBorderRadius.small),
-          ),
+        focusedBorder: const UnderlineInputBorder(
           borderSide: BorderSide(
             color: TextFieldColors.focusedBorder,
           ),
         ),
-        focusedErrorBorder: const OutlineInputBorder(
-          borderRadius: BorderRadius.all(
-            Radius.circular(AppBorderRadius.small),
-          ),
+        focusedErrorBorder: const UnderlineInputBorder(
           borderSide: BorderSide(
             color: TextFieldColors.errorBorder,
           ),
         ),
-        errorBorder: const OutlineInputBorder(
-          borderRadius: BorderRadius.all(
-            Radius.circular(AppBorderRadius.small),
-          ),
+        errorBorder: const UnderlineInputBorder(
           borderSide: BorderSide(
             color: TextFieldColors.errorBorder,
           ),
         ),
       ),
-      splashColor: Platform.isAndroid
-          ? Blue.secondary.withOpacity(0.1)
-          : Colors.transparent,
-      highlightColor: Platform.isAndroid
-          ? Colors.transparent
-          : Blue.secondary.withOpacity(0.1),
+      // splashColor: Platform.isAndroid
+      //     ? Blue.secondary.withOpacity(0.1)
+      //     : Colors.transparent,
+      // highlightColor: Platform.isAndroid
+      //     ? Colors.transparent
+      //     : Blue.secondary.withOpacity(0.1),
       textTheme: _theme.textTheme.copyWith().apply(
-            fontFamily: GoogleFonts.roboto().fontFamily,
+            fontFamily: GoogleFonts.inter().fontFamily,
           ),
     );
   }
