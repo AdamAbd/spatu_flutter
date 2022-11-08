@@ -37,10 +37,10 @@ Future<void> init() async {
   sl.registerLazySingleton(() => GoogleSignInRepository(sl()));
   sl.registerFactory(() => GoogleSignInCubit(sl(), sl()));
 
-  // /// Home
-  // sl.registerLazySingleton(() => HomeRepository(sl()));
-  // sl.registerLazySingleton(() => HomeRemoteDataSource(sl()));
-  // sl.registerFactory(() => HomeBannerCubit(sl()));
+  /// Home
+  sl.registerLazySingleton(() => HomeRepository(sl()));
+  sl.registerLazySingleton(() => HomeRemoteDataSource(sl()));
+  sl.registerFactory(() => UserDetailCubit(sl()));
   // sl.registerFactory(() => HomeCategoryCubit(sl()));
   // sl.registerFactory(() => HomeMagazineCubit(sl()));
 

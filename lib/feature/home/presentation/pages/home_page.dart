@@ -58,8 +58,15 @@ class _HomePageState extends State<HomePage> {
 
   @override
   Widget build(BuildContext context) {
-    return BlocProvider(
-      create: (context) => sl<LogoutCubit>(),
+    return MultiBlocProvider(
+      providers: [
+        BlocProvider(
+          create: (context) => sl<UserDetailCubit>(),
+        ),
+        BlocProvider(
+          create: (context) => sl<LogoutCubit>(),
+        ),
+      ],
       child: Builder(
         builder: (context) {
           return Scaffold(
@@ -116,12 +123,44 @@ class _HomePageState extends State<HomePage> {
                   width: double.infinity,
                   margin:
                       const EdgeInsets.symmetric(horizontal: AppGap.extraLarge),
-                  child: ButtonPrimary(
-                    'Update Profile',
-                    onPressed: () => Navigator.pushNamed(
-                      context,
-                      PagePath.createPin,
-                    ),
+                  child: BlocConsumer<UserDetailCubit, UserDetailState>(
+                    listener: (context, state) {
+                      if (state is UserDetailLoading) {
+                        context.loadingDialog();
+                      } else {
+                        Navigator.popUntil(
+                          context,
+                          ModalRoute.withName(PagePath.home),
+                        );
+                      }
+                      if (state is UserDetailSuccess) {
+                        // context.successDialog(
+                        //   messageBody: state.message,
+                        //   buttonText: "OK",
+                        //   onTap: () {
+                        //     sl<PageStackCubit>().saveStack(page: 'login');
+
+                        //     Navigator.pushReplacementNamed(
+                        //       context,
+                        //       PagePath.login,
+                        //     );
+                        //   },
+                        // );
+                      } else if (state is UserDetailError) {
+                        context.errorDialog(
+                          messageBody: state.failure.error?.status ??
+                              MessageConstant.defaultErrorMessage,
+                        );
+                      }
+                    },
+                    builder: (ctxUserDetail, state) {
+                      return ButtonPrimary(
+                        'Update Profile',
+                        onPressed: () => ctxUserDetail
+                            .read<UserDetailCubit>()
+                            .getUserDetail(),
+                      );
+                    },
                   ),
                 ),
                 const Gap(height: AppGap.medium),
@@ -147,15 +186,10 @@ class _HomePageState extends State<HomePage> {
                           onTap: () {
                             sl<PageStackCubit>().saveStack(page: 'login');
 
-                            setState(() {});
-
-                            // Navigator.pushNamed(
-                            //   context,
-                            //   PagePath.createNewPassword,
-                            //   arguments: CreateNewPasswordPageArgs(
-                            //     code: int.parse(_pin.join()),
-                            //   ),
-                            // );
+                            Navigator.pushReplacementNamed(
+                              context,
+                              PagePath.login,
+                            );
                           },
                         );
                       } else if (state is LogoutError) {

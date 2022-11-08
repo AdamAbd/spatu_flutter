@@ -18,4 +18,7 @@ mixin UrlConstant {
   static const String resetPassword = '$apiUrl/auth/reset_password';
   static const String google = '$apiUrl/auth/google';
   static const String logout = '$apiUrl/auth/logout';
+
+  /// Home
+  static String userDetail = '$apiUrl/user/detail';
 }
