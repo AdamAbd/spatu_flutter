@@ -22,6 +22,15 @@ class AuthRemoteDataSource with BaseDataSource {
         },
       );
 
+      final userCubit = sl<UserCubit>();
+
+      if (response.data != null && response.headers['set-cookie'] != null) {
+        userCubit.saveToken(
+          accessToken: response.data['data']['access_token'].toString(),
+          refreshToken: response.headers['set-cookie'].toString(),
+        );
+      }
+
       return BaseApiResponseModel.fromJson(
         response.data as Map<String, dynamic>,
         generatedData: (data) {
@@ -63,6 +72,15 @@ class AuthRemoteDataSource with BaseDataSource {
           'type': 'email',
         },
       );
+
+      final userCubit = sl<UserCubit>();
+
+      if (response.data != null && response.headers['set-cookie'] != null) {
+        userCubit.saveToken(
+          accessToken: response.data['data']['access_token'].toString(),
+          refreshToken: response.headers['set-cookie'].toString(),
+        );
+      }
 
       return BaseApiResponseModel.fromJson(
         response.data as Map<String, dynamic>,
