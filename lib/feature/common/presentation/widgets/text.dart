@@ -1,6 +1,7 @@
 import 'dart:io';
 
 import 'package:flutter/cupertino.dart';
+import 'package:google_fonts/google_fonts.dart';
 import 'package:spatu_flutter/feature/common/utils/utils.dart';
 
 class Hyperlink extends StatelessWidget {
@@ -8,7 +9,7 @@ class Hyperlink extends StatelessWidget {
     String label, {
     Key? key,
     required Function() onTap,
-    Color labelColor = Blue.secondary,
+    Color labelColor = Yellow.primary,
     FontWeight fontWeight = AppFontWeight.bold,
     bool isUnderlined = false,
     bool isItalic = false,
@@ -33,52 +34,21 @@ class Hyperlink extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     final _responsive = ResponsiveUtils(context);
-    // if (Platform.isAndroid) {
     return GestureDetector(
       onTap: _onTap,
-      child: SizedBox(
-        height: _responsive.getResponsiveSize(
-          AppSize.w32,
-        ),
-        // padding: const EdgeInsets.symmetric(
-        //   vertical: AppSize.w4,
-        //   horizontal: AppSize.w8,
-        // ),
-        child: Text(
-          _label,
-          textAlign: TextAlign.center,
-          style: AppTextStyle.regular.copyWith(
-            color: Yellow.primary,
-          ),
+      child: Text(
+        _label,
+        textAlign: TextAlign.center,
+        style: GoogleFonts.inter(
+          fontSize: _fontSize,
+          fontWeight: _fontWeight,
+          color: _labelColor,
+          decoration:
+              _isUnderlined ? TextDecoration.underline : TextDecoration.none,
+          fontStyle: _isItalic ? FontStyle.italic : FontStyle.normal,
         ),
       ),
     );
-    // } else {
-    //   return SizedBox(
-    //     height: _responsive.getResponsiveSize(
-    //       AppSize.w32,
-    //     ),
-    //     child: CupertinoButton(
-    //       padding: EdgeInsets.zero,
-    //       onPressed: _onTap,
-    //       child: Text(
-    //         _label,
-    //         style: TextStyle(
-    //           color: _labelColor,
-    //           fontSize: _responsive.getResponsiveFontSize(
-    //             _fontSize,
-    //           ),
-    //           fontWeight: _fontWeight,
-    //           decoration: _isUnderlined
-    //               ? TextDecoration.underline
-    //               : TextDecoration.none,
-    //           fontStyle: _isItalic ? FontStyle.italic : FontStyle.normal,
-    //           decorationColor: _labelColor,
-    //         ),
-    //       ),
-    //     ),
-    //   );
-    // }
   }
 }
 
