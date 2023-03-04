@@ -102,7 +102,7 @@ class _ResetPasswordPageState extends State<ResetPasswordPage> {
               textFieldEntity: _textField,
               prefixImage: Image.asset(
                 AppIcon.email,
-                width: AppIconSize.large,
+                width: AppSize.w24,
               ),
             ),
           ],

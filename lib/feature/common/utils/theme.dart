@@ -46,7 +46,7 @@ class SpatuTheme {
         margin: EdgeInsets.zero,
         shape: RoundedRectangleBorder(
           borderRadius: BorderRadius.circular(
-            AppBorderRadius.small,
+            AppSize.w8,
           ),
         ),
       ),
@@ -72,11 +72,11 @@ class SpatuTheme {
         fillColor: Grey.secondary,
         isDense: true,
         hintStyle: AppTextStyle.light.copyWith(
-          fontSize: AppFontSize.normal,
+          fontSize: AppSize.w14,
           color: TextFieldColors.hint,
         ),
         contentPadding: const EdgeInsets.symmetric(
-          vertical: AppGap.extraLarge - 2,
+          vertical: AppSize.w24 - 2,
         ),
         disabledBorder: const UnderlineInputBorder(
           borderSide: BorderSide(

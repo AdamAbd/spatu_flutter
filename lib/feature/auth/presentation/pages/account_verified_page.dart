@@ -29,12 +29,12 @@ class _AccountVerifiedPageState extends State<AccountVerifiedPage> {
 
     return Scaffold(
       bottomSheet: Padding(
-        padding: const EdgeInsets.symmetric(horizontal: AppGap.medium),
+        padding: const EdgeInsets.symmetric(horizontal: AppSize.w16),
         child: Column(
           mainAxisSize: MainAxisSize.min,
           children: [
             SizedBox(
-              height: AppButtonSize.large,
+              height: AppSize.w48,
               width: double.infinity,
               child: ButtonPrimary(
                 'Create Spatu PIN',
@@ -44,9 +44,9 @@ class _AccountVerifiedPageState extends State<AccountVerifiedPage> {
                 ),
               ),
             ),
-            const Gap(height: AppGap.medium),
+            const Gap(height: AppSize.w16),
             SizedBox(
-              height: AppButtonSize.large,
+              height: AppSize.w48,
               width: double.infinity,
               child: ButtonPrimary(
                 'Get Started',
@@ -59,7 +59,7 @@ class _AccountVerifiedPageState extends State<AccountVerifiedPage> {
                 },
               ),
             ),
-            const Gap(height: AppGap.medium),
+            const Gap(height: AppSize.w16),
           ],
         ),
       ),
@@ -68,27 +68,27 @@ class _AccountVerifiedPageState extends State<AccountVerifiedPage> {
           mainAxisAlignment: MainAxisAlignment.center,
           children: [
             SizedBox(
-              width: AppIconSize.dialog + 46,
+              width: AppSize.w144,
               child: Lottie.asset(
                 AppLottie.checkmark,
-                height: AppIconSize.dialog + 28,
+                height: AppSize.w128,
                 fit: BoxFit.fitWidth,
                 repeat: false,
                 animate: true,
               ),
             ),
-            const Gap(height: AppGap.dialog - 2),
+            const Gap(height: AppSize.w56),
             Text(
               'Account Verified',
               style: AppTextStyle.semiBold.copyWith(
                 color: AppColors.white,
-                fontSize: _responsive.getResponsiveFontSize(AppFontSize.big),
+                fontSize: _responsive.getResponsiveFontSize(AppSize.w24),
               ),
             ),
-            const Gap(height: AppGap.normal),
+            const Gap(height: AppSize.w12),
             Padding(
               padding: const EdgeInsets.symmetric(
-                horizontal: AppGap.extraLarge,
+                horizontal: AppSize.w24,
               ),
               child: Text.rich(
                 TextSpan(
@@ -99,7 +99,7 @@ class _AccountVerifiedPageState extends State<AccountVerifiedPage> {
                       text: 'Spatu',
                       style: AppTextStyle.medium.copyWith(
                         fontSize: _responsive.getResponsiveFontSize(
-                          AppFontSize.medium,
+                          AppSize.w16,
                         ),
                       ),
                     ),
@@ -109,7 +109,7 @@ class _AccountVerifiedPageState extends State<AccountVerifiedPage> {
                 textAlign: TextAlign.center,
                 style: AppTextStyle.light.copyWith(
                   fontSize: _responsive.getResponsiveFontSize(
-                    AppFontSize.medium,
+                    AppSize.w16,
                   ),
                 ),
               ),

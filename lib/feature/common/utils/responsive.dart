@@ -52,17 +52,17 @@ class ResponsiveUtils {
 
   double getResponsiveBottomPadding() {
     if (Platform.isIOS) {
-      return AppGap.big;
+      return AppSize.w32;
     } else {
       return getMediaQueryPaddingBottom() +
-          (isHavePaddingBottom() ? AppGap.medium : AppGap.large);
+          (isHavePaddingBottom() ? AppSize.w16 : AppSize.w20);
     }
   }
 
   double getResponsivePaddingTop() {
     return getMediaQueryPaddingTop() +
         kToolbarHeight +
-        (isHavePaddingTop() ? AppGap.medium : AppGap.large);
+        (isHavePaddingTop() ? AppSize.w16 : AppSize.w20);
   }
 
   // Padding

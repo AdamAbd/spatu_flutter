@@ -1,7 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 
-import 'package:spatu_flutter/core/core.dart';
 import 'package:spatu_flutter/feature/feature.dart';
 import 'package:spatu_flutter/locator.dart';
 
@@ -13,6 +12,9 @@ class HomePage extends StatefulWidget {
 }
 
 class _HomePageState extends State<HomePage> {
+  final TextFieldEntity _textField = TextFieldEntity.search;
+  final _formKey = GlobalKey<FormState>();
+
   @override
   void initState() {
     super.initState();
@@ -69,149 +71,282 @@ class _HomePageState extends State<HomePage> {
       ],
       child: Builder(
         builder: (context) {
-          return Scaffold(
-            body: Column(
-              mainAxisAlignment: MainAxisAlignment.center,
-              children: [
-                if (sl<UserCubit>().state.refreshToken?.isNotEmpty == true)
-                  BlocBuilder<UserCubit, UserState>(
-                    builder: (context, state) {
-                      final String rawCookie = state.refreshToken!;
-                      final int index = rawCookie.indexOf(';');
-                      final String refreshToken = (index == -1)
-                          ? rawCookie
-                          : rawCookie.substring(0, index);
-                      final int idx = refreshToken.indexOf("=");
-                      final List<String> old =
-                          refreshToken.substring(idx + 1).trim().split('%7C');
-
-                      return Column(
-                        mainAxisAlignment: MainAxisAlignment.center,
-                        children: [
-                          const SizedBox(width: double.infinity),
-                          Image.network(
-                            state.userEntity?.avatar ??
-                                "https://i.ytimg.com/vi/ATf8X5Dj-7Y/hqdefault.jpg?sqp=-oaymwEcCPYBEIoBSFXyq4qpAw4IARUAAIhCGAFwAcABBg==&rs=AOn4CLCJn6Vv1Oil0EIDNKiyGbVL5LO7KA",
+          return Form(
+            key: _formKey,
+            child: GestureDetector(
+              onTap: () => FocusUtils(context).unfocus(),
+              child: Scaffold(
+                body: SafeArea(
+                  child: SingleChildScrollView(
+                    child: Column(
+                      children: [
+                        const Gap(height: AppSize.w20),
+                        Padding(
+                          padding: const EdgeInsets.only(
+                            left: AppSize.w24,
+                            right: AppSize.w8,
                           ),
-                          const Gap(height: AppGap.normal),
-                          Text(
-                            state.userEntity?.username ?? '',
-                            style: const TextStyle(color: Colors.white),
+                          child: Row(
+                            children: [
+                              Expanded(
+                                child: CustomSearchTextField(
+                                  textFieldEntity: _textField,
+                                  onChanged: (p0) {},
+                                  onEditingComplete: () {},
+                                ),
+                              ),
+                              ButtonIcon(
+                                onTap: () {},
+                                padding: const EdgeInsets.symmetric(
+                                  horizontal: AppSize.w16,
+                                ),
+                                child: const Icon(
+                                  Icons.shopping_cart_outlined,
+                                  color: AppColors.white,
+                                ),
+                              ),
+                            ],
                           ),
-                          const Gap(height: AppGap.extraSmall),
-                          Text(
-                            state.userEntity?.email ?? '',
-                            style: const TextStyle(color: Colors.white),
+                        ),
+                        Padding(
+                          padding: const EdgeInsets.symmetric(
+                            horizontal: AppSize.w24,
                           ),
-                          const Gap(height: AppGap.extraLarge),
-                          Text(
-                            state.accessToken ?? '',
-                            style: const TextStyle(color: Colors.white),
+                          child: Column(
+                            mainAxisAlignment: MainAxisAlignment.center,
+                            children: [
+                              const Title(title: "Special Offers"),
+                              Container(
+                                width: double.infinity,
+                                height: 180,
+                                decoration: const BoxDecoration(
+                                  image: DecorationImage(
+                                    fit: BoxFit.cover,
+                                    image: AssetImage(
+                                      AppIllustration.banner,
+                                    ),
+                                  ),
+                                  borderRadius: BorderRadius.all(
+                                    Radius.circular(AppSize.w16),
+                                  ),
+                                ),
+                              ),
+                              const Gap(height: AppSize.w12),
+                              const Title(title: "Brand Categories"),
+                              Row(
+                                mainAxisAlignment:
+                                    MainAxisAlignment.spaceBetween,
+                                children: [
+                                  Column(
+                                    children: [
+                                      Container(
+                                        width: AppSize.w64,
+                                        height: AppSize.w64,
+                                        decoration: const BoxDecoration(
+                                          color: Black.secondary,
+                                          borderRadius: BorderRadius.all(
+                                            Radius.circular(AppSize.w6),
+                                          ),
+                                        ),
+                                      ),
+                                      const Gap(height: AppSize.w12),
+                                      Text(
+                                        "Adidas",
+                                        style: AppTextStyle.regular,
+                                      ),
+                                    ],
+                                  ),
+                                  Column(
+                                    children: [
+                                      Container(
+                                        width: AppSize.w64,
+                                        height: AppSize.w64,
+                                        decoration: const BoxDecoration(
+                                          color: Black.secondary,
+                                          borderRadius: BorderRadius.all(
+                                            Radius.circular(AppSize.w6),
+                                          ),
+                                        ),
+                                      ),
+                                      const Gap(height: AppSize.w12),
+                                      Text(
+                                        "Adidas",
+                                        style: AppTextStyle.regular,
+                                      ),
+                                    ],
+                                  ),
+                                  Column(
+                                    children: [
+                                      Container(
+                                        width: AppSize.w64,
+                                        height: AppSize.w64,
+                                        decoration: const BoxDecoration(
+                                          color: Black.secondary,
+                                          borderRadius: BorderRadius.all(
+                                            Radius.circular(AppSize.w6),
+                                          ),
+                                        ),
+                                      ),
+                                      const Gap(height: AppSize.w12),
+                                      Text(
+                                        "Adidas",
+                                        style: AppTextStyle.regular,
+                                      ),
+                                    ],
+                                  ),
+                                  Column(
+                                    children: [
+                                      Container(
+                                        width: AppSize.w64,
+                                        height: AppSize.w64,
+                                        decoration: const BoxDecoration(
+                                          color: Black.secondary,
+                                          borderRadius: BorderRadius.all(
+                                            Radius.circular(AppSize.w6),
+                                          ),
+                                        ),
+                                      ),
+                                      const Gap(height: AppSize.w12),
+                                      Text(
+                                        "Adidas",
+                                        style: AppTextStyle.regular,
+                                      ),
+                                    ],
+                                  ),
+                                ],
+                              ),
+                              const Gap(height: AppSize.w12),
+                              const Title(title: "Most Populars"),
+                              SizedBox(
+                                child: GridView.builder(
+                                  shrinkWrap: true,
+                                  physics: const NeverScrollableScrollPhysics(),
+                                  gridDelegate:
+                                      const SliverGridDelegateWithFixedCrossAxisCount(
+                                    crossAxisCount: 2,
+                                    mainAxisSpacing: AppSize.w8,
+                                    crossAxisSpacing: AppSize.w16,
+                                    childAspectRatio: 3 / 4,
+                                  ),
+                                  itemCount: 5,
+                                  itemBuilder: (context, index) {
+                                    return Column(
+                                      crossAxisAlignment:
+                                          CrossAxisAlignment.start,
+                                      children: [
+                                        Container(
+                                          height: 125,
+                                          decoration: const BoxDecoration(
+                                            color: Black.secondary,
+                                            borderRadius: BorderRadius.all(
+                                              Radius.circular(
+                                                AppSize.w6,
+                                              ),
+                                            ),
+                                          ),
+                                        ),
+                                        const Gap(),
+                                        Text(
+                                          "Air Zoom SuperRep",
+                                          style: AppTextStyle.medium.copyWith(
+                                            fontSize: AppSize.w16,
+                                          ),
+                                        ),
+                                        const Gap(height: AppSize.w4),
+                                        Row(
+                                          children: [
+                                            Text(
+                                              "Nike · ",
+                                              style:
+                                                  AppTextStyle.medium.copyWith(
+                                                color: Blue.primary,
+                                              ),
+                                            ),
+                                            Container(
+                                              padding:
+                                                  const EdgeInsets.symmetric(
+                                                horizontal: 10,
+                                                vertical: 6,
+                                              ),
+                                              margin: const EdgeInsets.only(
+                                                left: AppSize.w4,
+                                              ),
+                                              decoration: BoxDecoration(
+                                                color: Yellow.primary
+                                                    .withOpacity(0.1),
+                                                borderRadius:
+                                                    const BorderRadius.all(
+                                                  Radius.circular(
+                                                    AppSize.w6,
+                                                  ),
+                                                ),
+                                              ),
+                                              child: Text(
+                                                "52.214 Sold",
+                                                style: AppTextStyle.medium
+                                                    .copyWith(
+                                                  fontSize: AppSize.w12,
+                                                  color: Yellow.primary,
+                                                ),
+                                              ),
+                                            ),
+                                          ],
+                                        ),
+                                        const Gap(height: AppSize.w4),
+                                        Text(
+                                          "IDR 1.799.000",
+                                          style: AppTextStyle.medium.copyWith(
+                                            fontSize: AppSize.w16,
+                                          ),
+                                        ),
+                                      ],
+                                    );
+                                  },
+                                ),
+                              ),
+                            ],
                           ),
-                          const Gap(height: AppGap.extraSmall),
-                          Text(
-                            '${old[0]}|${old[1]}',
-                            style: const TextStyle(color: Colors.white),
-                          ),
-                        ],
-                      );
-                    },
-                  ),
-                const Gap(height: AppGap.medium),
-                Container(
-                  height: AppButtonSize.small,
-                  width: double.infinity,
-                  margin:
-                      const EdgeInsets.symmetric(horizontal: AppGap.extraLarge),
-                  child: BlocConsumer<UserDetailCubit, UserDetailState>(
-                    listener: (context, state) {
-                      if (state is UserDetailLoading) {
-                        context.loadingDialog();
-                      } else {
-                        Navigator.popUntil(
-                          context,
-                          ModalRoute.withName(PagePath.home),
-                        );
-                      }
-                      if (state is UserDetailSuccess) {
-                        // context.successDialog(
-                        //   messageBody: state.message,
-                        //   buttonText: "OK",
-                        //   onTap: () {
-                        //     sl<PageStackCubit>().saveStack(page: 'login');
-
-                        //     Navigator.pushReplacementNamed(
-                        //       context,
-                        //       PagePath.login,
-                        //     );
-                        //   },
-                        // );
-                      } else if (state is UserDetailError) {
-                        context.errorDialog(
-                          messageBody: state.failure.error?.status ??
-                              MessageConstant.defaultErrorMessage,
-                        );
-                      }
-                    },
-                    builder: (ctxUserDetail, state) {
-                      return ButtonPrimary(
-                        'Update Profile',
-                        onPressed: () => ctxUserDetail
-                            .read<UserDetailCubit>()
-                            .getUserDetail(),
-                      );
-                    },
+                        ),
+                      ],
+                    ),
                   ),
                 ),
-                const Gap(height: AppGap.medium),
-                Container(
-                  height: AppButtonSize.small,
-                  width: double.infinity,
-                  margin:
-                      const EdgeInsets.symmetric(horizontal: AppGap.extraLarge),
-                  child: BlocConsumer<LogoutCubit, LogoutState>(
-                    listener: (context, state) {
-                      if (state is LogoutLoading) {
-                        context.loadingDialog();
-                      } else {
-                        Navigator.popUntil(
-                          context,
-                          ModalRoute.withName(PagePath.home),
-                        );
-                      }
-                      if (state is LogoutSuccess) {
-                        context.successDialog(
-                          messageBody: state.message,
-                          buttonText: "OK",
-                          onTap: () {
-                            sl<PageStackCubit>().saveStack(page: 'login');
-
-                            Navigator.pushReplacementNamed(
-                              context,
-                              PagePath.login,
-                            );
-                          },
-                        );
-                      } else if (state is LogoutError) {
-                        context.errorDialog(
-                          messageBody: state.failure.error?.status ??
-                              MessageConstant.defaultErrorMessage,
-                        );
-                      }
-                    },
-                    builder: (context, state) {
-                      return ButtonPrimary(
-                        'Log Out',
-                        onPressed: () => context.read<LogoutCubit>().logout(),
-                      );
-                    },
-                  ),
-                ),
-              ],
+              ),
             ),
           );
         },
       ),
+    );
+  }
+}
+
+class Title extends StatelessWidget {
+  const Title({
+    super.key,
+    required this.title,
+  });
+
+  final String title;
+
+  @override
+  Widget build(BuildContext context) {
+    return Column(
+      children: [
+        const Gap(height: AppSize.w24),
+        Row(
+          mainAxisAlignment: MainAxisAlignment.spaceBetween,
+          children: [
+            Text(
+              title,
+              style: AppTextStyle.medium.copyWith(
+                fontSize: AppSize.w16,
+              ),
+            ),
+            Text("See All", style: AppTextStyle.light),
+          ],
+        ),
+        const Gap(height: AppSize.w16),
+      ],
     );
   }
 }

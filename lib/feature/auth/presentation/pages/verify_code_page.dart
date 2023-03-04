@@ -162,7 +162,7 @@ class _VerifyCodePageState extends State<VerifyCodePage> {
                 (index) => Expanded(
                   child: Padding(
                     padding: const EdgeInsets.symmetric(
-                      horizontal: AppGap.extraSmall,
+                      horizontal: AppSize.w4,
                     ),
                     child: CustomOTPTextFormField(
                       textFieldEntity: _textFieldList[index],
@@ -182,7 +182,7 @@ class _VerifyCodePageState extends State<VerifyCodePage> {
                 ),
               ),
             ),
-            const Gap(height: AppGap.extraLarge),
+            const Gap(height: AppSize.w24),
             BlocBuilder<CountdownCubit, CountdownState>(
               builder: (context, state) {
                 if (state.start <= 0) {
@@ -200,7 +200,7 @@ class _VerifyCodePageState extends State<VerifyCodePage> {
                             text: DateHelper().minuteToSecond(state.start),
                             style: AppTextStyle.medium.copyWith(
                               fontSize: _responsive.getResponsiveFontSize(
-                                AppFontSize.medium,
+                                AppSize.w16,
                               ),
                             ),
                           ),
@@ -208,13 +208,13 @@ class _VerifyCodePageState extends State<VerifyCodePage> {
                       ),
                       style: AppTextStyle.regular.copyWith(
                         fontSize: _responsive.getResponsiveFontSize(
-                          AppFontSize.medium,
+                          AppSize.w16,
                         ),
                       ),
                     ),
                   ),
                   child: SizedBox(
-                    height: AppButtonSize.small,
+                    height: AppSize.w32,
                     child: BlocConsumer<ResendCodeCubit, ResendCodeState>(
                       listener: (context, state) {
                         if (state is ResendCodeSuccess) {
@@ -233,7 +233,7 @@ class _VerifyCodePageState extends State<VerifyCodePage> {
                       builder: (contextResendCodeCubit, state) {
                         if (state is ResendCodeLoading) {
                           return const SizedBox(
-                            width: AppButtonSize.small,
+                            width: AppSize.w32,
                             child: CircularProgressIndicator(),
                           );
                         }

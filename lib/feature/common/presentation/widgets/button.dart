@@ -4,132 +4,131 @@ import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:spatu_flutter/feature/feature.dart';
 
-// class ButtonIcon extends StatelessWidget {
-//   const ButtonIcon({
-//     Key? key,
-//     required VoidCallback onTap,
-//     required Widget child,
-//     Color backgroundColor = Colors.transparent,
-//     bool isDarkSplash = false,
-//     bool isCircle = false,
-//     Color? splashColor,
-//     Color? highlightColor,
-//     double? buttonSize,
-//     double radius = AppBorderRadius.extraSmall,
-//     EdgeInsetsGeometry? padding,
-//     double? borderThickness,
-//     Color? borderColor,
-//   })  : _onTap = onTap,
-//         _child = child,
-//         _backgroundColor = backgroundColor,
-//         _isDarkSplash = isDarkSplash,
-//         _splashColor = splashColor,
-//         _highlightColor = highlightColor,
-//         _buttonSize = buttonSize,
-//         _radius = radius,
-//         _padding = padding,
-//         _borderThickness = borderThickness,
-//         _borderColor = borderColor,
-//         super(key: key);
+class ButtonIcon extends StatelessWidget {
+  const ButtonIcon({
+    Key? key,
+    required VoidCallback onTap,
+    required Widget child,
+    Color backgroundColor = Colors.transparent,
+    bool isDarkSplash = false,
+    bool isCircle = false,
+    Color? splashColor,
+    Color? highlightColor,
+    double? buttonSize,
+    double radius = AppSize.w6,
+    EdgeInsetsGeometry? padding,
+    double? borderThickness,
+    Color? borderColor,
+  })  : _onTap = onTap,
+        _child = child,
+        _backgroundColor = backgroundColor,
+        _isDarkSplash = isDarkSplash,
+        _splashColor = splashColor,
+        _highlightColor = highlightColor,
+        _buttonSize = buttonSize,
+        _radius = radius,
+        _padding = padding,
+        _borderThickness = borderThickness,
+        _borderColor = borderColor,
+        super(key: key);
 
-//   final VoidCallback _onTap;
-//   final Widget _child;
-//   final Color _backgroundColor;
-//   final bool _isDarkSplash;
-//   final Color? _splashColor;
-//   final Color? _highlightColor;
-//   final double? _buttonSize;
-//   final double _radius;
-//   final EdgeInsetsGeometry? _padding;
-//   final double? _borderThickness;
-//   final Color? _borderColor;
+  final VoidCallback _onTap;
+  final Widget _child;
+  final Color _backgroundColor;
+  final bool _isDarkSplash;
+  final Color? _splashColor;
+  final Color? _highlightColor;
+  final double? _buttonSize;
+  final double _radius;
+  final EdgeInsetsGeometry? _padding;
+  final double? _borderThickness;
+  final Color? _borderColor;
 
-//   @override
-//   Widget build(BuildContext context) {
-//     final _responsive = ResponsiveUtils(context);
+  @override
+  Widget build(BuildContext context) {
+    final _responsive = ResponsiveUtils(context);
 
-//     if (Platform.isAndroid) {
-//       return Card(
-//         color: _backgroundColor,
-//         shape: RoundedRectangleBorder(
-//           borderRadius: BorderRadius.circular(_radius),
-//           side: _borderThickness != null
-//               ? BorderSide(
-//                   color: _borderColor ?? Colors.white,
-//                   width: _borderThickness ?? 1,
-//                 )
-//               : BorderSide.none,
-//         ),
-//         clipBehavior: Clip.antiAlias,
-//         margin: EdgeInsets.zero,
-//         elevation: 0,
-//         child: InkWell(
-//           onTap: _onTap,
-//           splashColor:
-//               (_splashColor ?? (_isDarkSplash ? Colors.black : Colors.white))
-//                   .withOpacity(.2),
-//           highlightColor:
-//               (_highlightColor ?? (_isDarkSplash ? Colors.black : Colors.white))
-//                   .withOpacity(.2),
-//           child: Container(
-//             constraints: BoxConstraints(
-//               minWidth: _responsive
-//                   .getResponsiveSize(_buttonSize ?? AppButtonSize.normal),
-//               minHeight: _responsive
-//                   .getResponsiveSize(_buttonSize ?? AppButtonSize.normal),
-//             ),
-//             padding: _padding ??
-//                 (_buttonSize == null
-//                     ? const EdgeInsets.all(AppGap.extraSmall)
-//                     : EdgeInsets.zero),
-//             alignment: Alignment.center,
-//             child: _child,
-//           ),
-//         ),
-//       );
-//     } else {
-//       return Container(
-//         decoration: BoxDecoration(
-//           borderRadius: BorderRadius.circular(_radius),
-//           border: _borderThickness != null
-//               ? Border.all(
-//                   color: _borderColor ?? Colors.white,
-//                   width: _borderThickness ?? 1,
-//                 )
-//               : null,
-//         ),
-//         child: CupertinoButton(
-//           minSize: AppButtonSize.normal,
-//           color: _backgroundColor,
-//           disabledColor: _backgroundColor,
-//           borderRadius: BorderRadius.circular(_radius),
-//           padding: _padding ??
-//               (_buttonSize == null
-//                   ? const EdgeInsets.all(AppGap.extraSmall)
-//                   : EdgeInsets.zero),
-//           onPressed: _onTap,
-//           child: _child,
-//         ),
-//       );
-//     }
-//   }
-// }
+    if (Platform.isAndroid) {
+      return Card(
+        color: _backgroundColor,
+        shape: RoundedRectangleBorder(
+          borderRadius: BorderRadius.circular(_radius),
+          side: _borderThickness != null
+              ? BorderSide(
+                  color: _borderColor ?? Colors.white,
+                  width: _borderThickness ?? 1,
+                )
+              : BorderSide.none,
+        ),
+        clipBehavior: Clip.antiAlias,
+        margin: EdgeInsets.zero,
+        elevation: 0,
+        child: InkWell(
+          onTap: _onTap,
+          splashColor:
+              (_splashColor ?? (_isDarkSplash ? Colors.black : Colors.white))
+                  .withOpacity(.2),
+          highlightColor:
+              (_highlightColor ?? (_isDarkSplash ? Colors.black : Colors.white))
+                  .withOpacity(.2),
+          child: Container(
+            constraints: BoxConstraints(
+              minWidth:
+                  _responsive.getResponsiveSize(_buttonSize ?? AppSize.w44),
+              minHeight:
+                  _responsive.getResponsiveSize(_buttonSize ?? AppSize.w44),
+            ),
+            padding: _padding ??
+                (_buttonSize == null
+                    ? const EdgeInsets.all(AppSize.w4)
+                    : EdgeInsets.zero),
+            alignment: Alignment.center,
+            child: _child,
+          ),
+        ),
+      );
+    } else {
+      return Container(
+        decoration: BoxDecoration(
+          borderRadius: BorderRadius.circular(_radius),
+          border: _borderThickness != null
+              ? Border.all(
+                  color: _borderColor ?? Colors.white,
+                  width: _borderThickness ?? 1,
+                )
+              : null,
+        ),
+        child: CupertinoButton(
+          color: _backgroundColor,
+          disabledColor: _backgroundColor,
+          borderRadius: BorderRadius.circular(_radius),
+          padding: _padding ??
+              (_buttonSize == null
+                  ? const EdgeInsets.all(AppSize.w4)
+                  : EdgeInsets.zero),
+          onPressed: _onTap,
+          child: _child,
+        ),
+      );
+    }
+  }
+}
 
 // class ButtonPrimary extends StatelessWidget {
 //   const ButtonPrimary(
 //     String label, {
 //     super.key,
 //     required VoidCallback onPressed,
-//     double height = AppButtonSize.large,
+//     double height = AppSize.w48,
 //     double? width,
 //     bool isButtonDisabled = false,
 //     Color buttonColor = Yellow.primary,
 //     double paddingVertical = 0,
-//     double paddingHorizontal = AppGap.normal,
+//     double paddingHorizontal = AppSize.w12,
 //     Color borderColor = Colors.transparent,
 //     double borderWidth = 0,
-//     double borderRadius = AppBorderRadius.small,
-//     double fontSize = AppFontSize.normal,
+//     double borderRadius = AppSize.w8,
+//     double fontSize = AppSize.w14,
 //     FontWeight? fontWeight,
 //     Color labelColor = Blue.tertiary,
 //   })  : _label = label,
@@ -230,9 +229,9 @@ import 'package:spatu_flutter/feature/feature.dart';
 //       width: double.infinity,
 //       padding: EdgeInsets.only(
 //         bottom: _bottomPadding,
-//         left: AppGap.large,
-//         right: AppGap.large,
-//         top: AppGap.small,
+//         left: AppSize.w20,
+//         right: AppSize.w20,
+//         top: AppSize.w8,
 //       ),
 //       child: ButtonPrimaryWithIcon(
 //         _buttonText,
@@ -267,9 +266,9 @@ import 'package:spatu_flutter/feature/feature.dart';
 //       width: double.infinity,
 //       padding: EdgeInsets.only(
 //         bottom: _bottomPadding,
-//         left: AppGap.large,
-//         right: AppGap.large,
-//         top: AppGap.small,
+//         left: AppSize.w20,
+//         right: AppSize.w20,
+//         top: AppSize.w8,
 //       ),
 //       child: ButtonPrimary(
 //         _buttonText,
@@ -293,10 +292,10 @@ import 'package:spatu_flutter/feature/feature.dart';
 //       child: Padding(
 //         padding: EdgeInsets.only(
 //           top: _responsive.getResponsiveSize(
-//             AppGap.medium,
+//             AppSize.w16,
 //           ),
 //           left: _responsive.getResponsiveSize(
-//             AppGap.medium,
+//             AppSize.w16,
 //           ),
 //         ),
 //         child: ClipOval(
@@ -323,18 +322,18 @@ class ButtonPrimary extends StatelessWidget {
     required VoidCallback onPressed,
     Widget? leading,
     Widget? trailing,
-    double height = AppButtonSize.large,
+    double height = AppSize.w48,
     double? width,
     bool isButtonDisabled = false,
     Color buttonColor = Yellow.primary,
     double paddingVertical = 0,
-    double paddingHorizontal = AppGap.extraLarge,
+    double paddingHorizontal = AppSize.w24,
     Color borderColor = Colors.transparent,
     double borderWidth = 0,
-    double borderRadius = AppBorderRadius.extraSmall,
+    double borderRadius = AppSize.w6,
     FontWeight fontWeight = AppFontWeight.semiBold,
     Color labelColor = Blue.tertiary,
-    double fontSize = AppFontSize.normal,
+    double fontSize = AppSize.w14,
     bool isLoading = false,
   })  : _label = label,
         _onPressed = onPressed,
@@ -397,15 +396,15 @@ class ButtonPrimary extends StatelessWidget {
         ),
         child: _isLoading
             ? const SizedBox(
-                height: AppGap.big,
-                width: AppGap.big,
+                height: AppSize.w32,
+                width: AppSize.w32,
                 child: CircularProgressIndicator(),
               )
             : Row(
                 mainAxisAlignment: MainAxisAlignment.center,
                 children: [
                   _leading ?? const SizedBox(),
-                  Gap(width: _leading == null ? 0 : AppGap.small),
+                  Gap(width: _leading == null ? 0 : AppSize.w8),
                   Text(
                     _label,
                     style: ButtonTextStyle.medium.copyWith(
@@ -415,7 +414,7 @@ class ButtonPrimary extends StatelessWidget {
                     ),
                     overflow: TextOverflow.ellipsis,
                   ),
-                  Gap(width: _trailing == null ? 0 : AppGap.small),
+                  Gap(width: _trailing == null ? 0 : AppSize.w8),
                   _trailing ?? const SizedBox(),
                 ],
               ),

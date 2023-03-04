@@ -272,4 +272,14 @@ class TextFieldEntity {
       },
     ),
   ];
+
+  static final TextFieldEntity search = TextFieldEntity(
+    textController: TextEditingController(text: ''),
+    hint: "Search any product",
+    textInputAction: TextInputAction.search,
+    focusNode: FocusNode(),
+    validator: (value) {
+      return ValidationBuilder().required().build().call(value);
+    },
+  );
 }

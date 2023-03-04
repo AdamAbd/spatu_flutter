@@ -41,27 +41,27 @@ class _BaseAuthPageState extends State<BaseAuthPage> {
               body: SafeArea(
                 child: SingleChildScrollView(
                   child: Padding(
-                    padding: const EdgeInsets.symmetric(
-                        horizontal: AppGap.extraLarge),
+                    padding:
+                        const EdgeInsets.symmetric(horizontal: AppSize.w24),
                     child: Column(
                       children: [
                         const Gap(height: 50, width: double.infinity),
                         Image.asset(AppIcon.logo, height: 50),
-                        const Gap(height: AppGap.medium),
+                        const Gap(height: AppSize.w16),
                         Text(
                           widget._title,
                           style: AppTextStyle.medium.copyWith(
                             color: AppColors.white,
-                            fontSize: _responsive
-                                .getResponsiveFontSize(AppFontSize.extraLarge),
+                            fontSize:
+                                _responsive.getResponsiveFontSize(AppSize.w20),
                           ),
                         ),
-                        const Gap(height: AppGap.extraSmall),
+                        const Gap(height: AppSize.w4),
                         Text(
                           widget._description,
                           style: AppTextStyle.regular.copyWith(
-                            fontSize: _responsive
-                                .getResponsiveFontSize(AppFontSize.medium),
+                            fontSize:
+                                _responsive.getResponsiveFontSize(AppSize.w16),
                           ),
                         ),
                         const Gap(height: 50),
@@ -118,37 +118,37 @@ class _BaseAuthPageState extends State<BaseAuthPage> {
                               buttonColor: Blue.secondary,
                               leading: Image.asset(
                                 AppIcon.google,
-                                width: AppIconSize.large,
+                                width: AppSize.w24,
                               ),
                               isLoading: state is GoogleSignInLoading,
                             );
                           },
                         ),
-                        const Gap(height: AppGap.extraLarge),
+                        const Gap(height: AppSize.w24),
                         Row(
                           children: [
                             const Flexible(
                               child: Divider(
                                 thickness: 1,
-                                endIndent: AppGap.normal,
+                                endIndent: AppSize.w12,
                               ),
                             ),
                             Text(
                               'OR',
                               style: AppTextStyle.regular.copyWith(
                                 fontSize: _responsive
-                                    .getResponsiveFontSize(AppFontSize.medium),
+                                    .getResponsiveFontSize(AppSize.w16),
                               ),
                             ),
                             const Flexible(
                               child: Divider(
                                 thickness: 1,
-                                indent: AppGap.normal,
+                                indent: AppSize.w12,
                               ),
                             ),
                           ],
                         ),
-                        const Gap(height: AppGap.large),
+                        const Gap(height: AppSize.w20),
                         widget._child,
                         Row(
                           crossAxisAlignment: CrossAxisAlignment.start,
@@ -175,7 +175,7 @@ class _BaseAuthPageState extends State<BaseAuthPage> {
                             ),
                           ],
                         ),
-                        const Gap(height: AppGap.extraLarge),
+                        const Gap(height: AppSize.w24),
                       ],
                     ),
                   ),

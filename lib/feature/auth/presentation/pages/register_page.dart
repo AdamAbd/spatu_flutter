@@ -55,26 +55,26 @@ class RegisterPageState extends State<RegisterPage> {
                     textFieldEntity: _textFieldList[0],
                     prefixImage: Image.asset(
                       AppIcon.profile,
-                      width: AppIconSize.large,
+                      width: AppSize.w24,
                     ),
                   ),
-                  const Gap(height: AppGap.medium),
+                  const Gap(height: AppSize.w16),
                   CustomTextFormField(
                     textFieldEntity: _textFieldList[1],
                     prefixImage: Image.asset(
                       AppIcon.email,
-                      width: AppIconSize.large,
+                      width: AppSize.w24,
                     ),
                   ),
-                  const Gap(height: AppGap.medium),
+                  const Gap(height: AppSize.w16),
                   CustomTextFormField(
                     textFieldEntity: _textFieldList[2],
                     prefixImage: Image.asset(
                       AppIcon.password,
-                      width: AppIconSize.large,
+                      width: AppSize.w24,
                     ),
                   ),
-                  const Gap(height: AppGap.dialog - 2),
+                  const Gap(height: AppSize.w56 - 2),
                   BlocConsumer<RegisterCubit, RegisterState>(
                     listener: (context, state) {
                       if (state is RegisterLoading) {
@@ -145,7 +145,7 @@ class RegisterPageState extends State<RegisterPage> {
                       );
                     },
                   ),
-                  const Gap(height: AppGap.extraLarge),
+                  const Gap(height: AppSize.w24),
                 ],
               ),
             ),

@@ -113,14 +113,14 @@ class CreateNewPasswordPageState extends State<CreateNewPasswordPage> {
                   textFieldEntity: _textFieldList[0],
                   prefixImage: Image.asset(
                     AppIcon.password,
-                    width: AppIconSize.large,
+                    width: AppSize.w24,
                   ),
                 ),
                 CustomTextFormField(
                   textFieldEntity: _textFieldList[1],
                   prefixImage: Image.asset(
                     AppIcon.password,
-                    width: AppIconSize.large,
+                    width: AppSize.w24,
                   ),
                   validator: (val) {
                     if (val != _textFieldList[0].textController.text) {

@@ -54,18 +54,18 @@ class _LoginPageState extends State<LoginPage> {
                     textFieldEntity: _textFieldList[0],
                     prefixImage: Image.asset(
                       AppIcon.email,
-                      width: AppIconSize.large,
+                      width: AppSize.w24,
                     ),
                   ),
-                  const Gap(height: AppGap.medium),
+                  const Gap(height: AppSize.w16),
                   CustomTextFormField(
                     textFieldEntity: _textFieldList[1],
                     prefixImage: Image.asset(
                       AppIcon.password,
-                      width: AppIconSize.large,
+                      width: AppSize.w24,
                     ),
                   ),
-                  const Gap(height: AppGap.medium),
+                  const Gap(height: AppSize.w16),
                   Align(
                     alignment: Alignment.centerRight,
                     child: Hyperlink(
@@ -77,7 +77,7 @@ class _LoginPageState extends State<LoginPage> {
                       },
                     ),
                   ),
-                  const Gap(height: AppGap.dialog - 2),
+                  const Gap(height: AppSize.w56 - 2),
                   BlocConsumer<LoginCubit, LoginState>(
                     listener: (context, state) {
                       if (state is LoginLoading) {
@@ -127,7 +127,7 @@ class _LoginPageState extends State<LoginPage> {
                       );
                     },
                   ),
-                  const Gap(height: AppGap.extraLarge),
+                  const Gap(height: AppSize.w24),
                 ],
               ),
             ),

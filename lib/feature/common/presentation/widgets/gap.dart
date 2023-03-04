@@ -5,8 +5,8 @@ import '../../utils/utils.dart';
 class SliverGap extends StatelessWidget {
   const SliverGap({
     Key? key,
-    double? height = AppGap.small,
-    double? width = AppGap.small,
+    double? height = AppSize.w8,
+    double? width = AppSize.w8,
   })  : _height = height,
         _width = width,
         super(key: key);
@@ -28,8 +28,8 @@ class SliverGap extends StatelessWidget {
 class Gap extends StatelessWidget {
   const Gap({
     Key? key,
-    double height = AppGap.small,
-    double width = AppGap.small,
+    double height = AppSize.w8,
+    double width = AppSize.w8,
   })  : _height = height,
         _width = width,
         super(key: key);

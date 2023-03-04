@@ -30,30 +30,30 @@ class BaseAuthInputPage extends StatelessWidget {
       child: Scaffold(
         appBar: AppBar(),
         bottomSheet: Container(
-          margin: const EdgeInsets.all(AppGap.medium),
-          height: AppButtonSize.large,
+          margin: const EdgeInsets.all(AppSize.w16),
+          height: AppSize.w48,
           width: double.infinity,
           child: _button,
         ),
         body: Column(
           crossAxisAlignment: CrossAxisAlignment.start,
           children: [
-            const Gap(height: AppGap.extraLarge),
+            const Gap(height: AppSize.w24),
             Padding(
-              padding: const EdgeInsets.only(left: AppGap.extraLarge),
+              padding: const EdgeInsets.only(left: AppSize.w24),
               child: Text(
                 _title,
                 style: AppTextStyle.medium.copyWith(
                   fontSize: _responsive.getResponsiveFontSize(
-                    AppFontSize.extraLarge,
+                    AppSize.w20,
                   ),
                 ),
               ),
             ),
-            const Gap(height: AppGap.extraLarge),
+            const Gap(height: AppSize.w24),
             Padding(
               padding: const EdgeInsets.symmetric(
-                horizontal: AppGap.extraLarge,
+                horizontal: AppSize.w24,
               ),
               child: Text.rich(
                 TextSpan(
@@ -62,22 +62,22 @@ class BaseAuthInputPage extends StatelessWidget {
                     TextSpan(
                       text: _moreDescription ?? '',
                       style: AppTextStyle.medium.copyWith(
-                        fontSize: _responsive
-                            .getResponsiveFontSize(AppFontSize.medium),
+                        fontSize:
+                            _responsive.getResponsiveFontSize(AppSize.w16),
                       ),
                     ),
                   ],
                 ),
                 style: AppTextStyle.regular.copyWith(
                   fontSize: _responsive.getResponsiveFontSize(
-                    AppFontSize.medium,
+                    AppSize.w16,
                   ),
                 ),
               ),
             ),
-            const Gap(height: AppGap.big + 6),
+            const Gap(height: AppSize.w36),
             Padding(
-              padding: const EdgeInsets.symmetric(horizontal: AppGap.medium),
+              padding: const EdgeInsets.symmetric(horizontal: AppSize.w16),
               child: Column(
                 children: _children,
               ),

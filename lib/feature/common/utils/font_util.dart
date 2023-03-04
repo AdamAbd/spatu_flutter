@@ -17,51 +17,51 @@ class AppFontWeight {
 class AppTextStyle {
   /// FontWeight.w300
   static final TextStyle light = GoogleFonts.inter(
-    fontSize: AppFontSize.normal,
+    fontSize: AppSize.w14,
     fontWeight: AppFontWeight.light,
-    color: Blue.primary,
+    color: AppColors.white,
   );
 
   /// FontWeight.w400
   static final TextStyle regular = GoogleFonts.inter(
-    fontSize: AppFontSize.normal,
+    fontSize: AppSize.w14,
     fontWeight: AppFontWeight.regular,
-    color: Blue.primary,
+    color: AppColors.white,
   );
 
   /// FontWeight.w500
   static final TextStyle medium = GoogleFonts.inter(
-    fontSize: AppFontSize.normal,
+    fontSize: AppSize.w14,
     fontWeight: AppFontWeight.medium,
     color: AppColors.white,
   );
 
   /// FontWeight.w600
   static final TextStyle semiBold = GoogleFonts.inter(
-    fontSize: AppFontSize.normal,
+    fontSize: AppSize.w14,
     fontWeight: AppFontWeight.semiBold,
-    color: Blue.primary,
+    color: AppColors.white,
   );
 
   /// FontWeight.w700
   static final TextStyle bold = GoogleFonts.inter(
-    fontSize: AppFontSize.normal,
+    fontSize: AppSize.w14,
     fontWeight: AppFontWeight.bold,
-    color: Blue.primary,
+    color: AppColors.white,
   );
 
   /// FontWeight.w800
   static final TextStyle extraBold = GoogleFonts.inter(
-    fontSize: AppFontSize.normal,
+    fontSize: AppSize.w14,
     fontWeight: AppFontWeight.extraBold,
-    color: Blue.primary,
+    color: AppColors.white,
   );
 
   /// FontWeight.w900
   static final TextStyle black = GoogleFonts.inter(
-    fontSize: AppFontSize.normal,
+    fontSize: AppSize.w14,
     fontWeight: AppFontWeight.black,
-    color: Blue.primary,
+    color: AppColors.white,
   );
 }
 
@@ -69,14 +69,14 @@ class AppTextStyle {
 class ButtonTextStyle {
   /// FontWeight.w300
   static final TextStyle light = GoogleFonts.poppins(
-    fontSize: AppFontSize.normal,
+    fontSize: AppSize.w14,
     fontWeight: AppFontWeight.light,
     color: AppColors.white,
   );
 
   /// FontWeight.w500
   static final TextStyle medium = GoogleFonts.poppins(
-    fontSize: AppFontSize.normal,
+    fontSize: AppSize.w14,
     fontWeight: AppFontWeight.medium,
     color: Blue.tertiary,
   );
@@ -86,7 +86,7 @@ class ButtonTextStyle {
 class TextFieldTextStyle {
   /// FontWeight.w700
   static final TextStyle bold = GoogleFonts.urbanist(
-    fontSize: AppFontSize.extraLarge,
+    fontSize: AppSize.w20,
     fontWeight: AppFontWeight.bold,
     color: AppColors.white,
   );

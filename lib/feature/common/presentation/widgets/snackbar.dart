@@ -14,7 +14,7 @@ void showSnackBar(
         message,
         style: ButtonTextStyle.medium.copyWith(
           fontSize: _responsive.getResponsiveFontSize(
-            AppFontSize.normal,
+            AppSize.w14,
           ),
           fontWeight: AppFontWeight.semiBold,
           color: AppColors.white,

@@ -12,7 +12,7 @@ class Hyperlink extends StatelessWidget {
     FontWeight fontWeight = AppFontWeight.bold,
     bool isUnderlined = false,
     bool isItalic = false,
-    double fontSize = AppFontSize.normal,
+    double fontSize = AppSize.w14,
   })  : _onTap = onTap,
         _label = label,
         _labelColor = labelColor,
@@ -38,11 +38,11 @@ class Hyperlink extends StatelessWidget {
       onTap: _onTap,
       child: SizedBox(
         height: _responsive.getResponsiveSize(
-          AppButtonSize.small,
+          AppSize.w32,
         ),
         // padding: const EdgeInsets.symmetric(
-        //   vertical: AppGap.extraSmall,
-        //   horizontal: AppGap.small,
+        //   vertical: AppSize.w4,
+        //   horizontal: AppSize.w8,
         // ),
         child: Text(
           _label,
@@ -56,7 +56,7 @@ class Hyperlink extends StatelessWidget {
     // } else {
     //   return SizedBox(
     //     height: _responsive.getResponsiveSize(
-    //       AppButtonSize.small,
+    //       AppSize.w32,
     //     ),
     //     child: CupertinoButton(
     //       padding: EdgeInsets.zero,
@@ -119,14 +119,14 @@ class Hyperlink extends StatelessWidget {
 //           ),
 //         ),
 //         const Gap(
-//           width: AppGap.normal,
+//           width: AppSize.w12,
 //         ),
 //         Expanded(
 //           child: Text(
 //             _text.trim().toUpperCase(),
 //             style: AppTextStyle.medium.copyWith(
 //               fontSize: _responsive.getResponsiveSize(
-//                 AppFontSize.normal,
+//                 AppSize.w14,
 //               ),
 //             ),
 //             maxLines: 2,

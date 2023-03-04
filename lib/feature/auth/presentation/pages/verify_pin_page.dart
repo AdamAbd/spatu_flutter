@@ -84,7 +84,7 @@ class _VerifyPinPageState extends State<VerifyPinPage> {
               (index) => Expanded(
                 child: Padding(
                   padding: const EdgeInsets.symmetric(
-                    horizontal: AppGap.extraSmall,
+                    horizontal: AppSize.w4,
                   ),
                   child: CustomOTPTextFormField(
                     textFieldEntity: _textFieldList[index],

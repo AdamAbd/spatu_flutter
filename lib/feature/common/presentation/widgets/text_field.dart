@@ -71,7 +71,7 @@ class _CustomTextFormFieldState extends State<CustomTextFormField> {
       maxLines: widget._maxLines,
       style: AppTextStyle.light.copyWith(
         fontSize: _responsive.getResponsiveSize(
-          AppFontSize.normal,
+          AppSize.w14,
         ),
         color: TextFieldColors.text,
       ),
@@ -79,14 +79,14 @@ class _CustomTextFormFieldState extends State<CustomTextFormField> {
         hintText: widget._textFieldEntity.hint,
         hintStyle: AppTextStyle.light.copyWith(
           fontSize: _responsive.getResponsiveSize(
-            AppFontSize.normal,
+            AppSize.w14,
           ),
           color: TextFieldColors.hint,
         ),
         errorText: _error?.toUpperCase(),
         helperText: _error?.toUpperCase(),
         helperStyle: AppTextStyle.regular.copyWith(
-          fontSize: AppFontSize.small,
+          fontSize: AppSize.w12,
           color: StateColors.error,
         ),
         fillColor: widget._textFieldEntity.isEnabled
@@ -96,7 +96,7 @@ class _CustomTextFormFieldState extends State<CustomTextFormField> {
         prefixIcon: Padding(
           padding: EdgeInsets.symmetric(
             horizontal: _responsive.getResponsiveSize(
-              AppGap.normal,
+              AppSize.w12,
             ),
           ),
           child: widget._prefixImage,
@@ -112,12 +112,12 @@ class _CustomTextFormFieldState extends State<CustomTextFormField> {
             child: Padding(
               padding: EdgeInsets.symmetric(
                 horizontal: _responsive.getResponsiveSize(
-                  AppGap.normal,
+                  AppSize.w12,
                 ),
               ),
               child: Image.asset(
                 _isObscureText ? AppIcon.show : AppIcon.hide,
-                width: AppIconSize.large,
+                width: AppSize.w24,
               ),
               // child: SvgPicture.asset(
               //   _isObscureText
@@ -187,7 +187,7 @@ class CustomTextFormFieldWithSuffix extends StatelessWidget {
           focusNode: _textFieldEntity.focusNode,
           style: AppTextStyle.regular.copyWith(
             fontSize: _responsive.getResponsiveSize(
-              AppFontSize.normal,
+              AppSize.w14,
             ),
             color: TextFieldColors.text,
           ),
@@ -204,7 +204,7 @@ class CustomTextFormFieldWithSuffix extends StatelessWidget {
               child: Padding(
                 padding: EdgeInsets.all(
                   _responsive.getResponsiveSize(
-                    AppGap.medium,
+                    AppSize.w16,
                   ),
                 ),
                 // child: SvgPicture.asset(
@@ -234,7 +234,7 @@ class CustomSearchTextField extends StatefulWidget {
     required TextFieldEntity textFieldEntity,
     required Function(String) onChanged,
     required Function() onEditingComplete,
-    Color backgroundColor = Grey.secondary,
+    Color backgroundColor = Black.tertiary,
     bool? autofocus,
   })  : _textFieldEntity = textFieldEntity,
         _onChanged = onChanged,
@@ -273,62 +273,53 @@ class _CustomSearchTextFieldState extends State<CustomSearchTextField> {
           focusNode: widget._textFieldEntity.focusNode,
           style: AppTextStyle.regular.copyWith(
             fontSize: _responsive.getResponsiveSize(
-              AppFontSize.normal,
+              AppSize.w14,
             ),
-            color: TextFieldColors.text,
           ),
           onEditingComplete: widget._onEditingComplete,
           onChanged: (value) {
             widget._onChanged(value);
           },
           decoration: InputDecoration(
-            hintText: widget._textFieldEntity.hint.toUpperCase(),
+            hintText: widget._textFieldEntity.hint,
             fillColor: widget._backgroundColor,
+            contentPadding: const EdgeInsets.symmetric(vertical: AppSize.w16),
             enabledBorder: const OutlineInputBorder(
               borderRadius: BorderRadius.all(
-                Radius.circular(AppBorderRadius.small),
+                Radius.circular(AppSize.w6),
               ),
               borderSide: BorderSide(
-                color: AppColors.white,
+                color: Black.tertiary,
               ),
             ),
             focusedBorder: const OutlineInputBorder(
               borderRadius: BorderRadius.all(
-                Radius.circular(AppBorderRadius.small),
+                Radius.circular(AppSize.w6),
               ),
               borderSide: BorderSide(
-                color: AppColors.white,
+                color: Yellow.primary,
               ),
             ),
             focusedErrorBorder: const OutlineInputBorder(
               borderRadius: BorderRadius.all(
-                Radius.circular(AppBorderRadius.small),
+                Radius.circular(AppSize.w6),
               ),
               borderSide: BorderSide(
-                color: AppColors.white,
+                color: StateColors.error,
               ),
             ),
             errorBorder: const OutlineInputBorder(
               borderRadius: BorderRadius.all(
-                Radius.circular(AppBorderRadius.small),
+                Radius.circular(AppSize.w6),
               ),
               borderSide: BorderSide(
-                color: AppColors.white,
+                color: StateColors.error,
               ),
             ),
-            prefixIcon: Padding(
-              padding: EdgeInsets.symmetric(
-                horizontal: _responsive.getResponsiveSize(
-                  AppGap.small,
-                ),
-              ),
-              child: Icon(
-                CupertinoIcons.search,
-                color: TextFieldColors.iconActive,
-                size: _responsive.getResponsiveSize(
-                  AppIconSize.small,
-                ),
-              ),
+            prefixIcon: Icon(
+              CupertinoIcons.search,
+              color: TextFieldColors.iconActive,
+              size: _responsive.getResponsiveSize(AppSize.w24),
             ),
           ),
           textInputAction: widget._textFieldEntity.textInputAction,

@@ -1,165 +1,107 @@
-/// Utilities for controlling the size of the gap in elements.
-class AppGap {
-  /// gap-size: 2.0;
-  static const double tiny = 2;
+/// Utilities for controlling the size.
+class AppSize {
+  /// size: 0;
+  static const double w0 = 0;
 
-  /// gap-size: 4.0;
-  static const double extraSmall = 4;
+  /// size: 1.0;
+  static const double w1 = 1.0;
 
-  /// gap-size: 8.0;
-  static const double small = 8;
+  /// size: 2.0;
+  static const double w2 = 2.0;
 
-  /// gap-size: 12.0;
-  static const double normal = 12;
+  /// size: 4.0;
+  static const double w4 = 4.0;
 
-  /// gap-size: 16.0;
-  static const double medium = 16;
+  /// size: 6.0;
+  static const double w6 = 6.0;
 
-  /// gap-size: 20.0;
-  static const double large = 20;
+  /// size: 8.0;
+  static const double w8 = 8.0;
 
-  /// gap-size: 24.0;
-  static const double extraLarge = 24;
+  /// size: 10.0;
+  static const double w10 = 10.0;
 
-  /// gap-size: 30.0;
-  static const double big = 30;
+  /// size: 12.0;
+  static const double w12 = 12.0;
 
-  /// gap-size: 56.0;
-  static const double dialog = 56;
+  /// size: 14.0;
+  static const double w14 = 14.0;
 
-  /// gap-size: 72.0;
-  static const double extraBig = 72;
+  /// size: 16.0;
+  static const double w16 = 16.0;
 
-  /// gap-size: 148.0
-  static const double giant = 148;
-}
+  /// size: 20.0;
+  static const double w20 = 20.0;
 
-/// Utilities for controlling the size of the font in text.
-class AppFontSize {
-  /// font-size: 6.0;
-  static const double tiny = 6;
+  /// size: 24.0;
+  static const double w24 = 24.0;
 
-  /// font-size: 10.0;
-  static const double extraSmall = 10;
+  /// size: 28.0;
+  static const double w28 = 28.0;
 
-  /// font-size: 12.0;
-  static const double small = 12;
+  /// size: 32.0;
+  static const double w32 = 32.0;
 
-  /// font-size: 14.0;
-  static const double normal = 14;
+  /// size: 36.0;
+  static const double w36 = 36.0;
 
-  /// font-size: 16.0;
-  static const double medium = 16;
+  /// size: 40.0;
+  static const double w40 = 40.0;
 
-  /// font-size: 18.0;
-  static const double large = 18;
+  /// size: 44.0;
+  static const double w44 = 44.0;
 
-  /// font-size: 20.0;
-  static const double extraLarge = 20;
+  /// size: 48.0;
+  static const double w48 = 48.0;
 
-  /// font-size: 24.0;
-  static const double big = 24;
+  /// size: 56.0;
+  static const double w56 = 56.0;
 
-  /// font-size: 28.0;
-  static const double extraBig = 28;
-}
+  /// size: 64.0;
+  static const double w64 = 64.0;
 
-/// Utilities for controlling the size of radius border
-class AppBorderRadius {
-  /// border-radius: 4.0;
-  static const double tiny = 4;
+  /// size: 80.0;
+  static const double w80 = 80.0;
 
-  /// border-radius: 6.0;
-  static const double extraSmall = 6;
+  /// size: 96.0;
+  static const double w96 = 96.0;
 
-  /// border-radius: 8.0;
-  static const double small = 8;
+  /// size: 112.0;
+  static const double w112 = 112.0;
 
-  /// border-radius: 12.0;
-  static const double normal = 12;
+  /// size: 128.0;
+  static const double w128 = 128.0;
 
-  /// border-radius: 16.0;
-  static const double medium = 16;
+  /// size: 144.0;
+  static const double w144 = 144.0;
 
-  /// border-radius: 20.0;
-  static const double large = 20;
+  /// size: 160.0;
+  static const double w160 = 160.0;
 
-  /// border-radius: 24.0;
-  static const double extraLarge = 24;
+  /// size: 176.0;
+  static const double w176 = 176.0;
 
-  /// border-radius: 32.0;
-  static const double big = 32;
-}
+  /// size: 192.0;
+  static const double w192 = 192.0;
 
-/// Utilities for controlling the size of the icon.
-class AppIconSize {
-  /// icon-size: 8.0;
-  static const double extraTiny = 8;
+  /// size: 208.0;
+  static const double w208 = 208.0;
 
-  /// icon-size: 12.0;
-  static const double tiny = 12;
+  /// size: 224.0;
+  static const double w224 = 224.0;
 
-  /// icon-size: 16.0;
-  static const double extraSmall = 16;
+  /// size: 240.0;
+  static const double w240 = 240.0;
 
-  /// icon-size: 18.0;
-  static const double small = 18;
+  /// size: 256.0;
+  static const double w256 = 256.0;
 
-  /// icon-size: 20.0;
-  static const double normal = 20;
+  /// size: 288.0;
+  static const double w288 = 288.0;
 
-  /// icon-size: 22.0;
-  static const double medium = 22;
+  /// size: 320.0;
+  static const double w320 = 320.0;
 
-  /// icon-size: 24.0;
-  static const double large = 24;
-
-  /// icon-size: 26.0;
-  static const double extraLarge = 26;
-
-  /// icon-size: 32.0;
-  static const double big = 32;
-
-  /// icon-size: 36.0;
-  static const double extraBig = 36;
-
-  /// icon-size: 40.0;
-  static const double giant = 40;
-
-  /// icon-size: 64.0;
-  static const double extraGiant = 64;
-
-  /// icon-size: 96.0;
-  static const double dialog = 96;
-}
-
-class AppLogoSize {
-  static const double extraSmall = 16;
-  static const double small = 18;
-  static const double normal = 48;
-  static const double medium = 22;
-  static const double large = 24;
-  static const double extraLarge = 26;
-  static const double big = 48;
-}
-
-class AppButtonSize {
-  static const double extraSmall = 28;
-  static const double small = 32;
-  static const double normal = 46;
-  static const double large = 48;
-}
-
-class AppTextFieldSize {
-  static const double extraSmall = 28;
-  static const double small = 32;
-  static const double normal = 46;
-  static const double large = 48;
-}
-
-class AppIndicatorSize {
-  static const double inactive = 8;
-  static const double inactiveSmall = 4;
-  static const double active = 10;
-  static const double activeSmall = 4;
+  /// size: 384.0;
+  static const double w384 = 384.0;
 }

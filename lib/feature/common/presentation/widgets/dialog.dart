@@ -24,8 +24,8 @@ extension CustomDialog on context.BuildContext {
           children: [
             Padding(
               padding: const EdgeInsets.symmetric(
-                horizontal: AppGap.big,
-                vertical: AppGap.small,
+                horizontal: AppSize.w32,
+                vertical: AppSize.w8,
               ),
               child: Align(
                 alignment: Alignment.centerRight,
@@ -54,18 +54,18 @@ extension CustomDialog on context.BuildContext {
               backgroundColor: AppColors.white,
               elevation: 0,
               shape: RoundedRectangleBorder(
-                borderRadius: BorderRadius.circular(AppGap.small),
+                borderRadius: BorderRadius.circular(AppSize.w8),
               ),
               insetPadding: const EdgeInsets.symmetric(
-                horizontal: AppGap.big,
+                horizontal: AppSize.w32,
               ),
               child: Padding(
                 padding: const EdgeInsets.all(
-                  AppGap.normal,
+                  AppSize.w12,
                 ),
                 child: InteractiveViewer(
                   child: ClipRRect(
-                    borderRadius: BorderRadius.circular(AppGap.small),
+                    borderRadius: BorderRadius.circular(AppSize.w8),
                     child: Visibility(
                       visible: isNetwork,
                       replacement: Image.file(
@@ -109,8 +109,8 @@ extension CustomDialog on context.BuildContext {
   //         children: [
   //           Padding(
   //             padding: const EdgeInsets.symmetric(
-  //               horizontal: AppGap.big,
-  //               vertical: AppGap.small,
+  //               horizontal: AppSize.w32,
+  //               vertical: AppSize.w8,
   //             ),
   //             child: Align(
   //               alignment: Alignment.centerRight,
@@ -129,22 +129,22 @@ extension CustomDialog on context.BuildContext {
   //             backgroundColor: AppColors.white,
   //             elevation: 0,
   //             shape: RoundedRectangleBorder(
-  //               borderRadius: BorderRadius.circular(AppGap.small),
+  //               borderRadius: BorderRadius.circular(AppSize.w8),
   //             ),
   //             insetPadding: const EdgeInsets.symmetric(
-  //               horizontal: AppGap.big,
+  //               horizontal: AppSize.w32,
   //             ),
   //             child: SingleChildScrollView(
   //               child: Padding(
   //                 padding: const EdgeInsets.all(
-  //                   AppGap.normal,
+  //                   AppSize.w12,
   //                 ),
   //                 child: Stack(
   //                   children: [
   //                     InteractiveViewer(
   //                       child: ClipRRect(
   //                         borderRadius:
-  //                             BorderRadius.circular(AppGap.small),
+  //                             BorderRadius.circular(AppSize.w8),
   //                         child: Image.file(
   //                           file,
   //                           width: MediaQuery.of(context).size.width *
@@ -170,9 +170,9 @@ extension CustomDialog on context.BuildContext {
   //             padding: EdgeInsets.symmetric(
   //               horizontal:
   //                   MediaQuery.of(context).orientation == Orientation.portrait
-  //                       ? AppGap.big
+  //                       ? AppSize.w32
   //                       : 0,
-  //               vertical: AppGap.small,
+  //               vertical: AppSize.w8,
   //             ),
   //             child: ButtonPrimary(
   //               buttonColor: AppColors.purple,
@@ -205,10 +205,10 @@ extension CustomDialog on context.BuildContext {
           backgroundColor: AppColors.white,
           elevation: 0,
           shape: RoundedRectangleBorder(
-            borderRadius: BorderRadius.circular(AppGap.small),
+            borderRadius: BorderRadius.circular(AppSize.w8),
           ),
           insetPadding: const EdgeInsets.symmetric(
-            horizontal: AppGap.big,
+            horizontal: AppSize.w32,
           ),
           child: AspectRatio(
             aspectRatio: 3 / 2,
@@ -217,7 +217,7 @@ extension CustomDialog on context.BuildContext {
               children: [
                 Lottie.asset(
                   AppLottie.checkmark,
-                  height: AppIconSize.dialog,
+                  height: AppSize.w96,
                   fit: BoxFit.fitWidth,
                   repeat: true,
                   animate: true,
@@ -231,11 +231,11 @@ extension CustomDialog on context.BuildContext {
                     fontSize: _theme.textTheme.subtitle1!.fontSize,
                   ),
                 ),
-                const Gap(height: AppGap.medium),
+                const Gap(height: AppSize.w16),
                 Container(
                   width: double.infinity,
                   padding: const EdgeInsets.symmetric(
-                    horizontal: AppGap.medium,
+                    horizontal: AppSize.w16,
                   ),
                   child: ButtonPrimary(
                     buttonText,
@@ -247,7 +247,7 @@ extension CustomDialog on context.BuildContext {
                     labelColor: AppColors.white,
                   ),
                 ),
-                const Gap(height: AppGap.medium),
+                const Gap(height: AppSize.w16),
               ],
             ),
           ),
@@ -274,10 +274,10 @@ extension CustomDialog on context.BuildContext {
           backgroundColor: AppColors.white,
           elevation: 0,
           shape: RoundedRectangleBorder(
-            borderRadius: BorderRadius.circular(AppGap.small),
+            borderRadius: BorderRadius.circular(AppSize.w8),
           ),
           insetPadding: const EdgeInsets.symmetric(
-            horizontal: AppGap.big,
+            horizontal: AppSize.w32,
           ),
           child: AspectRatio(
             aspectRatio: 3 / 2,
@@ -285,10 +285,10 @@ extension CustomDialog on context.BuildContext {
               mainAxisAlignment: MainAxisAlignment.center,
               children: [
                 SizedBox(
-                  width: AppIconSize.dialog * 1.1,
+                  width: AppSize.w96 * 1.1,
                   child: Lottie.asset(
                     AppLottie.fail,
-                    height: AppIconSize.dialog,
+                    height: AppSize.w96,
                     fit: BoxFit.fitWidth,
                     repeat: true,
                     animate: true,
@@ -303,11 +303,11 @@ extension CustomDialog on context.BuildContext {
                     fontSize: _theme.textTheme.subtitle1!.fontSize,
                   ),
                 ),
-                const Gap(height: AppGap.medium),
+                const Gap(height: AppSize.w16),
                 Container(
                   width: double.infinity,
                   padding: const EdgeInsets.symmetric(
-                    horizontal: AppGap.medium,
+                    horizontal: AppSize.w16,
                   ),
                   child: ButtonPrimary(
                     buttonText,
@@ -319,7 +319,7 @@ extension CustomDialog on context.BuildContext {
                     labelColor: AppColors.white,
                   ),
                 ),
-                const Gap(height: AppGap.medium),
+                const Gap(height: AppSize.w16),
               ],
             ),
           ),
@@ -349,20 +349,20 @@ extension CustomDialog on context.BuildContext {
           backgroundColor: AppColors.white,
           elevation: 0,
           shape: RoundedRectangleBorder(
-            borderRadius: BorderRadius.circular(AppGap.small),
+            borderRadius: BorderRadius.circular(AppSize.w8),
           ),
           insetPadding: const EdgeInsets.symmetric(
-            horizontal: AppGap.big,
+            horizontal: AppSize.w32,
           ),
           child: Padding(
             padding: const EdgeInsets.symmetric(
-              horizontal: AppGap.medium,
+              horizontal: AppSize.w16,
             ),
             child: Column(
               mainAxisSize: MainAxisSize.min,
               children: [
                 const Gap(
-                  height: AppGap.medium,
+                  height: AppSize.w16,
                 ),
                 Icon(
                   Icons.info_rounded,
@@ -370,11 +370,11 @@ extension CustomDialog on context.BuildContext {
                   size: 72,
                 ),
                 const Gap(
-                  height: AppGap.medium,
+                  height: AppSize.w16,
                 ),
                 Padding(
                   padding: const EdgeInsets.symmetric(
-                    horizontal: AppGap.medium,
+                    horizontal: AppSize.w16,
                   ),
                   child: Column(
                     children: [
@@ -387,7 +387,7 @@ extension CustomDialog on context.BuildContext {
                         ),
                       ),
                       const Gap(
-                        height: AppGap.medium / 2,
+                        height: AppSize.w16 / 2,
                       ),
                       Text(
                         messageBody,
@@ -401,11 +401,11 @@ extension CustomDialog on context.BuildContext {
                   ),
                 ),
                 const Gap(
-                  height: AppGap.medium,
+                  height: AppSize.w16,
                 ),
                 Padding(
                   padding: const EdgeInsets.symmetric(
-                    horizontal: AppGap.medium,
+                    horizontal: AppSize.w16,
                   ),
                   child: Row(
                     mainAxisAlignment: MainAxisAlignment.center,
@@ -419,7 +419,7 @@ extension CustomDialog on context.BuildContext {
                         ),
                       ),
                       const Gap(
-                        width: AppGap.medium / 2,
+                        width: AppSize.w16 / 2,
                       ),
                       Expanded(
                         child: ButtonPrimary(
@@ -433,7 +433,7 @@ extension CustomDialog on context.BuildContext {
                   ),
                 ),
                 const Gap(
-                  height: AppGap.medium,
+                  height: AppSize.w16,
                 ),
               ],
             ),
@@ -459,10 +459,10 @@ extension CustomDialog on context.BuildContext {
           backgroundColor: AppColors.white,
           elevation: 0,
           shape: RoundedRectangleBorder(
-            borderRadius: BorderRadius.circular(AppGap.small),
+            borderRadius: BorderRadius.circular(AppSize.w8),
           ),
           insetPadding: const EdgeInsets.symmetric(
-            horizontal: AppGap.big,
+            horizontal: AppSize.w32,
           ),
           child: AspectRatio(
             aspectRatio: 3 / 2,
@@ -473,18 +473,17 @@ extension CustomDialog on context.BuildContext {
                   "Loading...",
                   style: AppTextStyle.semiBold.copyWith(
                     color: AppColors.black,
-                    fontSize:
-                        _responsive.getResponsiveFontSize(AppFontSize.big),
+                    fontSize: _responsive.getResponsiveFontSize(AppSize.w24),
                   ),
                 ),
                 SizedBox(
                   width: _responsive.getResponsiveSize(
-                    AppIconSize.dialog * 1.5,
+                    AppSize.w96 * 1.5,
                   ),
                   child: Lottie.asset(
                     AppLottie.loading,
                     height: _responsive.getResponsiveSize(
-                      AppIconSize.dialog * 1.2,
+                      AppSize.w96 * 1.2,
                     ),
                     fit: BoxFit.fitWidth,
                     repeat: true,
