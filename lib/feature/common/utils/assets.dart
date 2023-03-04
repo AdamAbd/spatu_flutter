@@ -6,16 +6,21 @@ class AppIcon {
   static const show = './assets/icons/show.png';
   static const hide = './assets/icons/hide.png';
   static const profile = './assets/icons/profile.png';
-  static const illClockInClockOut = './assets/icons/ic_work.svg';
-  static const illClockInClockOutEarlyOnTime =
-      './assets/icons/ic_work_early_ontime.svg';
-  static const illClockInClockOutLate = './assets/icons/ic_work_late.svg';
+  static const home = './assets/icons/home.svg';
+  static const homeActive = './assets/icons/home_active.svg';
+  static const discovery = './assets/icons/discovery.svg';
+  static const discoveryActive = './assets/icons/discovery_active.svg';
+  static const heart = './assets/icons/heart.svg';
+  static const heartActive = './assets/icons/heart_active.svg';
+  static const notification = './assets/icons/notification.svg';
+  static const notificationActive = './assets/icons/notification_active.svg';
+  static const profiles = './assets/icons/profile.svg';
+  static const profileActive = './assets/icons/profile_active.svg';
 }
 
 class AppIllustration {
   static const check = "./assets/illustrations/check.png";
   static const banner = "./assets/illustrations/banner.png";
-  static const ill404 = './assets/illustrations/ill_logo.png';
   static const dummyNetwork =
       'https://images.unsplash.com/photo-1438761681033-6461ffad8d80?ixlib=rb-1.2.1&ixid=MnwxMjA3fDB8MHxzZWFyY2h8Mnx8cGVyc29ufGVufDB8fDB8fA%3D%3D&auto=format&fit=crop&w=800&q=60';
 }

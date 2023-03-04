@@ -3,8 +3,8 @@ import 'package:spatu_flutter/feature/feature.dart';
 
 class BottomNavigationEntity {
   final String label;
-  final IconData icon;
-  final IconData activeIcon;
+  final String icon;
+  final String activeIcon;
 
   const BottomNavigationEntity({
     required this.label,
@@ -15,28 +15,28 @@ class BottomNavigationEntity {
   static const list = [
     BottomNavigationEntity(
       label: 'Home',
-      icon: Icons.home_outlined,
-      activeIcon: Icons.home_rounded,
+      icon: AppIcon.home,
+      activeIcon: AppIcon.homeActive,
     ),
     BottomNavigationEntity(
-      label: 'Search',
-      icon: Icons.search_outlined,
-      activeIcon: Icons.search_rounded,
+      label: 'Discovery',
+      icon: AppIcon.discovery,
+      activeIcon: AppIcon.discoveryActive,
     ),
     BottomNavigationEntity(
-      label: 'Love',
-      icon: Icons.favorite_outline,
-      activeIcon: Icons.favorite_rounded,
+      label: 'Heart',
+      icon: AppIcon.heart,
+      activeIcon: AppIcon.heartActive,
     ),
     BottomNavigationEntity(
       label: 'Notification',
-      icon: Icons.notifications_none_rounded,
-      activeIcon: Icons.notifications_rounded,
+      icon: AppIcon.notification,
+      activeIcon: AppIcon.notificationActive,
     ),
     BottomNavigationEntity(
       label: 'Profile',
-      icon: Icons.person_outline,
-      activeIcon: Icons.person_rounded,
+      icon: AppIcon.profiles,
+      activeIcon: AppIcon.profileActive,
     ),
   ];
 }

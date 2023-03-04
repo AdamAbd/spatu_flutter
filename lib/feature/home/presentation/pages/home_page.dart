@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
+import 'package:flutter_svg/svg.dart';
 
 import 'package:spatu_flutter/feature/feature.dart';
 import 'package:spatu_flutter/locator.dart';
@@ -105,17 +106,20 @@ class _HomePageState extends State<HomePage> {
                   curve: Curves.ease,
                 );
               },
-              backgroundColor: Colors.transparent,
+              backgroundColor: Black.secondary,
               elevation: 0,
               showSelectedLabels: false,
               showUnselectedLabels: false,
               type: BottomNavigationBarType.fixed,
               items: BottomNavigationEntity.list.map((menu) {
                 return BottomNavigationBarItem(
-                  icon: Icon(menu.icon, color: Blue.primary),
-                  activeIcon: Icon(
+                  icon: SvgPicture.asset(
+                    menu.icon,
+                    width: AppSize.w24,
+                  ),
+                  activeIcon: SvgPicture.asset(
                     menu.activeIcon,
-                    color: Yellow.primary,
+                    width: AppSize.w24,
                   ),
                   label: menu.label,
                 );
