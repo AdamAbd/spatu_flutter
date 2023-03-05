@@ -1,4 +1,6 @@
 import 'package:flutter/material.dart';
+import 'package:flutter_svg/svg.dart';
+
 import 'package:spatu_flutter/feature/feature.dart';
 
 class CustomSearchBar extends StatelessWidget {
@@ -31,9 +33,9 @@ class CustomSearchBar extends StatelessWidget {
             padding: const EdgeInsets.symmetric(
               horizontal: AppSize.w16,
             ),
-            child: const Icon(
-              Icons.shopping_cart_outlined,
-              color: AppColors.white,
+            child: SvgPicture.asset(
+              AppIcon.buy,
+              width: AppSize.w24,
             ),
           ),
         ],

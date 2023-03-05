@@ -16,6 +16,7 @@ class AppIcon {
   static const notificationActive = './assets/icons/notification_active.svg';
   static const profiles = './assets/icons/profile.svg';
   static const profileActive = './assets/icons/profile_active.svg';
+  static const buy = './assets/icons/buy.svg';
 }
 
 class AppIllustration {
