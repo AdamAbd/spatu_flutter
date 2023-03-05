@@ -31,6 +31,9 @@ class MyApp extends StatelessWidget {
     return MultiBlocProvider(
       providers: [
         BlocProvider.value(
+          value: locator.sl<MenuCubit>(),
+        ),
+        BlocProvider.value(
           value: locator.sl<PageStackCubit>(),
         ),
         BlocProvider.value(

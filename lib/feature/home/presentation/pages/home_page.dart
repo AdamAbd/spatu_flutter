@@ -13,8 +13,6 @@ class HomePage extends StatefulWidget {
 }
 
 class _HomePageState extends State<HomePage> {
-  int currentIndex = 0;
-
   PageController pageController = PageController();
 
   @override
@@ -71,60 +69,61 @@ class _HomePageState extends State<HomePage> {
           create: (context) => sl<LogoutCubit>(),
         ),
       ],
-      child: Builder(
-        builder: (context) {
-          return Scaffold(
-            body: PageView(
-              controller: pageController,
-              onPageChanged: (value) {
-                setState(() {
-                  currentIndex = value;
-                });
-              },
-              children: [
-                const DashboardScreen(),
-                Container(
-                  color: Colors.red,
+      child: BlocBuilder<MenuCubit, MenuState>(
+        builder: (context, menuState) {
+          return Builder(
+            builder: (context) {
+              return Scaffold(
+                body: PageView(
+                  controller: pageController,
+                  onPageChanged: (index) =>
+                      context.read<MenuCubit>().changeIndex(index),
+                  children: [
+                    const DashboardScreen(),
+                    Container(
+                      color: Colors.red,
+                    ),
+                    Container(
+                      color: Colors.green,
+                    ),
+                    Container(
+                      color: Colors.blue,
+                    ),
+                    Container(
+                      color: Colors.amber,
+                    ),
+                  ],
                 ),
-                Container(
-                  color: Colors.green,
+                bottomNavigationBar: BottomNavigationBar(
+                  currentIndex: menuState.index,
+                  onTap: (index) {
+                    pageController.animateToPage(
+                      index,
+                      duration: const Duration(milliseconds: 500),
+                      curve: Curves.ease,
+                    );
+                  },
+                  backgroundColor: Black.secondary,
+                  elevation: 0,
+                  showSelectedLabels: false,
+                  showUnselectedLabels: false,
+                  type: BottomNavigationBarType.fixed,
+                  items: BottomNavigationEntity.list.map((menu) {
+                    return BottomNavigationBarItem(
+                      icon: SvgPicture.asset(
+                        menu.icon,
+                        width: AppSize.w24,
+                      ),
+                      activeIcon: SvgPicture.asset(
+                        menu.activeIcon,
+                        width: AppSize.w24,
+                      ),
+                      label: menu.label,
+                    );
+                  }).toList(),
                 ),
-                Container(
-                  color: Colors.blue,
-                ),
-                Container(
-                  color: Colors.amber,
-                ),
-              ],
-            ),
-            bottomNavigationBar: BottomNavigationBar(
-              currentIndex: currentIndex,
-              onTap: (index) {
-                pageController.animateToPage(
-                  index,
-                  duration: const Duration(milliseconds: 500),
-                  curve: Curves.ease,
-                );
-              },
-              backgroundColor: Black.secondary,
-              elevation: 0,
-              showSelectedLabels: false,
-              showUnselectedLabels: false,
-              type: BottomNavigationBarType.fixed,
-              items: BottomNavigationEntity.list.map((menu) {
-                return BottomNavigationBarItem(
-                  icon: SvgPicture.asset(
-                    menu.icon,
-                    width: AppSize.w24,
-                  ),
-                  activeIcon: SvgPicture.asset(
-                    menu.activeIcon,
-                    width: AppSize.w24,
-                  ),
-                  label: menu.label,
-                );
-              }).toList(),
-            ),
+              );
+            },
           );
         },
       ),

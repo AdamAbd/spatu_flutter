@@ -6,11 +6,11 @@ import 'package:spatu_flutter/feature/feature.dart';
 final sl = GetIt.instance;
 
 Future<void> init() async {
+  /// Menu
+  sl.registerLazySingleton(() => MenuCubit());
+
   /// Dio
   sl.registerLazySingleton(() => DioClient.dioInit());
-
-  // /// Menu
-  // sl.registerLazySingleton(() => MenuCubit());
 
   /// User
   sl.registerLazySingleton(() => UserCubit());
