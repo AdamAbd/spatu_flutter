@@ -60,6 +60,8 @@ class _HomePageState extends State<HomePage> {
 
   @override
   Widget build(BuildContext context) {
+    final TextFieldEntity textField = TextFieldEntity.search;
+
     return MultiBlocProvider(
       providers: [
         BlocProvider(
@@ -80,14 +82,12 @@ class _HomePageState extends State<HomePage> {
                       context.read<MenuCubit>().changeIndex(index),
                   children: [
                     const DashboardScreen(),
+                    const NotificationScreen(),
                     Container(
                       color: Colors.red,
                     ),
                     Container(
                       color: Colors.green,
-                    ),
-                    Container(
-                      color: Colors.blue,
                     ),
                     Container(
                       color: Colors.amber,

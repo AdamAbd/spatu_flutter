@@ -64,6 +64,7 @@ class Blue {
 class Red {
   static const primary = Color(0xFFEC1D5F);
   static const secondary = Color(0xFFFDE8E7);
+  static const tertiary = Color(0xFFFF4E63);
 }
 
 class Green {

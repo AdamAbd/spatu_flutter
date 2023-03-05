@@ -36,6 +36,7 @@ dependencies:
   flutter:
     sdk: flutter
   flutter_bloc: ^8.1.1
+  flutter_slidable: ^2.0.0
   flutter_svg: ^2.0.2
   form_validator: ^1.0.3
   get_it: ^7.2.0
