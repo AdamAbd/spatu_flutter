@@ -18,6 +18,7 @@ class AppIcon {
   static const profileActive = './assets/icons/profile_active.svg';
   static const buy = './assets/icons/buy.svg';
   static const discount = './assets/icons/discount.svg';
+  static const setting = './assets/icons/setting.svg';
 }
 
 class AppIllustration {

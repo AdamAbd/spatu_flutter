@@ -1,7 +1,6 @@
 export 'banner_section.dart';
 export 'brand_card_item.dart';
 export 'brand_category_section.dart';
-export 'custom_appbar.dart';
 export 'notification_date.dart';
 export 'notification_item.dart';
 export 'popular_product_section.dart';
