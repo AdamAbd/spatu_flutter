@@ -8,30 +8,32 @@ class BannerSection extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return Padding(
+    return SliverPadding(
       padding: const EdgeInsets.symmetric(
         horizontal: AppSize.w24,
       ),
-      child: Column(
-        mainAxisAlignment: MainAxisAlignment.center,
-        children: [
-          SectionTitle(title: "Special Offers", onTap: () {}),
-          Container(
-            width: double.infinity,
-            height: 180,
-            decoration: const BoxDecoration(
-              image: DecorationImage(
-                fit: BoxFit.cover,
-                image: AssetImage(
-                  AppIllustration.banner,
+      sliver: SliverToBoxAdapter(
+        child: Column(
+          mainAxisAlignment: MainAxisAlignment.center,
+          children: [
+            SectionTitle(title: "Special Offers", onTap: () {}),
+            Container(
+              width: double.infinity,
+              height: 180,
+              decoration: const BoxDecoration(
+                image: DecorationImage(
+                  fit: BoxFit.cover,
+                  image: AssetImage(
+                    AppIllustration.banner,
+                  ),
+                ),
+                borderRadius: BorderRadius.all(
+                  Radius.circular(AppSize.w16),
                 ),
               ),
-              borderRadius: BorderRadius.all(
-                Radius.circular(AppSize.w16),
-              ),
             ),
-          ),
-        ],
+          ],
+        ),
       ),
     );
   }

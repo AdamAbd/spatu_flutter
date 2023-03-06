@@ -3,8 +3,8 @@ import 'package:flutter_svg/svg.dart';
 
 import 'package:spatu_flutter/feature/feature.dart';
 
-class CustomSearchBar extends StatelessWidget {
-  const CustomSearchBar({
+class SliverSearchBar extends StatelessWidget {
+  const SliverSearchBar({
     super.key,
     required TextFieldEntity textField,
   }) : _textField = textField;
@@ -13,33 +13,33 @@ class CustomSearchBar extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return Padding(
-      padding: const EdgeInsets.only(
-        left: AppSize.w24,
-        top: AppSize.w20,
-        right: AppSize.w8,
+    return SliverAppBar(
+      toolbarHeight: AppSize.w80,
+      pinned: true,
+      title: Padding(
+        padding: const EdgeInsets.only(left: AppSize.w24),
+        child: CustomSearchTextField(
+          textFieldEntity: _textField,
+          onChanged: (p0) {},
+          onEditingComplete: () {},
+        ),
       ),
-      child: Row(
-        children: [
-          Expanded(
-            child: CustomSearchTextField(
-              textFieldEntity: _textField,
-              onChanged: (p0) {},
-              onEditingComplete: () {},
-            ),
-          ),
-          ButtonIcon(
+      actions: [
+        Container(
+          margin: const EdgeInsets.symmetric(vertical: AppSize.w16),
+          child: ButtonIcon(
             onTap: () {},
-            padding: const EdgeInsets.symmetric(
-              horizontal: AppSize.w16,
+            padding: const EdgeInsets.only(
+              left: AppSize.w16,
+              right: AppSize.w24,
             ),
             child: SvgPicture.asset(
               AppIcon.buy,
               width: AppSize.w24,
             ),
           ),
-        ],
-      ),
+        ),
+      ],
     );
   }
 }

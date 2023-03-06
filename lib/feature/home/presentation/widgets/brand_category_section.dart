@@ -8,20 +8,22 @@ class BrandCategorySection extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return Padding(
+    return SliverPadding(
       padding: const EdgeInsets.symmetric(horizontal: AppSize.w24),
-      child: Column(
-        children: [
-          const Gap(height: AppSize.w12),
-          SectionTitle(title: "Brand Categories", onTap: () {}),
-          Row(
-            mainAxisAlignment: MainAxisAlignment.spaceBetween,
-            children: List.generate(
-              4,
-              (index) => const BrandCardItem(),
+      sliver: SliverToBoxAdapter(
+        child: Column(
+          children: [
+            const Gap(height: AppSize.w12),
+            SectionTitle(title: "Brand Categories", onTap: () {}),
+            Row(
+              mainAxisAlignment: MainAxisAlignment.spaceBetween,
+              children: List.generate(
+                4,
+                (index) => const BrandCardItem(),
+              ),
             ),
-          ),
-        ],
+          ],
+        ),
       ),
     );
   }
