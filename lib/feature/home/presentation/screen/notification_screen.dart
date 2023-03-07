@@ -12,6 +12,8 @@ class NotificationScreen extends StatelessWidget {
         slivers: [
           const CustomSliverAppBar(
             title: "Notification",
+            icon: AppIcon.setting,
+            isDivideBottom: true,
           ),
           const SliverGap(height: AppSize.w24),
           SliverList(

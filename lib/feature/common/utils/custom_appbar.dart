@@ -48,10 +48,16 @@ class CustomSliverSearchBar extends StatelessWidget {
 class CustomSliverAppBar extends StatelessWidget {
   const CustomSliverAppBar({
     super.key,
-    required this.title,
-  });
+    required String title,
+    required String icon,
+    bool isDivideBottom = false,
+  })  : _title = title,
+        _icon = icon,
+        _isDivideBottom = isDivideBottom;
 
-  final String title;
+  final String _title;
+  final String _icon;
+  final bool _isDivideBottom;
 
   @override
   Widget build(BuildContext context) {
@@ -61,17 +67,20 @@ class CustomSliverAppBar extends StatelessWidget {
       title: Padding(
         padding: const EdgeInsets.only(left: AppSize.w24),
         child: Text(
-          title,
+          _title,
           style: AppTextStyle.medium.copyWith(fontSize: AppSize.w16),
         ),
       ),
       centerTitle: false,
-      bottom: const PreferredSize(
+      bottom: PreferredSize(
         preferredSize: Size.zero,
         child: Padding(
-          padding: EdgeInsets.symmetric(horizontal: AppSize.w24),
-          child: Divider(
-            height: AppSize.w0,
+          padding: const EdgeInsets.symmetric(horizontal: AppSize.w24),
+          child: Visibility(
+            visible: _isDivideBottom,
+            child: const Divider(
+              height: AppSize.w0,
+            ),
           ),
         ),
       ),
@@ -85,10 +94,7 @@ class CustomSliverAppBar extends StatelessWidget {
           child: ButtonIcon(
             onTap: () {},
             padding: const EdgeInsets.symmetric(horizontal: AppSize.w16),
-            child: SvgPicture.asset(
-              AppIcon.setting,
-              width: AppSize.w24,
-            ),
+            child: SvgPicture.asset(_icon, width: AppSize.w24),
           ),
         ),
       ],

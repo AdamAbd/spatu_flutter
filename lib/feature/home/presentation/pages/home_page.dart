@@ -82,16 +82,14 @@ class _HomePageState extends State<HomePage> {
                       context.read<MenuCubit>().changeIndex(index),
                   children: [
                     const DashboardScreen(),
-                    const NotificationScreen(),
                     Container(
                       color: Colors.red,
                     ),
                     Container(
                       color: Colors.green,
                     ),
-                    Container(
-                      color: Colors.amber,
-                    ),
+                    const NotificationScreen(),
+                    const ProfileScreen()
                   ],
                 ),
                 bottomNavigationBar: BottomNavigationBar(

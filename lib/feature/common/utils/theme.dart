@@ -27,7 +27,7 @@ class SpatuTheme {
         secondary: Blue.secondary,
       ),
       iconTheme: _theme.iconTheme.copyWith(
-        color: Blue.secondary,
+        color: AppColors.white,
       ),
       floatingActionButtonTheme: _theme.floatingActionButtonTheme.copyWith(
         backgroundColor: Yellow.primary,

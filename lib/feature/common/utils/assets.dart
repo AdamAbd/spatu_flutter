@@ -19,6 +19,12 @@ class AppIcon {
   static const buy = './assets/icons/buy.svg';
   static const discount = './assets/icons/discount.svg';
   static const setting = './assets/icons/setting.svg';
+  static const search = './assets/icons/search.svg';
+  static const edit = './assets/icons/edit.svg';
+  static const location = './assets/icons/location.svg';
+  static const wallet = './assets/icons/wallet.svg';
+  static const shield = './assets/icons/shield.svg';
+  static const logout = './assets/icons/logout.svg';
 }
 
 class AppIllustration {
