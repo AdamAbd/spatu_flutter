@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 
 import 'package:spatu_flutter/feature/feature.dart';
+import 'package:spatu_flutter/feature/home/data/entities/notification_entity.dart';
 
 class NotificationScreen extends StatelessWidget {
   const NotificationScreen({super.key});
@@ -19,10 +20,9 @@ class NotificationScreen extends StatelessWidget {
           SliverList(
             delegate: SliverChildBuilderDelegate(
               (context, index) => NotificationDate(
-                customKey: Key("$index today"),
-                date: "Today",
+                notificationEntity: NotificationEntity.list[index],
               ),
-              childCount: 3,
+              childCount: NotificationEntity.list.length,
             ),
           ),
         ],

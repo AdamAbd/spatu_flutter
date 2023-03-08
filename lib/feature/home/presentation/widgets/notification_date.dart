@@ -1,17 +1,15 @@
 import 'package:flutter/material.dart';
-import 'package:flutter_slidable/flutter_slidable.dart';
 
 import 'package:spatu_flutter/feature/feature.dart';
+import 'package:spatu_flutter/feature/home/data/entities/notification_entity.dart';
 
 class NotificationDate extends StatelessWidget {
   const NotificationDate({
     super.key,
-    required this.customKey,
-    required this.date,
-  });
+    required NotificationEntity notificationEntity,
+  }) : _notificationEntity = notificationEntity;
 
-  final Key customKey;
-  final String date;
+  final NotificationEntity _notificationEntity;
 
   @override
   Widget build(BuildContext context) {
@@ -21,7 +19,7 @@ class NotificationDate extends StatelessWidget {
         Padding(
           padding: const EdgeInsets.symmetric(horizontal: AppSize.w24),
           child: Text(
-            date,
+            _notificationEntity.dateToHuman,
             style: AppTextStyle.medium.copyWith(fontSize: AppSize.w16),
           ),
         ),
@@ -29,44 +27,11 @@ class NotificationDate extends StatelessWidget {
         ListView.builder(
           shrinkWrap: true,
           physics: const NeverScrollableScrollPhysics(),
-          itemCount: 3,
+          itemCount: _notificationEntity.item.length,
           itemBuilder: (context, index) {
-            return Slidable(
-              key: customKey,
-              startActionPane: ActionPane(
-                motion: const ScrollMotion(),
-                dismissible: DismissiblePane(onDismissed: () {}),
-                extentRatio: 1 / 7,
-                children: [
-                  SlidableAction(
-                    onPressed: (context) {},
-                    backgroundColor: Red.tertiary,
-                    foregroundColor: Colors.white,
-                    icon: Icons.delete,
-                  ),
-                ],
-              ),
-              endActionPane: ActionPane(
-                motion: const ScrollMotion(),
-                dismissible: DismissiblePane(onDismissed: () {}),
-                extentRatio: 1 / 7,
-                children: [
-                  SlidableAction(
-                    onPressed: (context) {},
-                    backgroundColor: Red.tertiary,
-                    foregroundColor: Colors.white,
-                    icon: Icons.delete,
-                  ),
-                ],
-              ),
-              child: Container(
-                margin: EdgeInsets.only(bottom: AppSize.w24),
-                child: const NotificationItem(
-                  icon: AppIcon.profileActive,
-                  title: "Account Setup Successful!",
-                  desc: "Your account has been created!",
-                ),
-              ),
+            return NotificationItem(
+              customKey: Key("$index ${_notificationEntity.dateToHuman}"),
+              itemEntity: _notificationEntity.item[index],
             );
           },
         ),
