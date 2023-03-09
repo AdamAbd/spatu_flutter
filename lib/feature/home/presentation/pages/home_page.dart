@@ -85,9 +85,7 @@ class _HomePageState extends State<HomePage> {
                     Container(
                       color: Colors.red,
                     ),
-                    Container(
-                      color: Colors.green,
-                    ),
+                    const WishlistScreen(),
                     const NotificationScreen(),
                     const ProfileScreen()
                   ],

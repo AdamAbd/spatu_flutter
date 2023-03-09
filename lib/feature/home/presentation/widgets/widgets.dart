@@ -6,3 +6,4 @@ export 'notification_item.dart';
 export 'popular_product_section.dart';
 export 'product_item_grid.dart';
 export 'section_title.dart';
+export 'wishlist_item.dart';

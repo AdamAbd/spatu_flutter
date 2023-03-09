@@ -52,6 +52,7 @@ class Black {
   static const primary = Color(0xFF161616);
   static const secondary = Color(0xFF1B1B1B);
   static const tertiary = Color(0xFF262626);
+  static const quaternary = Color(0xFF212121);
 }
 
 class Blue {

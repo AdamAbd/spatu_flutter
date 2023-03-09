@@ -1,5 +1,3 @@
-import 'dart:io';
-
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
 import 'package:google_fonts/google_fonts.dart';
@@ -12,7 +10,6 @@ class SpatuTheme {
       primaryColor: Blue.secondary,
       scaffoldBackgroundColor: AppColors.background,
       shadowColor: Grey.secondary,
-      errorColor: Red.primary,
       disabledColor: Grey.primary,
       textSelectionTheme: _theme.textSelectionTheme.copyWith(
         //* warna garis kedip kedip
@@ -21,10 +18,6 @@ class SpatuTheme {
         selectionHandleColor: Yellow.primary,
         //* warna highlight pas seleksi teks
         selectionColor: Yellow.primary.withOpacity(0.5),
-      ),
-      colorScheme: _theme.colorScheme.copyWith(
-        primary: Blue.primary,
-        secondary: Blue.secondary,
       ),
       iconTheme: _theme.iconTheme.copyWith(
         color: AppColors.white,
@@ -65,7 +58,7 @@ class SpatuTheme {
         backgroundColor: Colors.black.withOpacity(0),
       ),
       dividerTheme: _theme.dividerTheme.copyWith(
-        color: Blue.primary,
+        color: Black.quaternary,
       ),
       inputDecorationTheme: _theme.inputDecorationTheme.copyWith(
         filled: true,
@@ -104,15 +97,19 @@ class SpatuTheme {
           ),
         ),
       ),
-      // splashColor: Platform.isAndroid
-      //     ? Blue.secondary.withOpacity(0.1)
-      //     : Colors.transparent,
+      splashColor: Blue.secondary.withOpacity(0.1),
       // highlightColor: Platform.isAndroid
       //     ? Colors.transparent
       //     : Blue.secondary.withOpacity(0.1),
       textTheme: _theme.textTheme.copyWith().apply(
             fontFamily: GoogleFonts.inter().fontFamily,
           ),
+      colorScheme: _theme.colorScheme
+          .copyWith(
+            primary: Blue.primary,
+            secondary: Blue.secondary,
+          )
+          .copyWith(error: Red.primary),
     );
   }
 }

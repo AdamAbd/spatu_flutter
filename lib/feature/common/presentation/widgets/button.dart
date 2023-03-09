@@ -2,6 +2,7 @@ import 'dart:io';
 
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
+import 'package:google_fonts/google_fonts.dart';
 import 'package:spatu_flutter/feature/feature.dart';
 
 class ButtonIcon extends StatelessWidget {
@@ -407,8 +408,8 @@ class ButtonPrimary extends StatelessWidget {
                   Gap(width: _leading == null ? 0 : AppSize.w8),
                   Text(
                     _label,
-                    style: ButtonTextStyle.medium.copyWith(
-                      fontSize: _responsive.getResponsiveFontSize(_fontSize),
+                    style: GoogleFonts.inter(
+                      fontSize: _fontSize,
                       fontWeight: _fontWeight,
                       color: _labelColor,
                     ),
