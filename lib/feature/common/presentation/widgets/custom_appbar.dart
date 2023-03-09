@@ -7,9 +7,12 @@ class CustomSliverSearchBar extends StatelessWidget {
   const CustomSliverSearchBar({
     super.key,
     required TextFieldEntity textField,
-  }) : _textField = textField;
+    PreferredSizeWidget? bottom,
+  })  : _textField = textField,
+        _bottom = bottom;
 
   final TextFieldEntity _textField;
+  final PreferredSizeWidget? _bottom;
 
   @override
   Widget build(BuildContext context) {
@@ -41,6 +44,7 @@ class CustomSliverSearchBar extends StatelessWidget {
           ),
         ),
       ],
+      bottom: _bottom,
     );
   }
 }

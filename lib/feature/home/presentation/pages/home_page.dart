@@ -80,14 +80,12 @@ class _HomePageState extends State<HomePage> {
                   controller: pageController,
                   onPageChanged: (index) =>
                       context.read<MenuCubit>().changeIndex(index),
-                  children: [
-                    const DashboardScreen(),
-                    Container(
-                      color: Colors.red,
-                    ),
-                    const WishlistScreen(),
-                    const NotificationScreen(),
-                    const ProfileScreen()
+                  children: const [
+                    DashboardScreen(),
+                    SearchScreen(),
+                    WishlistScreen(),
+                    NotificationScreen(),
+                    ProfileScreen()
                   ],
                 ),
                 bottomNavigationBar: BottomNavigationBar(

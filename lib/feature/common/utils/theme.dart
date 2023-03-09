@@ -44,10 +44,18 @@ class SpatuTheme {
         ),
       ),
       tabBarTheme: _theme.tabBarTheme.copyWith(
+        labelStyle: AppTextStyle.regular.copyWith(
+          fontSize: AppSize.w16,
+        ),
+        labelColor: Yellow.primary,
+        unselectedLabelStyle: AppTextStyle.regular.copyWith(
+          fontSize: AppSize.w16,
+        ),
+        unselectedLabelColor: AppColors.white,
         indicator: const UnderlineTabIndicator(
           borderSide: BorderSide(
-            color: Blue.secondary,
-            width: 4,
+            color: Yellow.primary,
+            width: AppSize.w2,
           ),
         ),
       ),
