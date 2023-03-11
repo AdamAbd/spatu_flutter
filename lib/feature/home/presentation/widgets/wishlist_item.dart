@@ -24,11 +24,6 @@ class WishlistItem extends StatelessWidget {
   Widget build(BuildContext context) {
     return Container(
       padding: const EdgeInsets.all(AppSize.w16),
-      margin: const EdgeInsets.only(
-        left: AppSize.w24,
-        right: AppSize.w24,
-        bottom: AppSize.w12,
-      ),
       decoration: BoxDecoration(
         border: Border.all(color: Black.quaternary),
         borderRadius: const BorderRadius.all(

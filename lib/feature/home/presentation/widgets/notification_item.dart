@@ -3,7 +3,6 @@ import 'package:flutter_slidable/flutter_slidable.dart';
 import 'package:flutter_svg/svg.dart';
 
 import 'package:spatu_flutter/feature/feature.dart';
-import 'package:spatu_flutter/feature/home/data/entities/notification_entity.dart';
 
 class NotificationItem extends StatelessWidget {
   const NotificationItem({

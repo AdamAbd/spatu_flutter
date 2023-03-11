@@ -5,5 +5,7 @@ export 'notification_date.dart';
 export 'notification_item.dart';
 export 'popular_product_section.dart';
 export 'product_item_grid.dart';
+export 'search_indicator.dart';
+export 'search_store_item.dart';
 export 'section_title.dart';
 export 'wishlist_item.dart';

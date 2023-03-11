@@ -1,7 +1,6 @@
 import 'package:flutter/material.dart';
 
 import 'package:spatu_flutter/feature/feature.dart';
-import 'package:spatu_flutter/feature/home/data/entities/notification_entity.dart';
 
 class NotificationDate extends StatelessWidget {
   const NotificationDate({
